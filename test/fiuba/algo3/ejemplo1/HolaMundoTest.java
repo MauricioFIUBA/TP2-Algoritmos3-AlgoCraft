@@ -8,6 +8,7 @@ public class HolaMundoTest {
 	@Test
 	public void returnNone(){
         HolaMundo hola = new HolaMundo();
-        Assert.assertEquals(None, result);
+	String result = hola.("mundo!");
+        Assert.assertEquals("Hola mundo!", result);
 	}
 }
