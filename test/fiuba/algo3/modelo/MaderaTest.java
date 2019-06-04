@@ -15,6 +15,7 @@ public class MaderaTest {
     @Test
     public  void TestComprobacionDeQueLaDurabilidadDeMaderaEs10() {
         Material madera = new Madera();
-        assertEquals(10, madera.duracion());
+        Integer esperado = 10;
+        assertEquals(esperado, madera.duracion());
     }
 }
