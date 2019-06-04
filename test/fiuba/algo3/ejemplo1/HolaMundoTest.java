@@ -1,7 +1,7 @@
 package fiuba.algo3.ejemplo1;
 
-import junit.framework.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class HolaMundoTest {
 
@@ -9,6 +9,6 @@ public class HolaMundoTest {
 	public void returnNone(){
         HolaMundo hola = new HolaMundo();
 	String result = hola.Hola("mundo!");
-        Assert.assertEquals("Hola mundo!", result);
+		assertEquals("Hola mundo!", result);
 	}
 }
