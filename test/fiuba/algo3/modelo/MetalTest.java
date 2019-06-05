@@ -8,13 +8,13 @@ import static org.junit.Assert.assertThat;
 
 public class MetalTest {
     @Test
-    public void TestCrearUnBloqueDeMetal() {
+    public void testCrearUnBloqueDeMetal() {
         Material metal = new Metal();
         assertThat(metal, instanceOf(Metal.class));
     }
 
     @Test
-    public  void TestComprobacionDeQueLaDurabilidadDeMetalEs50() {
+    public  void testComprobacionDeQueLaDurabilidadDeMetalEs50() {
         Material metal = new Metal();
         Integer esperado = 50;
         assertEquals(esperado, metal.duracion());

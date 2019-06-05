@@ -8,12 +8,12 @@ import static org.junit.Assert.assertThat;
 
 public class MaderaTest {
     @Test
-    public void TestCrearUnBloqueDeMadera() {
+    public void testCrearUnBloqueDeMadera() {
         Material madera = new Madera();
         assertThat(madera, instanceOf(Madera.class));
     }
     @Test
-    public  void TestComprobacionDeQueLaDurabilidadDeMaderaEs10() {
+    public  void testComprobacionDeQueLaDurabilidadDeMaderaEs10() {
         Material madera = new Madera();
         Integer esperado = 10;
         assertEquals(esperado, madera.duracion());
