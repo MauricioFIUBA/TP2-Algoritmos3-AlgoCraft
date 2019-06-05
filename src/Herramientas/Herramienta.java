@@ -1,5 +1,5 @@
-import Desgastes.Desgaste;
-import Materiales.Material;
+import Desgastes.*;
+import Materiales.*;
 
 public abstract class Herramienta {
     /*Para nuestra implementacion no seria necesario guardar una referencia al material con el que esta hecha
@@ -10,14 +10,6 @@ public abstract class Herramienta {
     convertirse en una mejor herramienta...*/
     protected Material tipoDeMaterial;
     protected Desgaste tipoDeDesgaste;
-    //protected int durabilidadHerramienta;
-    //protected int fuerza;
-    //public int getDurabilidad(){
-     //   return this.durabilidadHerramienta;
-    public Herramienta(){
-        this.inicializarDesgaste();
-    }
-    public abstract void inicializarDesgaste();
     public int getDurabilidad(){
         return this.tipoDeDesgaste.getDurabilidad();
     }
@@ -28,7 +20,3 @@ public abstract class Herramienta {
         this.tipoDeDesgaste.usar();
     }
 }
-    //public int getFuerza(){
-      //  return this.fuerza;
-    //
-
