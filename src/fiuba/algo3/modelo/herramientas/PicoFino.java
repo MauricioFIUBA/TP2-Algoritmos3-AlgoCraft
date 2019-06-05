@@ -1,7 +1,7 @@
-package fiuba.algo3.modelo.Herramientas;
+package fiuba.algo3.modelo.herramientas;
 
-import fiuba.algo3.modelo.Materiales.*;
-import fiuba.algo3.modelo.Desgastes.DesgastePicoFino;
+import fiuba.algo3.modelo.materiales.*;
+import fiuba.algo3.modelo.desgastes.DesgastePicoFino;
 
 public class PicoFino extends Herramienta {
     private Material filo;

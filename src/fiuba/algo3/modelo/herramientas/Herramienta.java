@@ -1,8 +1,7 @@
-package fiuba.algo3.modelo.Herramientas;
+package fiuba.algo3.modelo.herramientas;
 
-import fiuba.algo3.modelo.Desgastes.*;
-import fiuba.algo3.modelo.Materiales.*;
-import fiuba.algo3.modelo.Desgastes.Desgaste;
+import fiuba.algo3.modelo.materiales.*;
+import fiuba.algo3.modelo.desgastes.Desgaste;
 
 public abstract class Herramienta {
     /*Para nuestra implementacion no seria necesario guardar una referencia al material con el que esta hecha

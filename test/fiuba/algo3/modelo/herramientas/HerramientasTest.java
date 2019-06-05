@@ -1,5 +1,5 @@
-package fiuba.algo3.modelo.Herramientas;
-import fiuba.algo3.modelo.Materiales.*;
+package fiuba.algo3.modelo.herramientas;
+import fiuba.algo3.modelo.materiales.*;
 
 import org.junit.Test;
 import static org.junit.Assert.assertNotNull;

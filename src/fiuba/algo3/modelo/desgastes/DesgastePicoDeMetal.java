@@ -1,4 +1,4 @@
-package fiuba.algo3.modelo.Desgastes;
+package fiuba.algo3.modelo.desgastes;
 
 public class DesgastePicoDeMetal extends Desgaste {
     private int cantidadDeUsos;
