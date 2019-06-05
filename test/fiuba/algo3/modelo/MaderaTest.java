@@ -2,15 +2,15 @@ package fiuba.algo3.modelo;
 
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertThat;
+
 public class MaderaTest {
     @Test
     public void TestCrearUnBloqueDeMadera() {
         Material madera = new Madera();
-        if(madera instanceof Madera) {
-            assertTrue(true);
-        }
+        assertThat(madera, instanceOf(Madera.class));
     }
     @Test
     public  void TestComprobacionDeQueLaDurabilidadDeMaderaEs10() {
