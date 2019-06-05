@@ -1,5 +1,8 @@
-import Desgastes.*;
-import Materiales.*;
+package fiuba.algo3.modelo.Herramientas;
+
+import fiuba.algo3.modelo.Materiales.*;
+import fiuba.algo3.modelo.Desgastes.DesgasteBasico;
+import fiuba.algo3.modelo.Desgastes.DesgasteHachaDeMetal;
 
 public class Hacha extends Herramienta {
     public Hacha(Madera madera){

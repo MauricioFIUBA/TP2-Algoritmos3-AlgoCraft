@@ -1,5 +1,7 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.Materiales;
 
+import fiuba.algo3.modelo.Materiales.Madera;
+import fiuba.algo3.modelo.Materiales.Material;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

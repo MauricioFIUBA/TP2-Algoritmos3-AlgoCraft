@@ -1,5 +1,9 @@
-import Desgastes.*;
-import Materiales.*;
+package fiuba.algo3.modelo.Herramientas;
+
+import fiuba.algo3.modelo.Materiales.*;
+import fiuba.algo3.modelo.Desgastes.DesgasteBasico;
+import fiuba.algo3.modelo.Desgastes.DesgastePicoDeMetal;
+import fiuba.algo3.modelo.Desgastes.DesgastePicoPiedra;
 
 public class Pico extends Herramienta {
     public Pico(Madera madera){

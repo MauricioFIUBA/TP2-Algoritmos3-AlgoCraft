@@ -1,8 +1,10 @@
-import Materiales.*;
+package fiuba.algo3.modelo.Herramientas;
+import fiuba.algo3.modelo.Materiales.*;
+
 import org.junit.Test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
-public class TestHerramientas {
+public class HerramientasTest {
     @Test
     public void test01SeInstanciaUnHachaDeMadera() {
         Herramienta hachaDeMadera = new Hacha(new Madera());

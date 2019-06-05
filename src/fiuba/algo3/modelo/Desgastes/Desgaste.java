@@ -1,4 +1,4 @@
-package Desgastes;
+package fiuba.algo3.modelo.Desgastes;
 
 public abstract class Desgaste{
     protected int durabilidad;

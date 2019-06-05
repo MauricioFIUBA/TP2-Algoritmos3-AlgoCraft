@@ -1,6 +1,4 @@
-package Desgastes;
-
-import Desgastes.Desgaste;
+package fiuba.algo3.modelo.Desgastes;
 
 public class DesgastePicoFino extends Desgaste {
     public DesgastePicoFino(int unaDurabilidad, int unaFuerza){

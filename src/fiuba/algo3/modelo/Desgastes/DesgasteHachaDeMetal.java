@@ -1,6 +1,4 @@
-package Desgastes;
-
-import Desgastes.Desgaste;
+package fiuba.algo3.modelo.Desgastes;
 
 public class DesgasteHachaDeMetal extends Desgaste {
     public DesgasteHachaDeMetal(int unaDurabilidad, int unaFuerza){

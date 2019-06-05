@@ -1,4 +1,4 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.Materiales;
 
 public abstract class Material {
     protected Integer durabilidad;
