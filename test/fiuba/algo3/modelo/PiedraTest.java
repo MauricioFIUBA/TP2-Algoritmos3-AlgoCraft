@@ -13,7 +13,7 @@ public class PiedraTest {
         assertThat(piedra, instanceOf(Piedra.class));
     }
     @Test
-    public  void TestComprobacionDeQueLaDurabilidadDeMaderaEs30() {
+    public  void TestComprobacionDeQueLaDurabilidadDePiedraEs30() {
         Material piedra= new Piedra();
         Integer esperado = 30;
         assertEquals(esperado, piedra.duracion());
