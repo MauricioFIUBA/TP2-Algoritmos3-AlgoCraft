@@ -12,12 +12,19 @@ public abstract class Herramienta {
     convertirse en una mejor herramienta...*/
     protected Material tipoDeMaterial;
     protected Desgaste tipoDeDesgaste;
+
     public int getDurabilidad(){
         return this.tipoDeDesgaste.getDurabilidad();
     }
+
     public int getFuerza(){
         return this.tipoDeDesgaste.getFuerza();
     }
+
+    public Material getMaterial() {
+        return this.tipoDeMaterial;
+    }
+
     public void usar(){
         this.tipoDeDesgaste.usar();
     }

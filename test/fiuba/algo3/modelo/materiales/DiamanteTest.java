@@ -1,7 +1,7 @@
 package fiuba.algo3.modelo.materiales;
 
 import org.junit.Test;
-
+import fiuba.algo3.modelo.herramientas.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
@@ -19,5 +19,36 @@ public class DiamanteTest {
         Material diamante = new Diamante();
         Integer esperado = 100;
         assertEquals(esperado, diamante.duracion());
+    }
+
+    @Test
+    public  void testGolpeoUnBloqueDeDiamanteConUnHachaDeMetalYNoBajaSuDurabilidad() {
+        Diamante diamante  = new Diamante();
+        Hacha hacha = new Hacha(new Metal());
+        Integer esperado = diamante.duracion();
+        diamante.desgastarse(hacha);
+        assertEquals(esperado, diamante.duracion());
+
+    }
+
+    @Test
+    public  void testGolpeoUnBloqueDeDiamanteConUnPicoDeMetalYNoBajaSuDurabilidad() {
+        Diamante diamante  = new Diamante();
+        Pico pico = new Pico(new Metal());
+        Integer esperado = diamante.duracion();
+        diamante.desgastarse(pico);
+        assertEquals(esperado, diamante.duracion());
+
+    }
+
+    @Test
+    public  void testGolpeoUnBloqueDeDiamanteConUnPicoFinoYBajaSuDurabilidad() {
+        Diamante diamante  = new Diamante();
+        PicoFino picoFino = new PicoFino();
+        Integer esperado = diamante.duracion();
+//        picoFino.usar(diamante);
+        diamante.desgastarse(picoFino);
+        assertEquals(esperado - 20, diamante.duracion());
+
     }
 }

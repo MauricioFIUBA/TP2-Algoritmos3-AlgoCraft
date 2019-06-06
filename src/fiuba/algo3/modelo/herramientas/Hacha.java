@@ -17,4 +17,5 @@ public class Hacha extends Herramienta {
         this.tipoDeMaterial = metal;
         this.tipoDeDesgaste = new DesgasteHachaDeMetal(400,10);
     }
+
 }
