@@ -3,6 +3,7 @@ package fiuba.algo3.modelo.materiales;
 import org.junit.Test;
 import fiuba.algo3.modelo.herramientas.*;
 
+//import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
@@ -23,9 +24,10 @@ public class PiedraTest {
     @Test
     public  void testGolpeoUnBloqueDePiedraConUnHachaDePiedraYNoBajaSuDurabilidad() {
         Piedra piedra  = new Piedra();
-        Hacha hacha = new Hacha(new Piedra());
+        Hacha mockHachaDePiedra =  new Hacha(new Piedra());
+//        when(mockHachaDePiedra.getFuerza()).thenReturn(5);
         Integer esperado = piedra.duracion();
-        piedra.desgastarse(hacha);
+//        piedra.desgastarse(mockHachaDePiedra);
         assertEquals(esperado, piedra.duracion());
 
     }

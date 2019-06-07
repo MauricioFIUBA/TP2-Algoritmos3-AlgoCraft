@@ -11,4 +11,35 @@ public class Diamante extends Material {
         picoFino.usar();
         durabilidad -= picoFino.getFuerza();
     }
+
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Material material) {
+        //Bloque de diamante contra una herramienta de algun material
+        material.desgastarsePorMaterial(herramienta, this);
+    }
+
+    ////////En este trabajo practico no es posible crear herramientas de diamante//////
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Madera madera) {
+        //Herramienta de diamante contra un bloque de madera
+        madera.durabilidad -= herramienta.getFuerza();
+    }
+
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Piedra piedra) {
+        //Herramienta de diamante contra bloque de piedra
+        piedra.durabilidad -= herramienta.getFuerza();
+    }
+
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Metal metal) {
+        //Herramienta de diamante contra un bloque de metal
+        metal.durabilidad -= herramienta.getFuerza();
+    }
+
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Diamante diamante) {
+        //Herramienta de diamante contra un bloque de diamante
+        diamante.durabilidad -= herramienta.getFuerza();
+    }
 }

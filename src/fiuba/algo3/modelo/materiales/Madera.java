@@ -12,4 +12,32 @@ public class Madera extends Material {
         durabilidad -= hacha.getFuerza();
     }
 
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Material material) {
+        //Bloque de madera contra una herramienta de un material
+        material.desgastarsePorMaterial(herramienta, this);
+    }
+
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Madera madera) {
+        //Herramienta de madera contra un bloque de madera
+        this.durabilidad -= herramienta.getFuerza();
+    }
+
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Piedra piedra) {
+        //Herramienta de madera contra un bloque de piedra
+        this.durabilidad -= herramienta.getFuerza();
+    }
+
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Metal metal) {
+        //Herramienta de madera contra un bloque de metal
+    }
+
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Diamante diamante) {
+        //Herramienta de madera contra un bloque de diamante
+    }
+
 }

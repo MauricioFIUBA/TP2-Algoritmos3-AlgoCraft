@@ -9,7 +9,9 @@ public class PicoFino extends Pico {
 
     public PicoFino(){
         this.filo = new Piedra();
+        this.tipoDeMateriales.add(this.filo);
         this.punta = new Metal();
+        this.tipoDeMateriales.add(this.punta);
         this.tipoDeDesgaste = new DesgastePicoFino(1000,20);
     }
 }

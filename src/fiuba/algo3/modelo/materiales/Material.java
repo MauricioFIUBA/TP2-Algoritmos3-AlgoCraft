@@ -20,19 +20,13 @@ public abstract class Material {
 //        Pico pico = new Pico(new Madera());
 //        this.desgastarse(pico);
 //    }
-//    protected void desgastarsePorMaterial(Herramienta herramienta, Madera madera) {
-//        System.out.println("entro?");
-//    }
-//
-//    protected void desgastarsePorMaterial(Herramienta herramienta, Piedra material) {
-//        durabilidad -= herramienta.getFuerza();
-//    }
-//
-//    protected void desgastarsePorMaterial(Herramienta herramienta, Metal material) {
-//        durabilidad -= herramienta.getFuerza();
-//    }
-//
-//    protected void desgastarsePorMaterial(Herramienta herramienta, Diamante material) {
-//        durabilidad -= herramienta.getFuerza();
-//    }
+    protected abstract void desgastarsePorMaterial(Herramienta herramienta, Material material);
+
+    protected abstract void desgastarsePorMaterial(Herramienta herramienta, Madera madera);
+
+    protected abstract void desgastarsePorMaterial(Herramienta herramienta, Piedra piedra);
+
+    protected abstract void desgastarsePorMaterial(Herramienta herramienta, Metal metal);
+
+    protected abstract void desgastarsePorMaterial(Herramienta herramienta, Diamante diamante);
 }

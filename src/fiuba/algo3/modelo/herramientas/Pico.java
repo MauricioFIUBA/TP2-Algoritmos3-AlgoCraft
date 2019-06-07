@@ -8,15 +8,15 @@ import fiuba.algo3.modelo.desgastes.DesgastePicoPiedra;
 public class Pico extends Herramienta {
     public Pico(){}
     public Pico(Madera madera){
-        this.tipoDeMaterial = madera;
+        this.tipoDeMateriales.add(madera);
         this.tipoDeDesgaste = new DesgasteBasico(100,2);
     }
     public Pico(Piedra piedra){
-        this.tipoDeMaterial = piedra;
+        this.tipoDeMateriales.add(piedra);
         this.tipoDeDesgaste = new DesgastePicoPiedra(200,4);
     }
     public Pico(Metal metal) {
-        this.tipoDeMaterial = metal;
+        this.tipoDeMateriales.add(metal);
         this.tipoDeDesgaste = new DesgastePicoDeMetal(400, 12);
     }
 }

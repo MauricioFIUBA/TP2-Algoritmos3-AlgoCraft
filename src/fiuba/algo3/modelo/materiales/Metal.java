@@ -10,14 +10,36 @@ public class Metal extends Material {
     public void desgastarse (Pico pico) {
         pico.usar();
         Material material = pico.getMaterial();
+        this.desgastarsePorMaterial(pico, material);
+    }
 
-        try {
-            if(!Class.forName("fiuba.algo3.modelo.materiales.Madera").isInstance(material)) {
-                durabilidad -= pico.getFuerza();
-            }
-        } catch(Exception e) {
-            System.out.println(e + "ErrorFatal");
-        }
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Material material) {
+        //Bloque de metal contra una herramienta de algun material
+        material.desgastarsePorMaterial(herramienta, this);
+    }
 
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Madera madera) {
+        //Herramienta de metal contra un bloque de madera
+        madera.durabilidad -= herramienta.getFuerza();
+    }
+
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Piedra piedra) {
+        //Herramienta de metal contra un bloque de piedra
+        piedra.durabilidad -= herramienta.getFuerza();
+    }
+
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Metal metal) {
+        //Herramienta de metal contra un bloque de metal
+        metal.durabilidad -= herramienta.getFuerza();
+    }
+
+    @Override
+    protected void desgastarsePorMaterial(Herramienta herramienta, Diamante diamante) {
+        //Herramienta de metal contra un bloque de diamante
+        //diamante.durabilidad -= herramienta.getFuerza(); // ESto en Minecraft es posible, pero no en el TP
     }
 }
