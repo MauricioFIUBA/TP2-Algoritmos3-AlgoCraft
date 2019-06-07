@@ -24,10 +24,9 @@ public class PiedraTest {
     @Test
     public  void testGolpeoUnBloqueDePiedraConUnHachaDePiedraYNoBajaSuDurabilidad() {
         Piedra piedra  = new Piedra();
-        Hacha mockHachaDePiedra =  new Hacha(new Piedra());
-//        when(mockHachaDePiedra.getFuerza()).thenReturn(5);
+        Hacha hacha =  new Hacha(new Piedra());
         Integer esperado = piedra.duracion();
-//        piedra.desgastarse(mockHachaDePiedra);
+        piedra.desgastarse(hacha);
         assertEquals(esperado, piedra.duracion());
 
     }
