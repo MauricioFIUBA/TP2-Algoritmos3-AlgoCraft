@@ -10,11 +10,12 @@ import org.junit.Test;
 
 
 public class JugadorTest {
+
     @Test
     public void testSeCreaUnUsuarioConUnaHachaDeMadera() {
         Jugador jugador = new Jugador();
         Herramienta herramientaDePrueba = jugador.showHerramientaEquipada();
         assertTrue(herramientaDePrueba instanceof Hacha);
-        assertTrue(herramientaDePrueba.getMaterial() instanceof  Madera);
+        assertTrue(herramientaDePrueba.getMaterial() instanceof Madera);
     }
 }
