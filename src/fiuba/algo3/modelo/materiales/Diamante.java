@@ -7,7 +7,7 @@ public class Diamante extends Material {
         durabilidad = 100;
     }
 
-    public void desgastarse (PicoFino picoFino) {
+    public void esDesgastadoPor (PicoFino picoFino) {
         picoFino.usar();
         durabilidad -= picoFino.getFuerza();
     }

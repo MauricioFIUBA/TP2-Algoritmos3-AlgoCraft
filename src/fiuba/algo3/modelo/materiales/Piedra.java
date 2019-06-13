@@ -8,7 +8,8 @@ public class Piedra extends Material {
         durabilidad = 30;
     }
 
-    public void desgastarse (Pico pico) {
+    @Override
+    public void esDesgastadoPor (Pico pico) {
         pico.usar();
         durabilidad -= pico.getFuerza();
     }

@@ -7,10 +7,13 @@ public class Madera extends Material {
         durabilidad = 10;
     }
 
-    public void desgastarse(Hacha hacha) {
+    @Override
+    public void esDesgastadoPor(Hacha hacha) {
         hacha.usar();
         durabilidad -= hacha.getFuerza();
     }
+    //double dispatch
+
 
     @Override
     protected void desgastarsePorMaterial(Herramienta herramienta, Material material) {
