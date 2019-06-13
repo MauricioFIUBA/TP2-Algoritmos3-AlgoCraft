@@ -48,14 +48,5 @@ public class DiamanteTest {
         Integer esperado = diamante.duracion();
         diamante.esDesgastadoPor(picoFino);
         assertEquals(esperado - 20, diamante.duracion());
-
-    }
-    @Test
-    public void testGolpeoUnBloqueDeMaderaConUnPicoFinoYNoBajaSuDurabildad(){
-        Madera madera = new Madera();
-        PicoFino picoFino = new PicoFino();
-        int esperado = madera.duracion();
-        madera.esDesgastadoPor(picoFino);
-
     }
 }
