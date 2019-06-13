@@ -26,7 +26,7 @@ public class MetalTest {
         Material metal = new Metal();
         Hacha hacha = new Hacha(new Metal());
         Integer esperado = metal.duracion();
-        metal.desgastarse(hacha);
+        metal.esDesgastadoPor(hacha);
         assertEquals(esperado, metal.duracion());
 
     }
@@ -36,7 +36,7 @@ public class MetalTest {
         Material metal = new Metal();
         Pico pico = new Pico(new Piedra());
         Integer esperado = metal.duracion();
-        metal.desgastarse(pico);
+        metal.esDesgastadoPor(pico);
         assertEquals(esperado - 4, metal.duracion());
 
     }
@@ -46,7 +46,7 @@ public class MetalTest {
         Material metal = new Metal();
         Pico pico = new Pico(new Madera());
         Integer esperado = metal.duracion();
-        metal.desgastarse(pico);
+        metal.esDesgastadoPor(pico);
         assertEquals(esperado, metal.duracion());
 
     }
@@ -54,12 +54,11 @@ public class MetalTest {
 
 
     @Test
-    public  void testGolpeoUnBloqueDeMetalConUnPicoFinoYBajaSuDurabilidad() {
+    public  void testGolpeoUnBloqueDeMetalConUnPicoFinoYNoBajaSuDurabilidad() {
         Material metal = new Metal();
         PicoFino picoFino = new PicoFino();
         Integer esperado = metal.duracion();
-        metal.desgastarse(picoFino);
-        assertEquals(esperado - 20, metal.duracion());
-
+        metal.esDesgastadoPor(picoFino);
+        assertEquals(esperado, metal.duracion());
     }
 }

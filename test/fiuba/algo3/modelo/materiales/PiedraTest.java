@@ -26,28 +26,28 @@ public class PiedraTest {
         Piedra piedra  = new Piedra();
         Hacha hacha =  new Hacha(new Piedra());
         Integer esperado = piedra.duracion();
-        piedra.desgastarse(hacha);
+        piedra.esDesgastadoPor(hacha);
         assertEquals(esperado, piedra.duracion());
 
     }
 
     @Test
-    public  void testGolpeoUnBloqueDeDiamanteConUnPicoDeMetalYNoBajaSuDurabilidad() {
+    public  void testGolpeoUnBloqueDePiedraConUnPicoDeMetalYBajaSuDurabilidad() {
         Piedra piedra  = new Piedra();
-        Pico pico = new Pico(new Piedra());
+        Pico pico = new Pico(new Metal());
         Integer esperado = piedra.duracion();
-        piedra.desgastarse(pico);
-        assertEquals(esperado - 4, piedra.duracion());
+        piedra.esDesgastadoPor(pico);
+        assertEquals(esperado - pico.getFuerza(), piedra.duracion());
 
     }
 
     @Test
-    public  void testGolpeoUnBloqueDeDiamanteConUnPicoFinoYBajaSuDurabilidad() {
+    public  void testGolpeoUnBloqueDePiedraConUnPicoFinoYNoBajaSuDurabilidad() {
         Piedra piedra  = new Piedra();
         PicoFino picoFino = new PicoFino();
         Integer esperado = piedra.duracion();
-        piedra.desgastarse(picoFino);
-        assertEquals(esperado - 20, piedra.duracion());
+        piedra.esDesgastadoPor(picoFino);
+        assertEquals(esperado, piedra.duracion());
 
     }
 }

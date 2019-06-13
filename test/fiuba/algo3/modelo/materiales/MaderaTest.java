@@ -25,7 +25,7 @@ public class MaderaTest {
         Madera madera = new Madera();
         Hacha hacha = new Hacha(new Madera());
         Integer esperado = madera.duracion();
-        madera.desgastarse(hacha);
+        madera.esDesgastadoPor(hacha);
         assertEquals(esperado - 2, madera.duracion());
 
     }
@@ -35,7 +35,7 @@ public class MaderaTest {
         Madera madera = new Madera();
         Pico pico = new Pico(new Madera());
         Integer esperado = madera.duracion();
-        madera.desgastarse(pico);
+        madera.esDesgastadoPor(pico);
         assertEquals(esperado, madera.duracion());
 
     }
@@ -45,7 +45,7 @@ public class MaderaTest {
         Madera madera = new Madera();
         PicoFino picoFino = new PicoFino();
         Integer esperado = madera.duracion();
-        madera.desgastarse(picoFino);
+        madera.esDesgastadoPor(picoFino);
         assertEquals(esperado, madera.duracion());
 
     }

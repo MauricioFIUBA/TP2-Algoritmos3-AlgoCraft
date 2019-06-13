@@ -26,7 +26,7 @@ public class DiamanteTest {
         Diamante diamante  = new Diamante();
         Hacha hacha = new Hacha(new Metal());
         Integer esperado = diamante.duracion();
-        diamante.desgastarse(hacha);
+        diamante.esDesgastadoPor(hacha);
         assertEquals(esperado, diamante.duracion());
 
     }
@@ -36,7 +36,7 @@ public class DiamanteTest {
         Diamante diamante  = new Diamante();
         Pico pico = new Pico(new Metal());
         Integer esperado = diamante.duracion();
-        diamante.desgastarse(pico);
+        diamante.esDesgastadoPor(pico);
         assertEquals(esperado, diamante.duracion());
 
     }
@@ -46,9 +46,16 @@ public class DiamanteTest {
         Diamante diamante  = new Diamante();
         PicoFino picoFino = new PicoFino();
         Integer esperado = diamante.duracion();
-//        picoFino.usar(diamante);
-        diamante.desgastarse(picoFino);
+        diamante.esDesgastadoPor(picoFino);
         assertEquals(esperado - 20, diamante.duracion());
+
+    }
+    @Test
+    public void testGolpeoUnBloqueDeMaderaConUnPicoFinoYNoBajaSuDurabildad(){
+        Madera madera = new Madera();
+        PicoFino picoFino = new PicoFino();
+        int esperado = madera.duracion();
+        madera.esDesgastadoPor(picoFino);
 
     }
 }
