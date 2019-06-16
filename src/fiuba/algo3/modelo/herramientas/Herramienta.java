@@ -28,7 +28,16 @@ public abstract class Herramienta {
         return this.tipoDeMateriales.get(0);
     }
 
-    public void usar(){
+    public void usar(Diamante material){
+        this.tipoDeDesgaste.usar();
+    }
+    public void usar(Madera material){
+        this.tipoDeDesgaste.usar();
+    }
+    public void usar(Metal material){
+        this.tipoDeDesgaste.usar();
+    }
+    public void usar(Piedra material){
         this.tipoDeDesgaste.usar();
     }
 }

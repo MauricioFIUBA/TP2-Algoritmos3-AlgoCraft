@@ -13,17 +13,6 @@ public abstract class Material {
         //Material materialDeLaHerramienta = herramienta.getMaterial();
         //this.desgastarsePorMaterial(herramienta, materialDeLaHerramienta);
     }*/
-    public  void esDesgastadoPor (Hacha hacha) {
-        hacha.usar();
-        //El material no hace nada si no es Madera
-    }
-    public  void esDesgastadoPor (Pico pico) {
-        pico.usar();
-        //El material no hace nada si es Madera
-    }
-    public  void esDesgastadoPor (PicoFino PicoFino) {
-
-    }
     //Doble dispatch
 
     //Si el desgaste del material depende de cual es el tipo de material de la herramienta

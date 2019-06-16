@@ -15,4 +15,13 @@ public class PicoFino extends Pico {
         this.tipoDeMateriales.add(this.punta);
         this.tipoDeDesgaste = new DesgastePorDurabilidad(1000,20,0.1);
     }
+
+
+    public void usar(Madera material){
+    }
+    public void usar(Metal material){
+    }
+    public void usar(Piedra material){
+    }
+
 }
