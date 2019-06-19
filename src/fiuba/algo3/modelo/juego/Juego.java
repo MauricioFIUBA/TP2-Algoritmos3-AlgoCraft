@@ -14,8 +14,10 @@ import java.util.Set;
 public class Juego {
     private Mapa mapaDeJuego;
     private Jugador jugador;
+
     public Juego(){
         /*Crea el mapa, crea el jugador en una posicion definida(cambiarla si quieren)*/
+
         this.mapaDeJuego = new Mapa(20);
         this.jugador = new Jugador();
         this.jugador.setPosicion(new Posicion(10,10));
@@ -24,12 +26,14 @@ public class Juego {
 
     }
     /*Habria que modularizar bien esta parte del codigo, porque hay mucho repetido*/
+
     public void setMapa(){
         this.setMaderaEnElMapa(16);
         this.setMetalEnElMapa(4);
         this.setDiamanteEnElMapa(4);
         this.setPiedraEnElMapa(4);
     }
+
     public void setMaderaEnElMapa(Integer cantidad) {
         Random random = new Random();
         int i = 0;
@@ -44,6 +48,7 @@ public class Juego {
             }
         }
     }
+
     public void setMetalEnElMapa(Integer cantidad){
         Random random = new Random();
         int i = 0;
@@ -58,6 +63,7 @@ public class Juego {
             }
         }
     }
+
     public void setDiamanteEnElMapa(Integer cantidad){
         Random random = new Random();
         int i = 0;
@@ -72,6 +78,7 @@ public class Juego {
             }
         }
     }
+
     public void setPiedraEnElMapa(Integer cantidad){
         Random random = new Random();
         int i = 0;
