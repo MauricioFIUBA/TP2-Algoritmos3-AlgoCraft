@@ -4,15 +4,16 @@ package fiuba.algo3.modelo.materiales;
 import fiuba.algo3.modelo.herramientas.*;
 
 public class Piedra extends Material {
-    public Piedra() {
-        durabilidad = 30;
+    public Piedra(){
+        durabilidad =  30;
     }
-
+    @Override
     public void esDesgastadoPor (Pico pico) {
-        pico.usar(this);
+        pico.usar();
         durabilidad -= pico.getFuerza();
     }
 
+    @Override
     protected void desgastarsePorMaterial(Herramienta herramienta, Material material) {
         //Bloque de piedra contra una herramienta de algun material
         material.desgastarsePorMaterial(herramienta, this);

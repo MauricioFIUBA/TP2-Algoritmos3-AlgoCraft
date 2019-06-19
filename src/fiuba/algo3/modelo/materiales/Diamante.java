@@ -3,7 +3,9 @@ package fiuba.algo3.modelo.materiales;
 import fiuba.algo3.modelo.herramientas.*;
 
 public class Diamante extends Material {
-    public Diamante() {
+    public Diamante(){
+        //Para que herramienta de diamante no setee dos veces la posicion y lance error.
+        //Esto se podria corregir con hacer PicoDeDiamante.. HachaDeMadera etc??.
         durabilidad = 100;
     }
 

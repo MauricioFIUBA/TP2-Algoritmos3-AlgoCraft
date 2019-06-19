@@ -3,12 +3,13 @@ package fiuba.algo3.modelo.materiales;
 import fiuba.algo3.modelo.herramientas.*;
 
 public class Metal extends Material {
-    public Metal() {
+
+    public Metal(){
         durabilidad = 50;
     }
-
+    @Override
     public void esDesgastadoPor (Pico pico) {
-        pico.usar(this);
+        pico.usar();
         Material material = pico.getMaterial();
         this.desgastarsePorMaterial(pico, material);
     }

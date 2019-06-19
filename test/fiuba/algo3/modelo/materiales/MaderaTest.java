@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
 
 public class MaderaTest {
-    @Test
+   @Test
     public void testCrearUnBloqueDeMadera() {
         Material madera = new Madera();
         assertThat(madera, instanceOf(Madera.class));

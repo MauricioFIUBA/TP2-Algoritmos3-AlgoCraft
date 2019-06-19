@@ -1,9 +1,10 @@
 package fiuba.algo3.modelo.jugador;
 
+import fiuba.algo3.modelo.mapa.ElementoDelJuego;
 import fiuba.algo3.modelo.herramientas.*;
 import fiuba.algo3.modelo.materiales.*;
 
-public class Jugador {
+public class Jugador extends ElementoDelJuego {
     private Herramienta herramientaEquipada;
     public Jugador() {
         herramientaEquipada = new Hacha(new Madera());

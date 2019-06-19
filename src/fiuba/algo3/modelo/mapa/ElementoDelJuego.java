@@ -1,4 +1,4 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.mapa;
 
 public abstract class ElementoDelJuego{
     protected Posicion posicion;

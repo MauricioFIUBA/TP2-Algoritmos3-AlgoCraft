@@ -1,9 +1,24 @@
 package fiuba.algo3.modelo.materiales;
 
+import fiuba.algo3.modelo.mapa.ElementoDelJuego;
 import fiuba.algo3.modelo.herramientas.*;
 
-public abstract class Material {
+public abstract class Material extends ElementoDelJuego {
     protected Integer durabilidad;
+
+    public static Material forName(Madera madera) {
+        return new Madera();
+    }
+    public static Material forName(Metal metal){
+        return new Metal();
+    }
+    public static Material forName(Diamante diamante){
+        return new Diamante();
+    }
+    public static Material forName(Piedra piedra){
+        return new Piedra();
+    }
+
     public Integer duracion() {
         return durabilidad;
     }
