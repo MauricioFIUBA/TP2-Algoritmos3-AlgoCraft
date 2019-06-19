@@ -9,7 +9,7 @@ public class Madera extends Material {
 
     @Override
     public void esDesgastadoPor(Hacha hacha) {
-        hacha.usar();
+        hacha.usar(this);
         durabilidad -= hacha.getFuerza();
     }
     //double dispatch

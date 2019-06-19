@@ -7,9 +7,8 @@ public class Metal extends Material {
         durabilidad = 50;
     }
 
-    @Override
     public void esDesgastadoPor (Pico pico) {
-        pico.usar();
+        pico.usar(this);
         Material material = pico.getMaterial();
         this.desgastarsePorMaterial(pico, material);
     }

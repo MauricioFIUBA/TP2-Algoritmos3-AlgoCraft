@@ -8,13 +8,11 @@ public class Piedra extends Material {
         durabilidad = 30;
     }
 
-    @Override
     public void esDesgastadoPor (Pico pico) {
-        pico.usar();
+        pico.usar(this);
         durabilidad -= pico.getFuerza();
     }
 
-    @Override
     protected void desgastarsePorMaterial(Herramienta herramienta, Material material) {
         //Bloque de piedra contra una herramienta de algun material
         material.desgastarsePorMaterial(herramienta, this);
