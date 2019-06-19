@@ -4,6 +4,7 @@ import fiuba.algo3.modelo.mapa.ElementoDelJuego;
 import fiuba.algo3.modelo.herramientas.*;
 
 public abstract class Material extends ElementoDelJuego {
+
     protected Integer durabilidad;
 
     public static Material forName(Madera madera) {
