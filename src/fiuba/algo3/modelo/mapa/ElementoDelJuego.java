@@ -12,7 +12,9 @@ public abstract class ElementoDelJuego{
     public void setPosicion(Posicion unaPosicion){
         this.posicion = unaPosicion;
     }
+
     public Posicion obtenerPosicion() {
         return this.posicion;
     }
+    /*Habria que implementar que la posicion calcule la siguiente posicion o posiciones adyacentes*/
 }
