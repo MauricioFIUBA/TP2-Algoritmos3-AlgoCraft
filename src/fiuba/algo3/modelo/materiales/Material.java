@@ -7,19 +7,6 @@ public abstract class Material extends ElementoDelJuego {
 
     protected Integer durabilidad;
 
-    public static Material forName(Madera madera) {
-        return new Madera();
-    }
-    public static Material forName(Metal metal){
-        return new Metal();
-    }
-    public static Material forName(Diamante diamante){
-        return new Diamante();
-    }
-    public static Material forName(Piedra piedra){
-        return new Piedra();
-    }
-
     public Integer duracion() {
         return durabilidad;
     }
