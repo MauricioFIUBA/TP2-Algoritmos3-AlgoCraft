@@ -2,7 +2,7 @@ package fiuba.algo3.modelo.mapa;
 
 import fiuba.algo3.modelo.jugador.Jugador;
 import fiuba.algo3.modelo.materiales.*;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
