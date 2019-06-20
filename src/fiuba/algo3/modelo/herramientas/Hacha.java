@@ -18,29 +18,22 @@ public class Hacha extends Herramienta {
     }
 
     @Override
-    public void reconocerHerramienta(Material unMaterial) {
-        unMaterial.esDesgastadoPor(this);
+    public void reconocerHerramienta(Madera unaMadera) {
+        unaMadera.esDesgastadoPor(this);
     }
 
     @Override
-    public void usar(Madera unaMadera) {
-        this.tipoDeDesgaste.usar();
-
+    public void reconocerHerramienta(Piedra unaPiedra) {
+        unaPiedra.esDesgastadoPor(this);
     }
 
     @Override
-    public void usar(Piedra unaPiedra) {
-        this.tipoDeDesgaste.usar();
+    public void reconocerHerramienta(Metal unMetal) {
+        unMetal.esDesgastadoPor(this);
     }
 
     @Override
-    public void usar(Metal unMetal) {
-        this.tipoDeDesgaste.usar();
-
-    }
-
-    @Override
-    public void usar(Diamante unDiamante) {
-        this.tipoDeDesgaste.usar();
+    public void reconocerHerramienta(Diamante unaDiamante) {
+        unaDiamante.esDesgastadoPor(this);
     }
 }

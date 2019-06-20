@@ -15,14 +15,16 @@ public class Madera extends Material {
 
     //Chequeo de desgaste por herramienta
 
+    @Override
     public void esDesgastadoPor(Hacha unHacha) {
         unHacha.usar(this);
         Material unMaterial = unHacha.getMaterial();
         this.desgastarsePorMaterial(unHacha, unMaterial);
     }
 
-    public void esDesgastadoPor(Pico UnPico) {
-        UnPico.usar(this);
+    @Override
+    public void esDesgastadoPor(Pico unPico) {
+        unPico.usar(this);
     }
 
     //Chequeo de desgaste por material de la herramienta

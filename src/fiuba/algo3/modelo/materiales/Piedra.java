@@ -14,10 +14,12 @@ public class Piedra extends Material {
 
     //Chequeo de desgaste por herramienta
 
+    @Override
     public void esDesgastadoPor (Hacha unHacha) {
         unHacha.usar(this);
     }
 
+    @Override
     public void esDesgastadoPor (Pico unPico) {
         unPico.usar(this);
         Material unMaterial = unPico.getMaterial();

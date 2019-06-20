@@ -16,10 +16,9 @@ public class PicoFino extends Pico {
         this.tipoDeDesgaste = new DesgastePorDurabilidad(1000,20,0.1);
     }
 
-
     @Override
-    public void reconocerHerramienta(Material unMaterial) {
-        unMaterial.esDesgastadoPor(this);
+    public void reconocerHerramienta(Diamante unaDiamante) {
+        unaDiamante.esDesgastadoPor(this);
     }
 
     @Override
@@ -33,11 +32,5 @@ public class PicoFino extends Pico {
     @Override
     public void usar(Piedra unaPiedra){
     }
-
-    @Override
-    public void usar(Diamante unDiamante){
-        this.tipoDeDesgaste.usar();
-    }
-
 
 }

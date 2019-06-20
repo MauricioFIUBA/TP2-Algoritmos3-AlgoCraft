@@ -14,6 +14,9 @@ public abstract class Material extends ElementoDelJuego {
     //Este metodo se llama cuando no se sabe que tipo de herramienta se llama
     public abstract void esDesgastadoPor(Herramienta unaHerramienta);
 
+    public abstract void esDesgastadoPor(Hacha unHacha);
+
+    public abstract void esDesgastadoPor(Pico unPico);
     //Doble dispatch
 
     //Si el desgaste del material depende de cual es el tipo de material de la herramienta

@@ -22,18 +22,23 @@ public abstract class Herramienta{
         return this.tipoDeMateriales.get(0);
     }
 
-    public abstract void reconocerHerramienta(Material unMaterial);
+    //Estos metodos sirven para que se el material sepa de que tipo es la herramienta que se esta usando
+    //y asi saber si tiene que desgastarse o no
+    public abstract void reconocerHerramienta(Madera unaMadera);
+    public abstract void reconocerHerramienta(Piedra unaPiedra);
+    public abstract void reconocerHerramienta(Metal unMetal);
+    public abstract void reconocerHerramienta(Diamante unaDiamante);
 
-    public abstract void usar(Diamante unDiamante);/*{
+    public void usar(Diamante unDiamante){
         this.tipoDeDesgaste.usar();
-    }*/
-    public abstract void usar(Madera unaMadera);/*{
+    }
+    public void usar(Madera unaMadera){
         this.tipoDeDesgaste.usar();
-    }*/
-    public abstract void usar(Metal unMetal);/*{
+    }
+    public void usar(Metal unMetal){
         this.tipoDeDesgaste.usar();
-    }*/
-    public abstract void usar(Piedra unaPiedra);/*{
+    }
+    public void usar(Piedra unaPiedra){
         this.tipoDeDesgaste.usar();
-    }*/
+    }
 }
