@@ -22,9 +22,9 @@ public class MetalTest {
     }
 
     @Test
-    public  void testGolpeoUnBloqueDeMetalConUnHachaDeMetalYNoBajaSuDurabilidad() {
+    public  void testGolpeoUnBloqueDeMetalConUnHachaDeMaderaYNoBajaSuDurabilidad() {
         Metal metal = new Metal();
-        Hacha hacha = new Hacha(new Metal());
+        Herramienta hacha = new Hacha(new Madera());
         Integer esperado = metal.duracion();
         metal.esDesgastadoPor(hacha);
         assertEquals(esperado, metal.duracion());
@@ -32,22 +32,53 @@ public class MetalTest {
     }
 
     @Test
-    public  void testGolpeoUnBloqueDeMetalConUnPicoDePiedraYBajaSuDurabilidad() {
+    public  void testGolpeoUnBloqueDeMetalConUnHachaDePiedraYNoBajaSuDurabilidad() {
         Metal metal = new Metal();
-        Pico pico = new Pico(new Piedra());
+        Herramienta hacha = new Hacha(new Piedra());
         Integer esperado = metal.duracion();
-        metal.esDesgastadoPor(pico);
-        assertEquals(esperado - 4, metal.duracion());
+        metal.esDesgastadoPor(hacha);
+        assertEquals(esperado, metal.duracion());
 
     }
 
     @Test
+    public  void testGolpeoUnBloqueDeMetalConUnHachaDeMetalYNoBajaSuDurabilidad() {
+        Metal metal = new Metal();
+        Herramienta hacha = new Hacha(new Metal());
+        Integer esperado = metal.duracion();
+        metal.esDesgastadoPor(hacha);
+        assertEquals(esperado, metal.duracion());
+
+    }
+
+
+    @Test
     public  void testGolpeoUnBloqueDeMetalConUnPicoDeMaderaYNoBajaSuDurabilidad() {
         Metal metal = new Metal();
-        Pico pico = new Pico(new Madera());
+        Herramienta pico = new Pico(new Madera());
         Integer esperado = metal.duracion();
         metal.esDesgastadoPor(pico);
         assertEquals(esperado, metal.duracion());
+
+    }
+
+    @Test
+    public  void testGolpeoUnBloqueDeMetalConUnPicoDePiedraYBajaSuDurabilidad() {
+        Metal metal = new Metal();
+        Herramienta pico = new Pico(new Piedra());
+        Integer esperado = metal.duracion();
+        metal.esDesgastadoPor(pico);
+        assertEquals(esperado - pico.getFuerza(), metal.duracion());
+
+    }
+
+    @Test
+    public  void testGolpeoUnBloqueDeMetalConUnPicoDeMetalYBajaSuDurabilidad() {
+        Metal metal = new Metal();
+        Herramienta pico = new Pico(new Metal());
+        Integer esperado = metal.duracion();
+        metal.esDesgastadoPor(pico);
+        assertEquals(esperado - pico.getFuerza(), metal.duracion());
 
     }
 

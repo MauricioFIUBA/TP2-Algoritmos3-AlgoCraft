@@ -22,9 +22,9 @@ public class PiedraTest {
     }
 
     @Test
-    public  void testGolpeoUnBloqueDePiedraConUnHachaDePiedraYNoBajaSuDurabilidad() {
+    public  void testGolpeoUnBloqueDePiedraConUnHachaDeMaderaYNoBajaSuDurabilidad() {
         Piedra piedra  = new Piedra();
-        Hacha hacha =  new Hacha(new Piedra());
+        Herramienta hacha =  new Hacha(new Madera());
         Integer esperado = piedra.duracion();
         piedra.esDesgastadoPor(hacha);
         assertEquals(esperado, piedra.duracion());
@@ -32,9 +32,49 @@ public class PiedraTest {
     }
 
     @Test
+    public  void testGolpeoUnBloqueDePiedraConUnHachaDePiedraYNoBajaSuDurabilidad() {
+        Piedra piedra  = new Piedra();
+        Herramienta hacha =  new Hacha(new Piedra());
+        Integer esperado = piedra.duracion();
+        piedra.esDesgastadoPor(hacha);
+        assertEquals(esperado, piedra.duracion());
+
+    }
+
+    @Test
+    public  void testGolpeoUnBloqueDePiedraConUnHachaDeMetalYNoBajaSuDurabilidad() {
+        Piedra piedra  = new Piedra();
+        Herramienta hacha =  new Hacha(new Metal());
+        Integer esperado = piedra.duracion();
+        piedra.esDesgastadoPor(hacha);
+        assertEquals(esperado, piedra.duracion());
+
+    }
+
+    @Test
+    public  void testGolpeoUnBloqueDePiedraConUnPicoDeMaderalYBajaSuDurabilidad() {
+        Piedra piedra  = new Piedra();
+        Herramienta pico = new Pico(new Madera());
+        Integer esperado = piedra.duracion();
+        piedra.esDesgastadoPor(pico);
+        assertEquals(esperado - pico.getFuerza(), piedra.duracion());
+
+    }
+
+    @Test
+    public  void testGolpeoUnBloqueDePiedraConUnPicoDePiedraYBajaSuDurabilidad() {
+        Piedra piedra  = new Piedra();
+        Herramienta pico = new Pico(new Piedra());
+        Integer esperado = piedra.duracion();
+        piedra.esDesgastadoPor(pico);
+        assertEquals(esperado - pico.getFuerza(), piedra.duracion());
+
+    }
+
+    @Test
     public  void testGolpeoUnBloqueDePiedraConUnPicoDeMetalYBajaSuDurabilidad() {
         Piedra piedra  = new Piedra();
-        Pico pico = new Pico(new Metal());
+        Herramienta pico = new Pico(new Metal());
         Integer esperado = piedra.duracion();
         piedra.esDesgastadoPor(pico);
         assertEquals(esperado - pico.getFuerza(), piedra.duracion());
@@ -44,7 +84,7 @@ public class PiedraTest {
     @Test
     public  void testGolpeoUnBloqueDePiedraConUnPicoFinoYBajaSuDurabilidad() {
         Piedra piedra  = new Piedra();
-        PicoFino picoFino = new PicoFino();
+        Herramienta picoFino = new PicoFino();
         Integer esperado = piedra.duracion();
         piedra.esDesgastadoPor(picoFino);
         assertEquals(esperado - 20, piedra.duracion());

@@ -1,8 +1,8 @@
-package fiuba.algo3.modelo.herramientas.jugador;
+package fiuba.algo3.modelo.jugador;
 
 import fiuba.algo3.modelo.herramientas.Hacha;
 import fiuba.algo3.modelo.herramientas.Herramienta;
-import fiuba.algo3.modelo.jugador.Jugador;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import fiuba.algo3.modelo.materiales.Madera;

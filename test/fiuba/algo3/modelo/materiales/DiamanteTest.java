@@ -22,11 +22,50 @@ public class DiamanteTest {
     }
 
     @Test
+    public  void testGolpeoUnBloqueDeDiamanteConUnHachaDeMaderaYNoBajaSuDurabilidad() {
+        Diamante diamante  = new Diamante();
+        Herramienta hacha = new Hacha(new Madera());
+        Integer esperado = diamante.duracion();
+        diamante.esDesgastadoPor(hacha);
+        assertEquals(esperado, diamante.duracion());
+
+    }
+
+    @Test
+    public  void testGolpeoUnBloqueDeDiamanteConUnHachaDePiedraYNoBajaSuDurabilidad() {
+        Diamante diamante  = new Diamante();
+        Hacha hacha = new Hacha(new Piedra());
+        Integer esperado = diamante.duracion();
+        diamante.esDesgastadoPor(hacha);
+        assertEquals(esperado, diamante.duracion());
+
+    }
+
+    @Test
     public  void testGolpeoUnBloqueDeDiamanteConUnHachaDeMetalYNoBajaSuDurabilidad() {
         Diamante diamante  = new Diamante();
         Hacha hacha = new Hacha(new Metal());
         Integer esperado = diamante.duracion();
         diamante.esDesgastadoPor(hacha);
+        assertEquals(esperado, diamante.duracion());
+    }
+
+    @Test
+    public  void testGolpeoUnBloqueDeDiamanteConUnPicoDeMaderaYNoBajaSuDurabilidad() {
+        Diamante diamante  = new Diamante();
+        Pico pico = new Pico(new Madera());
+        Integer esperado = diamante.duracion();
+        diamante.esDesgastadoPor(pico);
+        assertEquals(esperado, diamante.duracion());
+
+    }
+
+    @Test
+    public  void testGolpeoUnBloqueDeDiamanteConUnPicoDePiedraYNoBajaSuDurabilidad() {
+        Diamante diamante  = new Diamante();
+        Pico pico = new Pico(new Piedra());
+        Integer esperado = diamante.duracion();
+        diamante.esDesgastadoPor(pico);
         assertEquals(esperado, diamante.duracion());
 
     }
@@ -44,7 +83,7 @@ public class DiamanteTest {
     @Test
     public  void testGolpeoUnBloqueDeDiamanteConUnPicoFinoYBajaSuDurabilidad() {
         Diamante diamante  = new Diamante();
-        PicoFino picoFino = new PicoFino();
+        Herramienta picoFino = new PicoFino();
         Integer esperado = diamante.duracion();
         diamante.esDesgastadoPor(picoFino);
         assertEquals(esperado - 20, diamante.duracion());

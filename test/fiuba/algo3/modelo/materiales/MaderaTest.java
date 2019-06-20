@@ -23,17 +23,58 @@ public class MaderaTest {
     @Test
     public  void testGolpeoUnBloqueDeMaderaConUnHachaDeMaderaYBajaSuDurabilidad() {
         Madera madera = new Madera();
-        Hacha hacha = new Hacha(new Madera());
+        Herramienta hacha = new Hacha(new Madera());
         Integer esperado = madera.duracion();
         madera.esDesgastadoPor(hacha);
-        assertEquals(esperado - 2, madera.duracion());
+        assertEquals(esperado - hacha.getFuerza(), madera.duracion());
 
     }
 
     @Test
+    public  void testGolpeoUnBloqueDeMaderaConUnHachaDeMPiedraYBajaSuDurabilidad() {
+        Madera madera = new Madera();
+        Herramienta hacha = new Hacha(new Piedra());
+        Integer esperado = madera.duracion();
+        madera.esDesgastadoPor(hacha);
+        assertEquals(esperado - hacha.getFuerza(), madera.duracion());
+
+    }
+
+    @Test
+    public  void testGolpeoUnBloqueDeMaderaConUnHachaDeMetalYBajaSuDurabilidad() {
+        Madera madera = new Madera();
+        Herramienta hacha = new Hacha(new Metal());
+        Integer esperado = madera.duracion();
+        madera.esDesgastadoPor(hacha);
+        assertEquals(esperado - hacha.getFuerza(), madera.duracion());
+
+    }
+
+
+    @Test
     public  void testGolpeoUnBloqueDeMaderaConUnPicoDeMaderaYNoBajaSuDurabilidad() {
         Madera madera = new Madera();
-        Pico pico = new Pico(new Madera());
+        Herramienta pico = new Pico(new Madera());
+        Integer esperado = madera.duracion();
+        madera.esDesgastadoPor(pico);
+        assertEquals(esperado, madera.duracion());
+
+    }
+
+    @Test
+    public  void testGolpeoUnBloqueDeMaderaConUnPicoDePiedraYNoBajaSuDurabilidad() {
+        Madera madera = new Madera();
+        Herramienta pico = new Pico(new Piedra());
+        Integer esperado = madera.duracion();
+        madera.esDesgastadoPor(pico);
+        assertEquals(esperado, madera.duracion());
+
+    }
+
+    @Test
+    public  void testGolpeoUnBloqueDeMaderaConUnPicoDeMetalYNoBajaSuDurabilidad() {
+        Madera madera = new Madera();
+        Herramienta pico = new Pico(new Metal());
         Integer esperado = madera.duracion();
         madera.esDesgastadoPor(pico);
         assertEquals(esperado, madera.duracion());
@@ -48,4 +89,6 @@ public class MaderaTest {
         madera.esDesgastadoPor(picoFino);
         assertEquals(esperado, madera.duracion());
     }
+
+
 }
