@@ -24,29 +24,26 @@ public abstract class Material extends ElementoDelJuego {
         return durabilidad;
     }
 
-    /*public void desgastarse(Herramienta herramienta){
-        herramienta.usar();
-        //Material materialDeLaHerramienta = herramienta.getMaterial();
-        //this.desgastarsePorMaterial(herramienta, materialDeLaHerramienta);
-    }*/
+    //Este metodo se llama cuando no se sabe que tipo de herramienta se llama
+    public abstract void esDesgastadoPor(Herramienta unaHerramienta);
+
     //Doble dispatch
 
     //Si el desgaste del material depende de cual es el tipo de material de la herramienta
     //que se usa, entonce se llama a este metodo
-    protected abstract void desgastarsePorMaterial(Herramienta herramienta, Material material);
-
+    protected abstract void desgastarsePorMaterial(Herramienta unaHerramienta, Material unMaterial);
 
     //Estos metodos se llaman con el tipo de material de la herramienta
 
     //La herramienta esta desgastando una bloque de madera
-    protected abstract void desgastarsePorMaterial(Herramienta herramienta, Madera madera);
+    protected abstract void desgastarsePorMaterial(Herramienta unaHerramienta, Madera unaMadera);
 
     //La herramienta esta desgastando una bloque de piedra
-    protected abstract void desgastarsePorMaterial(Herramienta herramienta, Piedra piedra);
+    protected abstract void desgastarsePorMaterial(Herramienta unaHerramienta, Piedra unaPiedra);
 
     //La herramienta esta desgastando una bloque de metal
-    protected abstract void desgastarsePorMaterial(Herramienta herramienta, Metal metal);
+    protected abstract void desgastarsePorMaterial(Herramienta unaHerramienta, Metal unMetal);
 
     //La herramienta esta desgastando una bloque de diamante
-    protected abstract void desgastarsePorMaterial(Herramienta herramienta, Diamante diamante);
+    protected abstract void desgastarsePorMaterial(Herramienta unaHerramienta, Diamante unDiamante);
 }

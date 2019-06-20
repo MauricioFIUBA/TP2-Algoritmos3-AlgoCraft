@@ -9,39 +9,56 @@ public class Diamante extends Material {
         durabilidad = 100;
     }
 
-    public void esDesgastadoPor (PicoFino picoFino) {
-        picoFino.usar(this);
-        durabilidad -= picoFino.getFuerza();
+    @Override
+    public void esDesgastadoPor(Herramienta unaHerramienta) {
+        unaHerramienta.reconocerHerramienta(this);
     }
 
+    //Chequeo de desgaste por herramienta
+
+    public void esDesgastadoPor (Hacha unHacha) {
+        unHacha.usar(this);
+    }
+
+    public void esDesgastadoPor (Pico unPico) {
+        unPico.usar(this);
+    }
+
+    public void esDesgastadoPor (PicoFino unPicoFino) {
+        unPicoFino.usar(this);
+        this.durabilidad -= unPicoFino.getFuerza();
+    }
+
+    //Chequeo de desgaste por material de la herramienta
+
     @Override
-    protected void desgastarsePorMaterial(Herramienta herramienta, Material material) {
+    protected void desgastarsePorMaterial(Herramienta unaHerramienta, Material unMaterial) {
         //Bloque de diamante contra una herramienta de algun material
-        material.desgastarsePorMaterial(herramienta, this);
+        unMaterial.desgastarsePorMaterial(unaHerramienta, this);
     }
 
     ////////En este trabajo practico no es posible crear herramientas de diamante//////
     @Override
-    protected void desgastarsePorMaterial(Herramienta herramienta, Madera madera) {
+    protected void desgastarsePorMaterial(Herramienta unaHerramienta, Madera unaMadera) {
         //Herramienta de diamante contra un bloque de madera
-        madera.durabilidad -= herramienta.getFuerza();
+        unaMadera.durabilidad -= unaHerramienta.getFuerza();
     }
 
     @Override
-    protected void desgastarsePorMaterial(Herramienta herramienta, Piedra piedra) {
+    protected void desgastarsePorMaterial(Herramienta unaHerramienta, Piedra unaPiedra) {
         //Herramienta de diamante contra bloque de piedra
-        piedra.durabilidad -= herramienta.getFuerza();
+        unaPiedra.durabilidad -= unaHerramienta.getFuerza();
     }
 
     @Override
-    protected void desgastarsePorMaterial(Herramienta herramienta, Metal metal) {
+    protected void desgastarsePorMaterial(Herramienta unaHerramienta, Metal unMetal) {
         //Herramienta de diamante contra un bloque de metal
-        metal.durabilidad -= herramienta.getFuerza();
+        unMetal.durabilidad -= unaHerramienta.getFuerza();
     }
 
     @Override
-    protected void desgastarsePorMaterial(Herramienta herramienta, Diamante diamante) {
+    protected void desgastarsePorMaterial(Herramienta unaHerramienta, Diamante unDiamante) {
         //Herramienta de diamante contra un bloque de diamante
-        diamante.durabilidad -= herramienta.getFuerza();
+        unDiamante.durabilidad -= unaHerramienta.getFuerza();
     }
 }

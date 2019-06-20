@@ -9,38 +9,49 @@ public class Madera extends Material {
     }
 
     @Override
-    public void esDesgastadoPor(Hacha hacha) {
-        hacha.usar(this);
-        durabilidad -= hacha.getFuerza();
+    public void esDesgastadoPor(Herramienta unaHerramienta) {
+        unaHerramienta.reconocerHerramienta(this);
     }
-    //double dispatch
 
+    //Chequeo de desgaste por herramienta
+
+    public void esDesgastadoPor(Hacha unHacha) {
+        unHacha.usar(this);
+        Material unMaterial = unHacha.getMaterial();
+        this.desgastarsePorMaterial(unHacha, unMaterial);
+    }
+
+    public void esDesgastadoPor(Pico UnPico) {
+        UnPico.usar(this);
+    }
+
+    //Chequeo de desgaste por material de la herramienta
 
     @Override
-    protected void desgastarsePorMaterial(Herramienta herramienta, Material material) {
+    protected void desgastarsePorMaterial(Herramienta unaHerramienta, Material unMaterial) {
         //Bloque de madera contra una herramienta de un material
-        material.desgastarsePorMaterial(herramienta, this);
+        unMaterial.desgastarsePorMaterial(unaHerramienta, this);
     }
 
     @Override
-    protected void desgastarsePorMaterial(Herramienta herramienta, Madera madera) {
+    protected void desgastarsePorMaterial(Herramienta unaHerramienta, Madera unaMadera) {
         //Herramienta de madera contra un bloque de madera
-        this.durabilidad -= herramienta.getFuerza();
+        unaMadera.durabilidad -= unaHerramienta.getFuerza();
     }
 
     @Override
-    protected void desgastarsePorMaterial(Herramienta herramienta, Piedra piedra) {
+    protected void desgastarsePorMaterial(Herramienta unaHerramienta, Piedra unaPiedra) {
         //Herramienta de madera contra un bloque de piedra
-        this.durabilidad -= herramienta.getFuerza();
+        unaPiedra.durabilidad -= unaHerramienta.getFuerza();
     }
 
     @Override
-    protected void desgastarsePorMaterial(Herramienta herramienta, Metal metal) {
+    protected void desgastarsePorMaterial(Herramienta unaHerramienta, Metal unMetal) {
         //Herramienta de madera contra un bloque de metal
     }
 
     @Override
-    protected void desgastarsePorMaterial(Herramienta herramienta, Diamante diamante) {
+    protected void desgastarsePorMaterial(Herramienta unaHerramienta, Diamante unDiamante) {
         //Herramienta de madera contra un bloque de diamante
     }
 

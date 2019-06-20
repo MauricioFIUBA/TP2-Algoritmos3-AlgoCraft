@@ -17,11 +17,27 @@ public class PicoFino extends Pico {
     }
 
 
-    public void usar(Madera material){
+    @Override
+    public void reconocerHerramienta(Material unMaterial) {
+        unMaterial.esDesgastadoPor(this);
     }
-    public void usar(Metal material){
+
+    @Override
+    public void usar(Madera unaMadera){
     }
-    public void usar(Piedra material){
+
+    @Override
+    public void usar(Metal unMetal){
     }
+
+    @Override
+    public void usar(Piedra unaPiedra){
+    }
+
+    @Override
+    public void usar(Diamante unDiamante){
+        this.tipoDeDesgaste.usar();
+    }
+
 
 }

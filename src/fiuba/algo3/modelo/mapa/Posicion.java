@@ -17,6 +17,7 @@ public class Posicion {
     }
 
     /*Metodos sobreescritos para que el hash pueda comparar dos objetos por Posicion*/
+    @Override
     public boolean equals(Object obj){
         boolean ok = obj instanceof Posicion;
         int coordenadaXDelObjeto = ((Posicion) obj).getCoordenadaX();
@@ -24,9 +25,18 @@ public class Posicion {
         return ((ok) && (this.coordenadaX == coordenadaXDelObjeto) && (this.coordenadaY == coordenadaYDelObjeto)) ;
     }
 
+
+    //Para no recalcular su hash si ya se calculo una vez
+    private  int hashCode;
+    @Override
     public int hashCode(){
-        int resul = (this.coordenadaX)+(this.coordenadaY);
-        return resul;
+        int resultado = hashCode;
+        if (resultado == 0) {
+            resultado = (this.coordenadaX);
+            resultado = 31 * resultado + (this.coordenadaY);
+            hashCode = resultado;
+        }
+        return resultado;
         //Entonces cuando tengan las mismas coordenadas me los manda al mismo Bucket, lo cual llama a Equals
     }
 }

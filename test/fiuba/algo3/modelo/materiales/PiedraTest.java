@@ -42,12 +42,12 @@ public class PiedraTest {
     }
 
     @Test
-    public  void testGolpeoUnBloqueDePiedraConUnPicoFinoYNoBajaSuDurabilidad() {
+    public  void testGolpeoUnBloqueDePiedraConUnPicoFinoYBajaSuDurabilidad() {
         Piedra piedra  = new Piedra();
         PicoFino picoFino = new PicoFino();
         Integer esperado = piedra.duracion();
         piedra.esDesgastadoPor(picoFino);
-        assertEquals(esperado, piedra.duracion());
+        assertEquals(esperado - 20, piedra.duracion());
 
     }
 }

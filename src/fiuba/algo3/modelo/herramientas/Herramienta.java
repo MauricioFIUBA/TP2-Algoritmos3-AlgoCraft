@@ -22,16 +22,18 @@ public abstract class Herramienta{
         return this.tipoDeMateriales.get(0);
     }
 
-    public void usar(Diamante material){
+    public abstract void reconocerHerramienta(Material unMaterial);
+
+    public abstract void usar(Diamante unDiamante);/*{
         this.tipoDeDesgaste.usar();
-    }
-    public void usar(Madera material){
+    }*/
+    public abstract void usar(Madera unaMadera);/*{
         this.tipoDeDesgaste.usar();
-    }
-    public void usar(Metal material){
+    }*/
+    public abstract void usar(Metal unMetal);/*{
         this.tipoDeDesgaste.usar();
-    }
-    public void usar(Piedra material){
+    }*/
+    public abstract void usar(Piedra unaPiedra);/*{
         this.tipoDeDesgaste.usar();
-    }
+    }*/
 }

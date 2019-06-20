@@ -1,8 +1,7 @@
 package fiuba.algo3.modelo.mapa;
 
 import fiuba.algo3.modelo.jugador.Jugador;
-import fiuba.algo3.modelo.materiales.Madera;
-import fiuba.algo3.modelo.materiales.Metal;
+import fiuba.algo3.modelo.materiales.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,10 +32,10 @@ public class MapaTest {
     }
 
     @Test
-    public void test04SeVerificaQueUnElementoNoPerteceAlMapa() {
+    public void test04SeVerificaQueUnElementoNoPerteneceAlMapa() {
         Mapa mapa = new Mapa(100);
         Madera madera = new Madera();
-
+        madera.setPosicion(new Posicion(10, 5));
         assertFalse(mapa.perteneceAlMapa(madera.obtenerPosicion()));
     }
 
@@ -62,6 +61,18 @@ public class MapaTest {
         mapa.añadirElemento(jugador);
 
         assertTrue(mapa.perteneceAlMapa(jugador.obtenerPosicion()));
+    }
+
+    @Test
+    public void test07UnaPiedraNoSobrescribaAOtroMaterial() {
+        Mapa mapa = new Mapa(10);
+        Madera madera = new Madera();
+        Piedra piedra = new Piedra();
+        madera.setPosicion(new Posicion(-1,0));
+        piedra.setPosicion(new Posicion(0,-1));
+        mapa.añadirElemento(madera);
+        mapa.añadirElemento(piedra);
+        assertEquals(10*10-2, mapa.obtenerCapacidadDelMapa());
     }
 }
 

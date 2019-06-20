@@ -47,6 +47,5 @@ public class MaderaTest {
         Integer esperado = madera.duracion();
         madera.esDesgastadoPor(picoFino);
         assertEquals(esperado, madera.duracion());
-
     }
 }
