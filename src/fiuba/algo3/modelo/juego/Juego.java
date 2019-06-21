@@ -21,7 +21,7 @@ public class Juego {
         this.mapaDeJuego = new Mapa(20);
         this.jugador = new Jugador();
         this.jugador.setPosicion(new Posicion(10,10));
-        this.mapaDeJuego.añadirElemento(this.jugador);
+        this.mapaDeJuego.añadirJugador(this.jugador);
         this.setMapa();
 
     }
@@ -97,4 +97,5 @@ public class Juego {
     public Mapa getMapa() {
         return this.mapaDeJuego;
     }
+
 }
