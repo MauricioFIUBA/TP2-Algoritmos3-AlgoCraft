@@ -1,5 +1,9 @@
 package fiuba.algo3.modelo.mapa;
 
+import fiuba.algo3.modelo.jugador.Jugador;
+import fiuba.algo3.modelo.materiales.Material;
+import fiuba.algo3.modelo.direccion.Direccion;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +11,7 @@ public class Mapa {
     private Integer capacidadMaxima;
     private Map<Posicion, ElementoDelJuego> mapa;
     private Integer lugares;
+    private Jugador jugador;
 
     public Mapa(int capacidad){
         mapa = new HashMap<Posicion, ElementoDelJuego>();
@@ -29,12 +34,39 @@ public class Mapa {
         return this.capacidadMaxima;
     }
 
-
-    public void añadirElemento(ElementoDelJuego elemento) {
-        if((this.obtenerCapacidadDelMapa()!=0) && (!this.perteneceAlMapa(elemento.obtenerPosicion()))){
-            mapa.put(elemento.obtenerPosicion(),elemento);
+    public void añadirElemento(Material material) {
+        if((this.obtenerCapacidadDelMapa()!=0) && (!this.perteneceAlMapa(material.obtenerPosicion()))){
+            mapa.put(material.obtenerPosicion(),material);
             this.capacidadMaxima--;
         }
+    }
+
+    /*Vos fijate que todos los metodos van a ser iguales
+    */
+    public void moverJugador(Direccion unaDireccion){
+        Posicion nuevaPosicion = unaDireccion.posSiguiente(this.jugador.obtenerPosicion());
+        this.modificarPosicion(nuevaPosicion);
+    }
+
+    /*public ElementoDelJuego obtenerElemento(Posicion posicion){
+        return mapa.get(posicion);
+    }*/
+
+    public void modificarPosicion(Posicion posSiguiente){
+        if(!this.perteneceAlMapa(posSiguiente) && posSiguiente.estaDentroDeLos(this.lugares)){
+            this.eliminar(this.jugador.obtenerPosicion());
+            this.jugador.setPosicion(posSiguiente);
+            this.añadirJugador(this.jugador);
+        }
+    }
+    public void eliminar(Posicion pos){
+        this.mapa.remove(pos);
+        this.capacidadMaxima++;
+    }
+    public void añadirJugador(Jugador unJugador) {
+        this.mapa.put(unJugador.obtenerPosicion(), unJugador);
+        jugador = unJugador;
+        this.capacidadMaxima--;
     }
 }
 

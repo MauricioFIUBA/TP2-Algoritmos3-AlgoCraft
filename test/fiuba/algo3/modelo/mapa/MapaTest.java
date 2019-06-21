@@ -58,7 +58,7 @@ public class MapaTest {
         Mapa mapa = new Mapa(10);
         Jugador jugador = new Jugador();
         jugador.setPosicion(new Posicion(0, 0));
-        mapa.añadirElemento(jugador);
+        mapa.añadirJugador(jugador);
 
         assertTrue(mapa.perteneceAlMapa(jugador.obtenerPosicion()));
     }
@@ -74,5 +74,6 @@ public class MapaTest {
         mapa.añadirElemento(piedra);
         assertEquals(10*10-2, mapa.obtenerCapacidadDelMapa());
     }
+
 }
 
