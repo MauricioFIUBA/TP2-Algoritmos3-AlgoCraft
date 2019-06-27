@@ -36,4 +36,6 @@ public abstract class Material extends ElementoDelJuego {
 
     //La herramienta esta desgastando una bloque de diamante
     protected abstract void desgastarsePorMaterial(Herramienta unaHerramienta, Diamante unDiamante);
+
+    public abstract boolean igualQue(Material material);
 }

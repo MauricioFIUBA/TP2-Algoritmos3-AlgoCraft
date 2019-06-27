@@ -6,6 +6,7 @@ import fiuba.algo3.modelo.herramientas.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MetalTest {
     @Test
@@ -91,5 +92,12 @@ public class MetalTest {
         Integer esperado = metal.duracion();
         metal.esDesgastadoPor(picoFino);
         assertEquals(esperado - 20, metal.duracion());
+    }
+
+    @Test
+    public void testComparaDosBloquesDeMetal(){
+        Metal metalActual = new Metal();
+        Metal meta1AComparar = new Metal();
+        assertTrue(metalActual.igualQue(meta1AComparar));
     }
 }

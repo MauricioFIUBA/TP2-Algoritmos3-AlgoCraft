@@ -56,4 +56,12 @@ public class Metal extends Material {
         //Herramienta de metal contra un bloque de diamante
         //diamante.durabilidad -= herramienta.getFuerza(); // ESto en Minecraft es posible, pero no en el TP
     }
+
+    @Override
+    public boolean igualQue(Material material){
+        if(material instanceof Metal){
+            return true;
+        }
+        return false;
+    }
 }

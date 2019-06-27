@@ -56,4 +56,12 @@ public class Piedra extends Material {
     protected void desgastarsePorMaterial(Herramienta unaHerramienta, Diamante unDiamante) {
         //Herramienta de piedra contra un bloque de diamante
     }
+
+    @Override
+    public boolean igualQue(Material material){
+        if(material instanceof Piedra){
+            return true;
+        }
+        return false;
+    }
 }

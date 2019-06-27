@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MaderaTest {
    @Test
@@ -90,5 +91,10 @@ public class MaderaTest {
         assertEquals(esperado, madera.duracion());
     }
 
-
+    @Test
+    public void testComparaDosBloquesDeMadera(){
+       Madera maderaActual = new Madera();
+       Madera maderaAComparar = new Madera();
+       assertTrue(maderaActual.igualQue(maderaAComparar));
+    }
 }

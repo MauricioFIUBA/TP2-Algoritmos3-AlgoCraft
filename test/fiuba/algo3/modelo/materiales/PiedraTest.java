@@ -7,6 +7,7 @@ import fiuba.algo3.modelo.herramientas.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PiedraTest {
     @Test
@@ -89,5 +90,12 @@ public class PiedraTest {
         piedra.esDesgastadoPor(picoFino);
         assertEquals(esperado - 20, piedra.duracion());
 
+    }
+
+    @Test
+    public void testComparaDosBloquesDePiedra(){
+        Piedra piedraActual = new Piedra();
+        Piedra piedraAComparar = new Piedra();
+        assertTrue(piedraActual.igualQue(piedraAComparar));
     }
 }

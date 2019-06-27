@@ -61,4 +61,12 @@ public class Diamante extends Material {
         //Herramienta de diamante contra un bloque de diamante
         unDiamante.durabilidad -= unaHerramienta.getFuerza();
     }
+
+    @Override
+    public boolean igualQue(Material material){
+        if(material instanceof Diamante){
+            return true;
+        }
+        return false;
+    }
 }

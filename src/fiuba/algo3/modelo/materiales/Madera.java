@@ -57,4 +57,12 @@ public class Madera extends Material {
         //Herramienta de madera contra un bloque de diamante
     }
 
+    @Override
+    public boolean igualQue(Material material){
+        if(material instanceof Madera){
+            return true;
+        }
+        return false;
+    }
+
 }
