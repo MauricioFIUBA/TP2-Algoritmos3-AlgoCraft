@@ -1,5 +1,6 @@
 package fiuba.algo3.modelo.constructorDeHerramienta;
 
+import fiuba.algo3.modelo.herramientas.Herramienta;
 import fiuba.algo3.modelo.mapa.Posicion;
 import fiuba.algo3.modelo.materiales.Madera;
 import fiuba.algo3.modelo.materiales.Metal;
@@ -88,8 +89,10 @@ public class ConstructorDeHachaTest {
         formaDeHachaDeMetal.agregarALaPosicionElMaterial(posicionFiloInferior,metal);
         formaDeHachaDeMetal.agregarALaPosicionElMaterial(posicionMangoSuperior,madera);
         formaDeHachaDeMetal.agregarALaPosicionElMaterial(posicionMangoInferior,madera);
-
-        assertNotEquals(constructorHachaDeMetal.construirHerramienta(formaDeHachaDeMetal), null);
+        Herramienta hachaDeMetal = constructorHachaDeMetal.construirHerramienta(formaDeHachaDeMetal);
+        System.out.println(hachaDeMetal);
+        System.out.println(hachaDeMetal.getMaterial());
+        assertNotEquals(hachaDeMetal, null);
     }
 
     @Test

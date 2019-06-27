@@ -12,7 +12,7 @@ public abstract class ConstructorDeHerramienta {
     protected Herramienta herramientaACrear;
 
     private boolean puedeConstruirCon(MesaDeTrabajo mesaDeTrabajoActual){
-        return formaDeConstruccion.esIgualA(mesaDeTrabajoActual);
+        return this.formaDeConstruccion.esIgualA(mesaDeTrabajoActual);
     }
 
 
@@ -21,13 +21,13 @@ public abstract class ConstructorDeHerramienta {
         Posicion posicionInferiorDelMango = new Posicion(1,2);
         Madera madera = new Madera();
 
-        formaDeConstruccion.agregarALaPosicionElMaterial(posicionSuperiorDelMango,madera);
-        formaDeConstruccion.agregarALaPosicionElMaterial(posicionInferiorDelMango,madera);
+        this.formaDeConstruccion.agregarALaPosicionElMaterial(posicionSuperiorDelMango,madera);
+        this.formaDeConstruccion.agregarALaPosicionElMaterial(posicionInferiorDelMango,madera);
     }
 
     public Herramienta construirHerramienta(MesaDeTrabajo mesaDeTrabajoActual){
-        if(puedeConstruirCon(mesaDeTrabajoActual)) {
-            return herramientaACrear;
+        if(this.puedeConstruirCon(mesaDeTrabajoActual)) {
+            return this.herramientaACrear;
         }
         return null;
     }

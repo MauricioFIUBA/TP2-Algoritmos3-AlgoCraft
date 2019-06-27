@@ -7,7 +7,7 @@ public class ConstructorPicoDeMadera extends ConstructorDePico{
 
     public ConstructorPicoDeMadera(){
         Madera madera = new Madera();
-        herramientaACrear = new Pico(madera);
+        this.herramientaACrear = new Pico(madera);
         establecerConstruccionValida(madera);
     }
 

@@ -64,9 +64,6 @@ public class Diamante extends Material {
 
     @Override
     public boolean igualQue(Material material){
-        if(material instanceof Diamante){
-            return true;
-        }
-        return false;
+        return material instanceof Diamante;
     }
 }

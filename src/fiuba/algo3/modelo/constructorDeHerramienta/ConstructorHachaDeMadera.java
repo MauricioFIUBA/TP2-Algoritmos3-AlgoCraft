@@ -7,7 +7,7 @@ public class ConstructorHachaDeMadera extends ConstructorDeHacha {
 
     public ConstructorHachaDeMadera(){
         Madera madera = new Madera();
-        herramientaACrear = new Hacha(madera);
+        this.herramientaACrear = new Hacha(madera);
         establecerConstruccionValida(madera);
     }
 }

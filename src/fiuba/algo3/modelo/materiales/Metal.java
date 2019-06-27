@@ -59,9 +59,6 @@ public class Metal extends Material {
 
     @Override
     public boolean igualQue(Material material){
-        if(material instanceof Metal){
-            return true;
-        }
-        return false;
+        return material instanceof Metal;
     }
 }

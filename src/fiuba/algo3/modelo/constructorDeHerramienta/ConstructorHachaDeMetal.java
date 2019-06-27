@@ -7,7 +7,7 @@ public class ConstructorHachaDeMetal extends ConstructorDeHacha {
 
     public ConstructorHachaDeMetal(){
         Metal metal = new Metal();
-        herramientaACrear = new Hacha(metal);
+        this.herramientaACrear = new Hacha(metal);
         establecerConstruccionValida(metal);
     }
 }

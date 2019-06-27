@@ -45,9 +45,12 @@ public class MesaDeTrabajo {
 
     public boolean esIgualA(MesaDeTrabajo mesaDeTrabajoActual){
         boolean iguales = true;
-        for(Map.Entry<Posicion,Material> entry1 : mesaDeTrabajoActual.getTableroDeConstruccion().entrySet()) {
+        if(mesaDeTrabajoActual.obtenerCapacidadDelTablero() != this.capacidadMaxima) {
+            return false;
+        }
+        for(Map.Entry<Posicion,Material> entry1 : tableroDeConstruccion.entrySet()) {
             Posicion posicionActual = entry1.getKey();
-            if ((!tableroDeConstruccion.containsKey(posicionActual)) || (!tableroDeConstruccion.get(posicionActual).igualQue(entry1.getValue()))) {
+            if ((!mesaDeTrabajoActual.getTableroDeConstruccion().containsKey(posicionActual)) || (!mesaDeTrabajoActual.getTableroDeConstruccion().get(posicionActual).igualQue(entry1.getValue()))) {
                 iguales = false;
             }
         }

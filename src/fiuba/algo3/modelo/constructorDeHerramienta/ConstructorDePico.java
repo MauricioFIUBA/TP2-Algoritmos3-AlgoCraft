@@ -7,13 +7,13 @@ import fiuba.algo3.modelo.mesaDeTrabajo.MesaDeTrabajo;
 public abstract class ConstructorDePico extends ConstructorDeHerramienta {
 
     protected void establecerConstruccionValida(Material material){
-        formaDeConstruccion = new MesaDeTrabajo();
+        this.formaDeConstruccion = new MesaDeTrabajo();
         Posicion posicionAgarre = new Posicion(1,0);
         Posicion posicionFiloIzquierdo = new Posicion(0,0);
         Posicion posicion1FiloDerecho = new Posicion(2,0);
         this.crearMangoDeLaHerramienta();
-        formaDeConstruccion.agregarALaPosicionElMaterial(posicionAgarre, material);
-        formaDeConstruccion.agregarALaPosicionElMaterial(posicionFiloIzquierdo, material);
-        formaDeConstruccion.agregarALaPosicionElMaterial(posicion1FiloDerecho, material);
+        this.formaDeConstruccion.agregarALaPosicionElMaterial(posicionAgarre, material);
+        this.formaDeConstruccion.agregarALaPosicionElMaterial(posicionFiloIzquierdo, material);
+        this.formaDeConstruccion.agregarALaPosicionElMaterial(posicion1FiloDerecho, material);
     }
 }

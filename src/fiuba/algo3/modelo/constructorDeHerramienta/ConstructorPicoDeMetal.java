@@ -7,7 +7,7 @@ public class ConstructorPicoDeMetal extends ConstructorDePico{
 
     public ConstructorPicoDeMetal(){
         Metal metal = new Metal();
-        herramientaACrear = new Pico(metal);
+        this.herramientaACrear = new Pico(metal);
         establecerConstruccionValida(metal);
     }
 

@@ -93,7 +93,7 @@ public class MesaDeTrabajoTest {
     }
 
     @Test
-    public void test08SeVerificanQueDosMesasDeTrabajoTienenDistintosMaterialessEnDistintaPosicion(){
+    public void test08SeVerificanQueDosMesasDeTrabajoTienenDistintosMaterialesEnDistintaPosicion(){
         MesaDeTrabajo mesaDeTrabajo = new MesaDeTrabajo();
         Madera madera = new Madera();
         Posicion posicionMadera = new Posicion(1,1);
