@@ -8,27 +8,26 @@ import fiuba.algo3.modelo.materiales.Piedra;
 import fiuba.algo3.modelo.mesaDeTrabajo.MesaDeTrabajo;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ConstructorDeHachaTest {
 
     @Test
     public void test01SeCreaUnConstructorDeHachaDeMadera() {
         ConstructorHachaDeMadera constructorHachaDeMadera = new ConstructorHachaDeMadera();
-        assertNotEquals(constructorHachaDeMadera,null);
+        assertNotNull(constructorHachaDeMadera);
     }
 
     @Test
     public void test02SeCreaUnConstructorDeHachaDeMetal() {
         ConstructorHachaDeMetal constructorHachaDeMetal = new ConstructorHachaDeMetal();
-        assertNotEquals(constructorHachaDeMetal,null);
+        assertNotNull(constructorHachaDeMetal);
     }
 
     @Test
     public void test03SeCreaUnConstructorDeHachaDePiedra() {
         ConstructorHachaDePiedra constructorHachaDePiedra = new ConstructorHachaDePiedra();
-        assertNotEquals(constructorHachaDePiedra,null);
+        assertNotNull(constructorHachaDePiedra);
     }
 
     @Test
@@ -48,7 +47,8 @@ public class ConstructorDeHachaTest {
         formaDeHachaDeMadera.agregarALaPosicionElMaterial(posicionMangoSuperior,madera);
         formaDeHachaDeMadera.agregarALaPosicionElMaterial(posicionMangoInferior,madera);
 
-        assertNotEquals(constructorHachaDeMadera.construirHerramienta(formaDeHachaDeMadera), null);
+        Herramienta hachaDeMadera = constructorHachaDeMadera.construirHerramienta(formaDeHachaDeMadera);
+        assertNotNull(hachaDeMadera);
     }
 
     @Test
@@ -69,7 +69,8 @@ public class ConstructorDeHachaTest {
         formaDeHachaDePiedra.agregarALaPosicionElMaterial(posicionMangoSuperior,madera);
         formaDeHachaDePiedra.agregarALaPosicionElMaterial(posicionMangoInferior,madera);
 
-        assertNotEquals(constructorHachaDePiedra.construirHerramienta(formaDeHachaDePiedra), null);
+        Herramienta hachaDePiedra = constructorHachaDePiedra.construirHerramienta(formaDeHachaDePiedra);
+        assertNotNull(hachaDePiedra);
     }
 
     @Test
@@ -89,8 +90,9 @@ public class ConstructorDeHachaTest {
         formaDeHachaDeMetal.agregarALaPosicionElMaterial(posicionFiloInferior,metal);
         formaDeHachaDeMetal.agregarALaPosicionElMaterial(posicionMangoSuperior,madera);
         formaDeHachaDeMetal.agregarALaPosicionElMaterial(posicionMangoInferior,madera);
+
         Herramienta hachaDeMetal = constructorHachaDeMetal.construirHerramienta(formaDeHachaDeMetal);
-        assertNotEquals(hachaDeMetal, null);
+        assertNotNull(hachaDeMetal);
     }
 
     @Test
@@ -112,8 +114,8 @@ public class ConstructorDeHachaTest {
         formaDeHachaDeMadera.agregarALaPosicionElMaterial(posicionMangoInferior,madera);
         formaDeHachaDeMadera.agregarALaPosicionElMaterial(posicionInvalida,madera);
 
-
-        assertEquals(constructorHachaDeMadera.construirHerramienta(formaDeHachaDeMadera), null);
+        Herramienta hachaDeMadera = constructorHachaDeMadera.construirHerramienta(formaDeHachaDeMadera);
+        assertNull(hachaDeMadera);
     }
 
     @Test
@@ -136,7 +138,8 @@ public class ConstructorDeHachaTest {
         formaDeHachaDePiedra.agregarALaPosicionElMaterial(posicionMangoInferior,madera);
         formaDeHachaDePiedra.agregarALaPosicionElMaterial(posicionInvalida,piedra);
 
-        assertEquals(constructorHachaDePiedra.construirHerramienta(formaDeHachaDePiedra), null);
+        Herramienta hachaDePiedra = constructorHachaDePiedra.construirHerramienta(formaDeHachaDePiedra);
+        assertNull(hachaDePiedra);
     }
 
     @Test
@@ -159,8 +162,10 @@ public class ConstructorDeHachaTest {
         formaDeHachaDeMetal.agregarALaPosicionElMaterial(posicionMangoInferior,madera);
         formaDeHachaDeMetal.agregarALaPosicionElMaterial(posicionInvalida,metal);
 
-
-        assertEquals(constructorHachaDeMetal.construirHerramienta(formaDeHachaDeMetal), null);
+        Herramienta hachaDeMetal = constructorHachaDeMetal.construirHerramienta(formaDeHachaDeMetal);
+        assertNull(hachaDeMetal);
     }
+
+
 
 }

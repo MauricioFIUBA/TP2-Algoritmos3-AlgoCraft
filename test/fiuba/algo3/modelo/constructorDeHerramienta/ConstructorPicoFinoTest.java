@@ -1,5 +1,6 @@
 package fiuba.algo3.modelo.constructorDeHerramienta;
 
+import fiuba.algo3.modelo.herramientas.Herramienta;
 import fiuba.algo3.modelo.mapa.Posicion;
 import fiuba.algo3.modelo.materiales.Madera;
 import fiuba.algo3.modelo.materiales.Metal;
@@ -7,15 +8,14 @@ import fiuba.algo3.modelo.materiales.Piedra;
 import fiuba.algo3.modelo.mesaDeTrabajo.MesaDeTrabajo;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ConstructorPicoFinoTest {
 
     @Test
     public void test01SeCreaUnConstructorDePicoDeMadera() {
         ConstructorPicoDeMadera constructorPicoDeMadera = new ConstructorPicoDeMadera();
-        assertNotEquals(constructorPicoDeMadera,null);
+        assertNotNull(constructorPicoDeMadera);
     }
 
     @Test
@@ -39,7 +39,8 @@ public class ConstructorPicoFinoTest {
         formaDePicoFino.agregarALaPosicionElMaterial(posicionMangoSuperior,madera);
         formaDePicoFino.agregarALaPosicionElMaterial(posicionMangoInferior,madera);
 
-        assertNotEquals(constructorPicoFino.construirHerramienta(formaDePicoFino), null);
+        Herramienta picoFino = constructorPicoFino.construirHerramienta(formaDePicoFino);
+        assertNotNull(picoFino);
     }
 
 
@@ -66,7 +67,8 @@ public class ConstructorPicoFinoTest {
         formaDePicoFino.agregarALaPosicionElMaterial(posicionMangoInferior,madera);
         formaDePicoFino.agregarALaPosicionElMaterial(posicionInvalida,metal);
 
-        assertEquals(constructorPicoFino.construirHerramienta(formaDePicoFino), null);
+        Herramienta picoFino = constructorPicoFino.construirHerramienta(formaDePicoFino);
+        assertNull(picoFino);
     }
 
 }
