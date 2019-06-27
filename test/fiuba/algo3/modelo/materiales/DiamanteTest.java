@@ -5,6 +5,7 @@ import fiuba.algo3.modelo.herramientas.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class DiamanteTest {
@@ -87,5 +88,12 @@ public class DiamanteTest {
         Integer esperado = diamante.duracion();
         diamante.esDesgastadoPor(picoFino);
         assertEquals(esperado - 20, diamante.duracion());
+    }
+
+    @Test
+    public void testComparaDosBloquesDeDiamante(){
+        Diamante diamanteActual = new Diamante();
+        Diamante diamanteAComparar = new Diamante();
+        assertTrue(diamanteActual.igualQue(diamanteAComparar));
     }
 }
