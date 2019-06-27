@@ -90,8 +90,6 @@ public class ConstructorDeHachaTest {
         formaDeHachaDeMetal.agregarALaPosicionElMaterial(posicionMangoSuperior,madera);
         formaDeHachaDeMetal.agregarALaPosicionElMaterial(posicionMangoInferior,madera);
         Herramienta hachaDeMetal = constructorHachaDeMetal.construirHerramienta(formaDeHachaDeMetal);
-        System.out.println(hachaDeMetal);
-        System.out.println(hachaDeMetal.getMaterial());
         assertNotEquals(hachaDeMetal, null);
     }
 

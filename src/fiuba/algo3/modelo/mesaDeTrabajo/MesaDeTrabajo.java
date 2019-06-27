@@ -1,6 +1,7 @@
 package fiuba.algo3.modelo.mesaDeTrabajo;
 
 
+import fiuba.algo3.modelo.herramientas.Herramienta;
 import fiuba.algo3.modelo.mapa.Posicion;
 import fiuba.algo3.modelo.materiales.Material;
 
@@ -56,5 +57,8 @@ public class MesaDeTrabajo {
         }
         return iguales;
     }
+//    public Herramienta constriurLaHerramienta() {
+//        for
+//    }
 
 }
