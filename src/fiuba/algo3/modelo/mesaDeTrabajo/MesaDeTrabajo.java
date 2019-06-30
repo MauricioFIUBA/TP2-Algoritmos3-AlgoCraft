@@ -1,7 +1,8 @@
 package fiuba.algo3.modelo.mesaDeTrabajo;
 
 
-import fiuba.algo3.modelo.constructorDeHerramienta.*;
+//import fiuba.algo3.modelo.constructorDeHerramienta.*;
+import fiuba.algo3.modelo.constructorDeHerramienta.ConstructorDeHerramienta;
 import fiuba.algo3.modelo.herramientas.Herramienta;
 import fiuba.algo3.modelo.mapa.Posicion;
 import fiuba.algo3.modelo.materiales.Material;
