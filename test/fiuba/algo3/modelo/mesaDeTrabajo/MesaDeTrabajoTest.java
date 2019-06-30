@@ -142,8 +142,6 @@ public class MesaDeTrabajoTest {
         mesaDeTrabajo.agregarALaPosicionElMaterial(posicionMangoSuperior,madera);
         mesaDeTrabajo.agregarALaPosicionElMaterial(posicionMangoInferior,madera);
         Herramienta hachaDeMadera = mesaDeTrabajo.constriurLaHerramienta();
-        System.out.println(hachaDeMadera);
-        System.out.println(hachaDeMadera.getMaterial());
         assertNotNull(hachaDeMadera);
     }
 }

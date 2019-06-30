@@ -2,11 +2,12 @@ package fiuba.algo3.modelo.herramientas;
 
 import fiuba.algo3.modelo.materiales.*;
 import fiuba.algo3.modelo.desgastes.Desgaste;
+import fiuba.algo3.modelo.jugador.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Herramienta{
+public abstract class Herramienta implements Item{
     protected List<Material> tipoDeMateriales = new ArrayList<Material>();
     protected Desgaste tipoDeDesgaste;
 

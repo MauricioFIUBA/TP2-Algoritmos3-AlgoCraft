@@ -2,8 +2,9 @@ package fiuba.algo3.modelo.materiales;
 
 import fiuba.algo3.modelo.mapa.ElementoDelJuego;
 import fiuba.algo3.modelo.herramientas.*;
+import fiuba.algo3.modelo.jugador.Item;
 
-public abstract class Material extends ElementoDelJuego {
+public abstract class Material extends ElementoDelJuego implements Item{
 
     protected Integer durabilidad;
 

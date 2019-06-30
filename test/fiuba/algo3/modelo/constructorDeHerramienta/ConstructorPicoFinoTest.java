@@ -7,11 +7,11 @@ import fiuba.algo3.modelo.materiales.Madera;
 import fiuba.algo3.modelo.materiales.Metal;
 import fiuba.algo3.modelo.materiales.Piedra;
 import fiuba.algo3.modelo.mesaDeTrabajo.MesaDeTrabajo;
+import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.instanceOf;
-import org.junit.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ConstructorPicoFinoTest {
 
