@@ -1,5 +1,6 @@
 package fiuba.algo3.modelo.mesaDeTrabajo;
 
+import fiuba.algo3.modelo.herramientas.Herramienta;
 import fiuba.algo3.modelo.mapa.Posicion;
 import fiuba.algo3.modelo.materiales.*;
 import org.junit.Test;
@@ -124,5 +125,25 @@ public class MesaDeTrabajoTest {
 
 
         assertTrue(mesaDeTrabajo.esIgualA(mesaDeTrabajoActual));
+    }
+
+    @Test
+    public void  test096ConstruirUnaHachaDeMadera() {
+        MesaDeTrabajo mesaDeTrabajo = new MesaDeTrabajo();
+        Madera madera = new Madera();
+        Posicion posicionAgarre = new Posicion(1,0);
+        Posicion posicionFiloSuperior = new Posicion(0,0);
+        Posicion posicionFiloInferior = new Posicion(0,1);
+        Posicion posicionMangoSuperior = new Posicion(1,1);
+        Posicion posicionMangoInferior = new Posicion(1,2);
+        mesaDeTrabajo.agregarALaPosicionElMaterial(posicionAgarre,madera);
+        mesaDeTrabajo.agregarALaPosicionElMaterial(posicionFiloSuperior,madera);
+        mesaDeTrabajo.agregarALaPosicionElMaterial(posicionFiloInferior,madera);
+        mesaDeTrabajo.agregarALaPosicionElMaterial(posicionMangoSuperior,madera);
+        mesaDeTrabajo.agregarALaPosicionElMaterial(posicionMangoInferior,madera);
+        Herramienta hachaDeMadera = mesaDeTrabajo.constriurLaHerramienta();
+        System.out.println(hachaDeMadera);
+        System.out.println(hachaDeMadera.getMaterial());
+        assertNotNull(hachaDeMadera);
     }
 }
