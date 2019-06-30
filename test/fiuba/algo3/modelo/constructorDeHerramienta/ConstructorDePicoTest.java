@@ -1,11 +1,14 @@
 package fiuba.algo3.modelo.constructorDeHerramienta;
 
 import fiuba.algo3.modelo.herramientas.Herramienta;
+import fiuba.algo3.modelo.herramientas.Pico;
 import fiuba.algo3.modelo.mapa.Posicion;
 import fiuba.algo3.modelo.materiales.Madera;
 import fiuba.algo3.modelo.materiales.Metal;
 import fiuba.algo3.modelo.materiales.Piedra;
 import fiuba.algo3.modelo.mesaDeTrabajo.MesaDeTrabajo;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,6 +52,8 @@ public class ConstructorDePicoTest {
 
         Herramienta picoDeMadera = constructorPicoDeMadera.construirHerramienta(formaDePicoDeMadera);
         assertNotNull(picoDeMadera);
+        assertThat(picoDeMadera, instanceOf(Pico.class));
+        assertThat(picoDeMadera.getMaterial(), instanceOf(Madera.class));
     }
 
     @Test
@@ -71,6 +76,8 @@ public class ConstructorDePicoTest {
 
         Herramienta picoDePiedra = constructorPicoDePiedra.construirHerramienta(formaDePicoDePiedra);
         assertNotNull(picoDePiedra);
+        assertThat(picoDePiedra, instanceOf(Pico.class));
+        assertThat(picoDePiedra.getMaterial(), instanceOf(Piedra.class));
     }
 
     @Test
@@ -93,6 +100,8 @@ public class ConstructorDePicoTest {
 
         Herramienta picoDeMetal = constructorPicoDeMetal.construirHerramienta(formaDePicoDeMetal);
         assertNotNull(picoDeMetal);
+        assertThat(picoDeMetal, instanceOf(Pico.class));
+        assertThat(picoDeMetal.getMaterial(), instanceOf(Metal.class));
     }
 
     @Test

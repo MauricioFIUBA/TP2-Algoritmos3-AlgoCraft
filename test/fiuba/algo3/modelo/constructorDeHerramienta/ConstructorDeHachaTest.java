@@ -1,11 +1,14 @@
 package fiuba.algo3.modelo.constructorDeHerramienta;
 
+import fiuba.algo3.modelo.herramientas.Hacha;
 import fiuba.algo3.modelo.herramientas.Herramienta;
 import fiuba.algo3.modelo.mapa.Posicion;
 import fiuba.algo3.modelo.materiales.Madera;
 import fiuba.algo3.modelo.materiales.Metal;
 import fiuba.algo3.modelo.materiales.Piedra;
 import fiuba.algo3.modelo.mesaDeTrabajo.MesaDeTrabajo;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,6 +52,8 @@ public class ConstructorDeHachaTest {
 
         Herramienta hachaDeMadera = constructorHachaDeMadera.construirHerramienta(formaDeHachaDeMadera);
         assertNotNull(hachaDeMadera);
+        assertThat(hachaDeMadera, instanceOf(Hacha.class));
+        assertThat(hachaDeMadera.getMaterial(), instanceOf(Madera.class));
     }
 
     @Test
@@ -71,6 +76,8 @@ public class ConstructorDeHachaTest {
 
         Herramienta hachaDePiedra = constructorHachaDePiedra.construirHerramienta(formaDeHachaDePiedra);
         assertNotNull(hachaDePiedra);
+        assertThat(hachaDePiedra, instanceOf(Hacha.class));
+        assertThat(hachaDePiedra.getMaterial(), instanceOf(Piedra.class));
     }
 
     @Test
@@ -93,6 +100,8 @@ public class ConstructorDeHachaTest {
 
         Herramienta hachaDeMetal = constructorHachaDeMetal.construirHerramienta(formaDeHachaDeMetal);
         assertNotNull(hachaDeMetal);
+        assertThat(hachaDeMetal, instanceOf(Hacha.class));
+        assertThat(hachaDeMetal.getMaterial(), instanceOf(Metal.class));
     }
 
     @Test
