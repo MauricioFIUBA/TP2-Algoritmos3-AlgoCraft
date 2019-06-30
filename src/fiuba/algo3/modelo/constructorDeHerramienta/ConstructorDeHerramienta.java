@@ -6,10 +6,23 @@ import fiuba.algo3.modelo.mapa.Posicion;
 import fiuba.algo3.modelo.materiales.Madera;
 import fiuba.algo3.modelo.mesaDeTrabajo.MesaDeTrabajo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class ConstructorDeHerramienta {
 
     protected MesaDeTrabajo formaDeConstruccion;
     protected Herramienta herramientaACrear;
+
+    public static List<ConstructorDeHerramienta> constructoresDeHerramienta = new ArrayList<>() {{
+        add(new ConstructorHachaDeMadera());
+        add(new ConstructorHachaDePiedra());
+        add(new ConstructorHachaDeMetal());
+        add(new ConstructorPicoDeMadera());
+        add(new ConstructorPicoDePiedra());
+        add(new ConstructorPicoDeMetal());
+        add(new ConstructorPicoFino());
+    }};
 
     private boolean puedeConstruirCon(MesaDeTrabajo mesaDeTrabajoActual){
         return this.formaDeConstruccion.esIgualA(mesaDeTrabajoActual);

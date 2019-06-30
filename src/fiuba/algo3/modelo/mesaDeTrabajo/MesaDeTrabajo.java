@@ -1,11 +1,14 @@
 package fiuba.algo3.modelo.mesaDeTrabajo;
 
 
+import fiuba.algo3.modelo.constructorDeHerramienta.*;
 import fiuba.algo3.modelo.herramientas.Herramienta;
 import fiuba.algo3.modelo.mapa.Posicion;
 import fiuba.algo3.modelo.materiales.Material;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MesaDeTrabajo {
@@ -51,14 +54,26 @@ public class MesaDeTrabajo {
         }
         for(Map.Entry<Posicion,Material> entry1 : tableroDeConstruccion.entrySet()) {
             Posicion posicionActual = entry1.getKey();
-            if ((!mesaDeTrabajoActual.getTableroDeConstruccion().containsKey(posicionActual)) || (!mesaDeTrabajoActual.getTableroDeConstruccion().get(posicionActual).igualQue(entry1.getValue()))) {
+            if ((!mesaDeTrabajoActual.getTableroDeConstruccion().containsKey(posicionActual)) ||
+                    (!mesaDeTrabajoActual.getTableroDeConstruccion().get(posicionActual).igualQue(entry1.getValue()))) {
                 iguales = false;
             }
         }
         return iguales;
     }
-//    public Herramienta constriurLaHerramienta() {
-//        for
-//    }
+    public Herramienta constriurLaHerramienta() {
+        List<ConstructorDeHerramienta> listadeConstructores = ConstructorDeHerramienta.constructoresDeHerramienta;
+
+        Herramienta herramientaRetornada = null;
+        for(ConstructorDeHerramienta constructor: listadeConstructores) {
+            Herramienta herramientaConstruida = constructor.construirHerramienta(this);
+            if(herramientaConstruida != null) {
+                herramientaRetornada = herramientaConstruida;
+                break;
+            }
+
+        }
+        return herramientaRetornada;
+    }
 
 }
