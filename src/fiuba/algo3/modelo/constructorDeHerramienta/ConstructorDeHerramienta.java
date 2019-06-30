@@ -14,7 +14,7 @@ public abstract class ConstructorDeHerramienta {
     protected MesaDeTrabajo formaDeConstruccion;
     protected Herramienta herramientaACrear;
 
-    public static List<ConstructorDeHerramienta> constructoresDeHerramienta = new ArrayList<>() {{
+    public static List<ConstructorDeHerramienta> constructoresDeHerramienta = new ArrayList<ConstructorDeHerramienta>() {{
         add(new ConstructorHachaDeMadera());
         add(new ConstructorHachaDePiedra());
         add(new ConstructorHachaDeMetal());
