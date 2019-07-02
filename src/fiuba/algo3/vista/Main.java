@@ -1,21 +1,14 @@
-package fiuba.algo3.vision;
+package fiuba.algo3.vista;
 
 import fiuba.algo3.modelo.juego.Juego;
 import fiuba.algo3.modelo.mapa.*;
 import fiuba.algo3.modelo.materiales.*;
 import javafx.application.Application;
 
-import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.stage.StageStyle;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
