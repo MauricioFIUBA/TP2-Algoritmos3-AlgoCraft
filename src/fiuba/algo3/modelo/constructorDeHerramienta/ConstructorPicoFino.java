@@ -17,7 +17,7 @@ public class ConstructorPicoFino extends ConstructorDeHerramienta{
         Posicion posicionFiloSuperiorIzquierdo = new Posicion(0,0);
         Posicion posicionFiloSuperiorDerecho = new Posicion(2,0);
         Posicion posicion1FiloInferiorIzquierdo = new Posicion(0,1);
-        herramientaACrear = new PicoFino();
+        this.herramientaACrear = new PicoFino();
         this.crearMangoDeLaHerramienta();
         formaDeConstruccion.agregarALaPosicionElMaterial(posicionAgarre, metal);
         formaDeConstruccion.agregarALaPosicionElMaterial(posicionFiloSuperiorIzquierdo, metal);
