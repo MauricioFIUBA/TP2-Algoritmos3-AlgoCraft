@@ -1,21 +1,31 @@
 package fiuba.algo3.vista;
 
+import fiuba.algo3.modelo.direccion.DireccionAbajo;
+import fiuba.algo3.modelo.direccion.DireccionArriba;
+import fiuba.algo3.modelo.direccion.DireccionDerecha;
+import fiuba.algo3.modelo.direccion.DireccionIzquierda;
 import fiuba.algo3.modelo.juego.Juego;
-import fiuba.algo3.modelo.mapa.*;
-import fiuba.algo3.modelo.materiales.*;
+import fiuba.algo3.modelo.mapa.ElementoDelJuego;
+import fiuba.algo3.modelo.mapa.Mapa;
+import fiuba.algo3.modelo.mapa.Posicion;
+import fiuba.algo3.modelo.materiales.Madera;
+import fiuba.algo3.modelo.materiales.Material;
+import fiuba.algo3.modelo.materiales.Metal;
+import fiuba.algo3.modelo.materiales.Piedra;
 import javafx.application.Application;
-
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class Main extends Application{
+public class Main extends Application implements EventHandler<KeyEvent> {
 
     private static Mapa mapa;
     static private String path;
@@ -35,7 +45,8 @@ public class Main extends Application{
         GridPane gridpane = new GridPane();
 
         int cantidad = 20;
-        int tamanio = 50;
+        int tamanio = 25;
+
         for (int i = 0; i < cantidad; i++) {
             for(int j = 0; j < cantidad; j++) {
                 Image elemento = this.retornarImagen(new Posicion(i,j), mapa);
@@ -47,11 +58,12 @@ public class Main extends Application{
         }
 
 
-
         VBox contenedorPrincipal = new VBox(gridpane);
         Path iconPath = Paths.get(path, "imagenes", "icon.png");
         stage.getIcons().add(new Image(iconPath.toString()));
-        Scene scene = new Scene(contenedorPrincipal, cantidad * tamanio, cantidad * tamanio);
+        Scene scene = new Scene(contenedorPrincipal, cantidad * tamanio,  cantidad * tamanio);
+
+        scene.setOnKeyPressed(this);
 
         stage.setScene(scene);
         stage.setResizable(false);
@@ -81,4 +93,28 @@ public class Main extends Application{
         }
         return new Image(imagenPath.toString());
     }
+
+    @Override
+    public void handle(KeyEvent event) {
+        switch (event.getCode()) {
+            case W:
+                mapa.moverJugador(new DireccionArriba());
+                System.out.println("Se movio W");
+                break;
+            case A:
+                mapa.moverJugador(new DireccionIzquierda());
+                System.out.println("Se movio A");
+                break;
+            case S:
+                mapa.moverJugador(new DireccionAbajo());
+                System.out.println("Se movio S");
+                break;
+            case D:
+                mapa.moverJugador(new DireccionDerecha());
+                System.out.println("Se movio D");
+                break;
+        }
+
+    }
+
 }
