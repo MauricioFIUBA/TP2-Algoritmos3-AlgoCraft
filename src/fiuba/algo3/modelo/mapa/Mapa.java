@@ -69,6 +69,9 @@ public class Mapa {
         this.capacidadMaxima--;
     }
 
+    public Posicion obtenerPosicionDelJugador() {
+        return jugador.obtenerPosicion();
+    }
     public ElementoDelJuego retornarElemento(Posicion pos) {
         return mapa.get(pos);
     }

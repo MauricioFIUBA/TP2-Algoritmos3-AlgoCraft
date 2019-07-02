@@ -14,6 +14,7 @@ import fiuba.algo3.modelo.materiales.Metal;
 import fiuba.algo3.modelo.materiales.Piedra;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,6 +25,8 @@ import javafx.stage.Stage;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main extends Application implements EventHandler<KeyEvent> {
 
@@ -38,22 +41,22 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         launch(args);
     }
 
+
+    private GridPane gridpane = new GridPane();
+    private int cantidad = 20;
+    private int tamanio = 25;
+    Map<Posicion, ImageView> imagenes;
+
+
     @Override
     public void start(Stage stage) throws Exception {
 
         stage.setTitle("AlgoCraft");
-        GridPane gridpane = new GridPane();
 
-        int cantidad = 20;
-        int tamanio = 25;
-
+        imagenes = this.crearImagenes();
         for (int i = 0; i < cantidad; i++) {
             for(int j = 0; j < cantidad; j++) {
-                Image elemento = this.retornarImagen(new Posicion(i,j), mapa);
-                ImageView imageView = new ImageView(elemento);
-                imageView.setFitHeight(tamanio);
-                imageView.setFitWidth(tamanio);
-                gridpane.add(imageView, i, j);
+                gridpane.add(imagenes.get(new Posicion(i,j)), i, j);
             }
         }
 
@@ -69,6 +72,18 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         stage.setResizable(false);
 
         stage.show();
+    }
+    private void actualizarImagen(Posicion posicionVieja, Posicion posicionNueva) {
+        if(!posicionNueva.equals(posicionVieja)) {
+            ImageView imagenVieja = imagenes.get(posicionVieja);
+            ImageView imagenNueva = imagenes.get(posicionNueva);
+            imagenes.replace(posicionVieja, imagenNueva);
+            imagenes.replace(posicionNueva, imagenVieja);
+            gridpane.getChildren().remove(imagenVieja);
+            gridpane.getChildren().remove(imagenNueva);
+            gridpane.add(imagenes.get(posicionVieja), posicionVieja.getCoordenadaX(), posicionVieja.getCoordenadaY());
+            gridpane.add(imagenes.get(posicionNueva), posicionNueva.getCoordenadaX(), posicionNueva.getCoordenadaY());
+        }
     }
 
     private Image retornarImagen(Posicion posicion, Mapa mapa) {
@@ -94,26 +109,57 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         return new Image(imagenPath.toString());
     }
 
+    private Map<Posicion, ImageView> crearImagenes() {
+        Map<Posicion, ImageView> aRetornar = new HashMap<>();
+
+        for (int i = 0; i < cantidad; i++) {
+            for(int j = 0; j < cantidad; j++) {
+                Image elemento = this.retornarImagen(new Posicion(i,j), mapa);
+                ImageView imageView = new ImageView(elemento);
+                imageView.setFitHeight(tamanio);
+                imageView.setFitWidth(tamanio);
+                aRetornar.put(new Posicion(i,j), imageView);
+            }
+        }
+        return aRetornar;
+    }
+
     @Override
     public void handle(KeyEvent event) {
+        Posicion posicionVieja;
+        Posicion posicionNueva;
         switch (event.getCode()) {
             case W:
+                posicionVieja = mapa.obtenerPosicionDelJugador();
                 mapa.moverJugador(new DireccionArriba());
+                posicionNueva = mapa.obtenerPosicionDelJugador();
                 System.out.println("Se movio W");
+                this.actualizarImagen(posicionVieja, posicionNueva);
+
                 break;
             case A:
+                posicionVieja = mapa.obtenerPosicionDelJugador();
                 mapa.moverJugador(new DireccionIzquierda());
                 System.out.println("Se movio A");
+                posicionNueva = mapa.obtenerPosicionDelJugador();
+                this.actualizarImagen(posicionVieja, posicionNueva);
                 break;
             case S:
+                posicionVieja = mapa.obtenerPosicionDelJugador();
                 mapa.moverJugador(new DireccionAbajo());
                 System.out.println("Se movio S");
+                posicionNueva = mapa.obtenerPosicionDelJugador();
+                this.actualizarImagen(posicionVieja, posicionNueva);
                 break;
             case D:
+                posicionVieja = mapa.obtenerPosicionDelJugador();
                 mapa.moverJugador(new DireccionDerecha());
                 System.out.println("Se movio D");
+                posicionNueva = mapa.obtenerPosicionDelJugador();
+                this.actualizarImagen(posicionVieja, posicionNueva);
                 break;
         }
+
 
     }
 
