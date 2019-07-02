@@ -68,8 +68,8 @@ public class MapaTest {
         Mapa mapa = new Mapa(10);
         Madera madera = new Madera();
         Piedra piedra = new Piedra();
-        madera.setPosicion(new Posicion(-1,0));
-        piedra.setPosicion(new Posicion(0,-1));
+        madera.setPosicion(new Posicion(1,0));
+        piedra.setPosicion(new Posicion(0,1));
         mapa.añadirElemento(madera);
         mapa.añadirElemento(piedra);
         assertEquals(10*10-2, mapa.obtenerCapacidadDelMapa());
