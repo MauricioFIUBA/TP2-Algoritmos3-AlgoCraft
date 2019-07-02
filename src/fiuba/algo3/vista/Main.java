@@ -1,9 +1,6 @@
 package fiuba.algo3.vista;
 
-import fiuba.algo3.modelo.direccion.DireccionAbajo;
-import fiuba.algo3.modelo.direccion.DireccionArriba;
-import fiuba.algo3.modelo.direccion.DireccionDerecha;
-import fiuba.algo3.modelo.direccion.DireccionIzquierda;
+import fiuba.algo3.modelo.direccion.*;
 import fiuba.algo3.modelo.juego.Juego;
 import fiuba.algo3.modelo.mapa.ElementoDelJuego;
 import fiuba.algo3.modelo.mapa.Mapa;
@@ -14,7 +11,6 @@ import fiuba.algo3.modelo.materiales.Metal;
 import fiuba.algo3.modelo.materiales.Piedra;
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,7 +18,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.media.AudioClip;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -126,43 +121,35 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         return aRetornar;
     }
 
-    @Override
-    public void handle(KeyEvent event) {
+
+    private void eventoMover(Direccion unaDireccion){
         Posicion posicionVieja;
         Posicion posicionNueva;
+        posicionVieja = mapa.obtenerPosicionDelJugador();
+        mapa.moverJugador(unaDireccion);
+        //audio.play();
+        posicionNueva = mapa.obtenerPosicionDelJugador();
+        this.actualizarImagen(posicionVieja, posicionNueva);
+    }
+
+    @Override
+    public void handle(KeyEvent event) {
         switch (event.getCode()) {
             case W:
-                posicionVieja = mapa.obtenerPosicionDelJugador();
-                mapa.moverJugador(new DireccionArriba());
-                //audio.play();
-                posicionNueva = mapa.obtenerPosicionDelJugador();
+                this.eventoMover(new DireccionArriba());
                 System.out.println("Se movio W");
-                this.actualizarImagen(posicionVieja, posicionNueva);
-
                 break;
             case A:
-                posicionVieja = mapa.obtenerPosicionDelJugador();
-                mapa.moverJugador(new DireccionIzquierda());
-                //audio.play();
+                this.eventoMover(new DireccionIzquierda());
                 System.out.println("Se movio A");
-                posicionNueva = mapa.obtenerPosicionDelJugador();
-                this.actualizarImagen(posicionVieja, posicionNueva);
                 break;
             case S:
-                posicionVieja = mapa.obtenerPosicionDelJugador();
-                mapa.moverJugador(new DireccionAbajo());
-                //audio.play();
+                this.eventoMover(new DireccionAbajo());
                 System.out.println("Se movio S");
-                posicionNueva = mapa.obtenerPosicionDelJugador();
-                this.actualizarImagen(posicionVieja, posicionNueva);
                 break;
             case D:
-                posicionVieja = mapa.obtenerPosicionDelJugador();
-                mapa.moverJugador(new DireccionDerecha());
-                //audio.play();
+                this.eventoMover(new DireccionDerecha());
                 System.out.println("Se movio D");
-                posicionNueva = mapa.obtenerPosicionDelJugador();
-                this.actualizarImagen(posicionVieja, posicionNueva);
                 break;
         }
 
