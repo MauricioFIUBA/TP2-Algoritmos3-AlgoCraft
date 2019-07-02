@@ -17,3 +17,7 @@ notifications:
     recipients:
       - mlcabrera@fi.uba.ar
 on_failure: always
+
+coverage:
+  ignore:
+    - "src/fiuba/algo3/vista/**"
