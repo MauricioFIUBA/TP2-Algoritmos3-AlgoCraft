@@ -57,7 +57,7 @@ public class JugadorTest {
         mapa.añadirJugador(jugador);
         Direccion direccionArriba = new DireccionArriba();
         mapa.moverJugador(direccionArriba);
-        Posicion posEsperada = new Posicion(5,6);
+        Posicion posEsperada = new Posicion(5,4);
 
         assertEquals(jugador.obtenerPosicion(),posEsperada);
     }
@@ -71,7 +71,7 @@ public class JugadorTest {
         mapa.añadirJugador(jugador);
         Direccion direccionAbajo = new DireccionAbajo();
         mapa.moverJugador(direccionAbajo);
-        Posicion posEsperada = new Posicion(5,4);
+        Posicion posEsperada = new Posicion(5,6);
 
         assertEquals(jugador.obtenerPosicion(),posEsperada);
 
