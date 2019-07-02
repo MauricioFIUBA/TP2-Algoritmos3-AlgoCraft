@@ -43,6 +43,6 @@ public class Posicion {
     }
 
     public boolean estaDentroDeLos(Integer lugares) {
-        return ((this.coordenadaX>= 0 && this.coordenadaX<=lugares) && (this.coordenadaY>=0 && this.coordenadaY<=lugares));
+        return ((this.coordenadaX>= 0 && this.coordenadaX<lugares) && (this.coordenadaY>=0 && this.coordenadaY<lugares));
     }
 }

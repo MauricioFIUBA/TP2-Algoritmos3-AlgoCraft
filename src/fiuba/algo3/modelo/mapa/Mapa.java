@@ -35,7 +35,7 @@ public class Mapa {
     }
 
     public void añadirElemento(Material material) {
-        if((this.obtenerCapacidadDelMapa()!=0) && (!this.perteneceAlMapa(material.obtenerPosicion()))){
+        if((this.obtenerCapacidadDelMapa()!=0) && (material.obtenerPosicion().estaDentroDeLos(this.capacidadMaxima)) && (!this.perteneceAlMapa(material.obtenerPosicion()))){
             mapa.put(material.obtenerPosicion(),material);
             this.capacidadMaxima--;
         }
