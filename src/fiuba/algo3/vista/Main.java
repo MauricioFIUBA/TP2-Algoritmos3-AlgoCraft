@@ -12,10 +12,17 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class Main extends Application{
 
     private static Mapa mapa;
+    static private String path;
+
     public static void main(String[] args) {
+        Path currentPath = Paths.get(System.getProperty("user.dir"));
+        path = "file:"+currentPath.toString();
         Juego juego = new Juego();
         mapa = juego.getMapa();
         launch(args);
@@ -31,16 +38,19 @@ public class Main extends Application{
         int tamanio = 50;
         for (int i = 0; i < cantidad; i++) {
             for(int j = 0; j < cantidad; j++) {
-                Image test = this.retornarImagen(new Posicion(i,j), mapa);
-                ImageView imageView = new ImageView(test);
+                Image elemento = this.retornarImagen(new Posicion(i,j), mapa);
+                ImageView imageView = new ImageView(elemento);
                 imageView.setFitHeight(tamanio);
                 imageView.setFitWidth(tamanio);
                 gridpane.add(imageView, i, j);
             }
         }
 
+
+
         VBox contenedorPrincipal = new VBox(gridpane);
-        stage.getIcons().add(new Image("imagenes/icon.png"));
+        Path iconPath = Paths.get(path, "imagenes", "icon.png");
+        stage.getIcons().add(new Image(iconPath.toString()));
         Scene scene = new Scene(contenedorPrincipal, cantidad * tamanio, cantidad * tamanio);
 
         stage.setScene(scene);
@@ -50,23 +60,25 @@ public class Main extends Application{
     }
 
     private Image retornarImagen(Posicion posicion, Mapa mapa) {
+        Path imagenPath = Paths.get(path,"imagenes");
         if(mapa.perteneceAlMapa(posicion)) {
             ElementoDelJuego elemento = mapa.retornarElemento(posicion);
             if(elemento instanceof Material) {
                 if(elemento instanceof Madera) {
-                    return new Image("imagenes/wood.jpg");
+                    imagenPath = Paths.get(imagenPath.toString(),"wood.jpg");
                 } else if(elemento instanceof Piedra) {
-                    return new Image("imagenes/stone.png");
+                    imagenPath = Paths.get(imagenPath.toString(),"stone.png");
                 } else if(elemento instanceof Metal) {
-                    return new Image("imagenes/iron.png");
+                    imagenPath = Paths.get(imagenPath.toString(),"iron.png");
                 } else { //if(elemento instanceof Diamante) {
-                    return new Image("imagenes/diamond.jpg");
+                    imagenPath = Paths.get(imagenPath.toString(),"diamond.jpg");
                 }
             } else {
-                return new Image("imagenes/player.png");
+                imagenPath = Paths.get(imagenPath.toString(),"player.png");
             }
         } else {
-            return new Image("imagenes/grass.png");
+            imagenPath = Paths.get(imagenPath.toString(),"grass.png");
         }
+        return new Image(imagenPath.toString());
     }
 }
