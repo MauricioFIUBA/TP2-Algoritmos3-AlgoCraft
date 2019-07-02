@@ -14,17 +14,6 @@ public abstract class ConstructorDeHerramienta {
     protected MesaDeTrabajo formaDeConstruccion;
     protected Herramienta herramientaACrear;
 
-    public static List<ConstructorDeHerramienta> constructoresDeHerramienta = new ArrayList<ConstructorDeHerramienta>();
-    static {
-        constructoresDeHerramienta.add(new ConstructorHachaDeMadera());
-        constructoresDeHerramienta.add(new ConstructorHachaDePiedra());
-        constructoresDeHerramienta.add(new ConstructorHachaDeMetal());
-        constructoresDeHerramienta.add(new ConstructorPicoDeMadera());
-        constructoresDeHerramienta.add(new ConstructorPicoDePiedra());
-        constructoresDeHerramienta.add(new ConstructorPicoDeMetal());
-        constructoresDeHerramienta.add(new ConstructorPicoFino());
-    };
-
     private boolean puedeConstruirCon(MesaDeTrabajo mesaDeTrabajoActual){
         return this.formaDeConstruccion.esIgualA(mesaDeTrabajoActual);
     }

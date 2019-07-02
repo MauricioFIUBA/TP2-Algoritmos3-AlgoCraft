@@ -2,7 +2,7 @@ package fiuba.algo3.modelo.mesaDeTrabajo;
 
 
 //import fiuba.algo3.modelo.constructorDeHerramienta.*;
-import fiuba.algo3.modelo.constructorDeHerramienta.ConstructorDeHerramienta;
+import fiuba.algo3.modelo.constructorDeHerramienta.*;
 import fiuba.algo3.modelo.herramientas.Herramienta;
 import fiuba.algo3.modelo.mapa.Posicion;
 import fiuba.algo3.modelo.materiales.Material;
@@ -16,7 +16,15 @@ public class MesaDeTrabajo {
     private Integer capacidadMaxima;
     private Map<Posicion, Material> tableroDeConstruccion;
     private Integer maximaPosicion;
-
+    private static List<ConstructorDeHerramienta> constructoresDeHerramienta = new ArrayList<ConstructorDeHerramienta>() {{
+        add(new ConstructorHachaDeMadera());
+        add(new ConstructorHachaDePiedra());
+        add(new ConstructorHachaDeMetal());
+        add(new ConstructorPicoDeMadera());
+        add(new ConstructorPicoDePiedra());
+        add(new ConstructorPicoDeMetal());
+        add(new ConstructorPicoFino());
+    }};
 
     public MesaDeTrabajo(){
         this.tableroDeConstruccion = new HashMap<Posicion, Material>();
@@ -63,7 +71,7 @@ public class MesaDeTrabajo {
         return iguales;
     }
     public Herramienta constriurLaHerramienta() {
-        List<ConstructorDeHerramienta> listadeConstructores = ConstructorDeHerramienta.constructoresDeHerramienta;
+        List<ConstructorDeHerramienta> listadeConstructores = constructoresDeHerramienta;
 
         Herramienta herramientaRetornada = null;
         for(ConstructorDeHerramienta constructor: listadeConstructores) {
