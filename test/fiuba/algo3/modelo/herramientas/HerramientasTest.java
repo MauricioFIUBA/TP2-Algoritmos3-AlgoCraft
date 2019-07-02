@@ -155,7 +155,7 @@ public class HerramientasTest {
     public void test14SeCreaUnPicoFinoYSeLoUsaContraUnBloqueDeDiamanteYElPicoFinoSeDesgasta(){
         PicoFino picoFino = new PicoFino();
         Diamante diamante = new Diamante();
-        //Tuve que castear a int para que corra el test.
+        //Tuve que castear a int para que corra el Main.
         int esperado = (int) (picoFino.getDurabilidad() - (picoFino.getDurabilidad()*0.1));
         diamante.esDesgastadoPor(picoFino);
         assertEquals(picoFino.getDurabilidad(),esperado);
