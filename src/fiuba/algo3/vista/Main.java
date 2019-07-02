@@ -22,6 +22,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.media.AudioClip;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -41,6 +42,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         launch(args);
     }
 
+    //private AudioClip audio = new AudioClip("file:/home/gonza/Escritorio/algocraft/TP2-Algoritmos3-AlgoCraft/bip_1.mp3");
 
     private GridPane gridpane = new GridPane();
     private int cantidad = 20;
@@ -132,6 +134,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             case W:
                 posicionVieja = mapa.obtenerPosicionDelJugador();
                 mapa.moverJugador(new DireccionArriba());
+                //audio.play();
                 posicionNueva = mapa.obtenerPosicionDelJugador();
                 System.out.println("Se movio W");
                 this.actualizarImagen(posicionVieja, posicionNueva);
@@ -140,6 +143,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             case A:
                 posicionVieja = mapa.obtenerPosicionDelJugador();
                 mapa.moverJugador(new DireccionIzquierda());
+                //audio.play();
                 System.out.println("Se movio A");
                 posicionNueva = mapa.obtenerPosicionDelJugador();
                 this.actualizarImagen(posicionVieja, posicionNueva);
@@ -147,6 +151,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             case S:
                 posicionVieja = mapa.obtenerPosicionDelJugador();
                 mapa.moverJugador(new DireccionAbajo());
+                //audio.play();
                 System.out.println("Se movio S");
                 posicionNueva = mapa.obtenerPosicionDelJugador();
                 this.actualizarImagen(posicionVieja, posicionNueva);
@@ -154,6 +159,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             case D:
                 posicionVieja = mapa.obtenerPosicionDelJugador();
                 mapa.moverJugador(new DireccionDerecha());
+                //audio.play();
                 System.out.println("Se movio D");
                 posicionNueva = mapa.obtenerPosicionDelJugador();
                 this.actualizarImagen(posicionVieja, posicionNueva);
