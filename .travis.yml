@@ -8,6 +8,7 @@ dist: trusty
 install: ant
 
 script:
+  - curl --data-binary @codecov.yml https://codecov.io/validate
   - ant integracion-continua
 after_success:
   - bash <(curl -s https://codecov.io/bash)
