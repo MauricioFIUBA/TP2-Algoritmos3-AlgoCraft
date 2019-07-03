@@ -31,11 +31,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static javafx.scene.media.AudioClip.INDEFINITE;
+
 public class Main extends Application implements EventHandler<KeyEvent> {
 
     private static Mapa mapa;
     private static  String path;
-    private AudioClip caminar = new AudioClip(path+"/sonidos/walk.mp3");
+    private AudioClip caminar;
+    private float volumenCaminar = (float) (Math.log(1.01) / Math.log(10.0) * 20.0);
     private static int cantItemsJugador;
     public static void main(String[] args) {
         Path currentPath = Paths.get(System.getProperty("user.dir"));
@@ -51,7 +54,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
     private GridPane gridpane = new GridPane();
     private GridPane items = new GridPane();
     private int cantidad = 20;
-    private int tamanio = 20;
+    private int tamanio = 30;
     private Map<Posicion, ImageView> imagenes;
     private Map<Posicion, ImageView> imgItems;
 
@@ -83,6 +86,18 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         root.setTop(contenedorPrincipal);
         root.setBottom(contenedorItems);
 
+        Path soundPath = Paths.get(path, "sonidos");
+
+        Path walkPath = Paths.get(soundPath.toString(), "walk.mp3");
+        caminar = new AudioClip(walkPath.toString());
+        caminar.setVolume(volumenCaminar);
+
+        // Musica de fondo
+        Path themePath = Paths.get(soundPath.toString(), "theme.mp3");
+        AudioClip sonidoAmbiente = new AudioClip(themePath.toString());
+        sonidoAmbiente.setCycleCount(INDEFINITE);
+        sonidoAmbiente.play();
+
         Path iconPath = Paths.get(path, "imagenes", "icon.png");
         stage.getIcons().add(new Image(iconPath.toString()));
         Scene scene = new Scene(root);
@@ -95,6 +110,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
     }
     private void actualizarImagen(Posicion posicionVieja, Posicion posicionNueva) {
         if(!posicionNueva.equals(posicionVieja)) {
+            caminar.play();
             ImageView imagenVieja = imagenes.get(posicionVieja);
             ImageView imagenNueva = imagenes.get(posicionNueva);
             imagenes.replace(posicionVieja, imagenNueva);
@@ -154,7 +170,11 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                 }
                 else {
                     Herramienta herramientaAactual = (Herramienta) itemsJugador.get(posicion);
-                    imagenPath = Paths.get(imagenPath.toString(), herramientaAactual.getClass().getSimpleName()+"De"+herramientaAactual.getMaterial().getClass().getSimpleName()+".png");
+                    imagenPath = Paths.get(imagenPath.toString(),
+                                    herramientaAactual.getClass().getSimpleName()+
+                                            "De"+
+                                            herramientaAactual.getMaterial().getClass().getSimpleName()+
+                                            ".png");
                 }
             }
             else{
@@ -184,7 +204,6 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         Posicion posicionNueva;
         posicionVieja = mapa.obtenerPosicionDelJugador();
         mapa.moverJugador(unaDireccion);
-        caminar.play();
         posicionNueva = mapa.obtenerPosicionDelJugador();
         this.actualizarImagen(posicionVieja, posicionNueva);
     }
