@@ -39,4 +39,7 @@ public abstract class Material extends ElementoDelJuego implements Item{
     protected abstract void desgastarsePorMaterial(Herramienta unaHerramienta, Diamante unDiamante);
 
     public abstract boolean igualQue(Material material);
+    public boolean roto(){
+        return this.durabilidad==0;
+    }
 }

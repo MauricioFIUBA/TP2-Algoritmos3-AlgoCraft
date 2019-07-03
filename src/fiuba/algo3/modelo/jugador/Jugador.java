@@ -20,4 +20,7 @@ public class Jugador extends ElementoDelJuego {
 
     public int cantidadItems() { return inventario.size(); }
     public List<Item> getItems(){return inventario;}
+    public Herramienta getHerramientaEquipada(){
+        return this.herramientaEquipada;
+    }
 }

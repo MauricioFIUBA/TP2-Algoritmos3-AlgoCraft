@@ -75,6 +75,22 @@ public class Mapa {
     public ElementoDelJuego retornarElemento(Posicion pos) {
         return mapa.get(pos);
     }
+    public boolean esMaterial(Posicion posicion){
+        return perteneceAlMapa(posicion) && (mapa.get(posicion) instanceof Material);
+    }
+    public void atacarEn(Direccion unaDireccion) {
+        Posicion posicionDeAtaque = this.posDeAtaque(unaDireccion);
+        if (esMaterial(posicionDeAtaque)) {
+            Material material = (Material) mapa.get(posicionDeAtaque);
+            material.esDesgastadoPor(jugador.getHerramientaEquipada());
+            if (material.roto()){
+                this.eliminar(posicionDeAtaque);
+            }
+        }
+    }
+    public Posicion posDeAtaque(Direccion unaDireccion){
+        return unaDireccion.posSiguiente(obtenerPosicionDelJugador());
+    }
 }
 
 
