@@ -40,6 +40,6 @@ public abstract class Material extends ElementoDelJuego implements Item{
 
     public abstract boolean igualQue(Material material);
     public boolean roto(){
-        return this.durabilidad==0;
+        return this.durabilidad<=0;
     }
 }
