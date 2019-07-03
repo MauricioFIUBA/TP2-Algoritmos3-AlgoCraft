@@ -5,6 +5,7 @@ import fiuba.algo3.modelo.materiales.Material;
 import fiuba.algo3.modelo.direccion.Direccion;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Mapa {
@@ -75,6 +76,7 @@ public class Mapa {
     public ElementoDelJuego retornarElemento(Posicion pos) {
         return mapa.get(pos);
     }
+    public List getItems(){return jugador.getItems();}
 }
 
 
