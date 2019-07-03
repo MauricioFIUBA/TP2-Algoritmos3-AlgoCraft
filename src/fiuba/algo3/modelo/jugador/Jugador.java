@@ -12,8 +12,12 @@ public class Jugador extends ElementoDelJuego {
     List<Item> inventario = new ArrayList<Item>();
     public Jugador() {
         herramientaEquipada = new Hacha(new Madera());
+        inventario.add(herramientaEquipada);
     }
     public Herramienta showHerramientaEquipada() {
         return herramientaEquipada;
     }
+
+    public int cantidadItems() { return inventario.size(); }
+    public List<Item> getItems(){return inventario;}
 }

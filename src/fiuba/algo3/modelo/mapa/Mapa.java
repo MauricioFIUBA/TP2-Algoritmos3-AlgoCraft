@@ -3,7 +3,6 @@ package fiuba.algo3.modelo.mapa;
 import fiuba.algo3.modelo.jugador.Jugador;
 import fiuba.algo3.modelo.materiales.Material;
 import fiuba.algo3.modelo.direccion.Direccion;
-import javafx.geometry.Pos;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,16 +14,13 @@ public class Mapa {
     private Jugador jugador;
 
     public Mapa(int capacidad){
-        mapa = new HashMap<>();
+        mapa = new HashMap<Posicion, ElementoDelJuego>();
         this.capacidadMaxima = Math.abs(capacidad) * Math.abs(capacidad);
         this.lugares = Math.abs(capacidad);
     }
 
     public Integer getLugares(){
         return this.lugares;
-    }
-    public Jugador getJugador(){
-        return this.jugador;
     }
 
     public boolean perteneceAlMapa(Posicion posicion){
@@ -43,9 +39,6 @@ public class Mapa {
             mapa.put(material.obtenerPosicion(),material);
             this.capacidadMaxima--;
         }
-    }
-    public boolean esMaterial(Posicion posicion){
-        return perteneceAlMapa(posicion) && (mapa.get(posicion) instanceof Material);
     }
 
     /*Vos fijate que todos los metodos van a ser iguales
@@ -81,19 +74,6 @@ public class Mapa {
     }
     public ElementoDelJuego retornarElemento(Posicion pos) {
         return mapa.get(pos);
-    }
-    public void atacarEn(Direccion unaDireccion) {
-        Posicion posicionDeAtaque = this.posDeAtaque(unaDireccion);
-        if (esMaterial(posicionDeAtaque)) {
-            Material material = (Material) mapa.get(posicionDeAtaque);
-            material.esDesgastadoPor(jugador.getHerramientaEquipada());
-            if (material.roto()){
-                this.eliminar(posicionDeAtaque);
-            }
-        }
-    }
-    public Posicion posDeAtaque(Direccion unaDireccion){
-        return unaDireccion.posSiguiente(obtenerPosicionDelJugador());
     }
 }
 

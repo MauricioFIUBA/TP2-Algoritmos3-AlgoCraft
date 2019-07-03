@@ -3,13 +3,12 @@ package fiuba.algo3.modelo.juego;
 import fiuba.algo3.modelo.jugador.Jugador;
 import fiuba.algo3.modelo.mapa.Mapa;
 import fiuba.algo3.modelo.mapa.Posicion;
+import fiuba.algo3.modelo.materiales.Diamante;
 import fiuba.algo3.modelo.materiales.Madera;
-import fiuba.algo3.modelo.materiales.*;
+import fiuba.algo3.modelo.materiales.Metal;
+import fiuba.algo3.modelo.materiales.Piedra;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.Random;
-import java.util.Set;
 
 public class Juego {
     private Mapa mapaDeJuego;
@@ -97,5 +96,6 @@ public class Juego {
     public Mapa getMapa() {
         return this.mapaDeJuego;
     }
+    public int cantidadItemsDelJugador(){return jugador.cantidadItems();}
 
 }
