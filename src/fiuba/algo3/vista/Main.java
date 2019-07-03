@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 import java.nio.file.Path;
@@ -28,20 +29,22 @@ public class Main extends Application implements EventHandler<KeyEvent> {
 
     private static Mapa mapa;
     static private String path;
-
+    private AudioClip caminar = new AudioClip(path+"/sonidos/walk.mp3");
     public static void main(String[] args) {
         Path currentPath = Paths.get(System.getProperty("user.dir"));
         path = "file:"+currentPath.toString();
         Juego juego = new Juego();
         mapa = juego.getMapa();
+        System.out.println(path+"/sonidos/walking.mp3");
         launch(args);
     }
 
-    //private AudioClip audio = new AudioClip("file:/home/gonza/Escritorio/algocraft/TP2-Algoritmos3-AlgoCraft/bip_1.mp3");
+
+
 
     private GridPane gridpane = new GridPane();
     private int cantidad = 20;
-    private int tamanio = 25;
+    private int tamanio = 30;
     Map<Posicion, ImageView> imagenes;
 
 
@@ -127,7 +130,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         Posicion posicionNueva;
         posicionVieja = mapa.obtenerPosicionDelJugador();
         mapa.moverJugador(unaDireccion);
-        //audio.play();
+        caminar.play();
         posicionNueva = mapa.obtenerPosicionDelJugador();
         this.actualizarImagen(posicionVieja, posicionNueva);
     }
