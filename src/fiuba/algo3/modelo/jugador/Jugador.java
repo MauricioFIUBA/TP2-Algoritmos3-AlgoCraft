@@ -14,6 +14,7 @@ public class Jugador extends ElementoDelJuego {
     public Jugador() {
         herramientaEquipada = new Hacha(new Madera());
         inventario.add(herramientaEquipada);
+
     }
 
     public int cantidadItems() { return inventario.size(); }
@@ -37,7 +38,28 @@ public class Jugador extends ElementoDelJuego {
 
     public void eliminarHerramientaEquipada(){
         inventario.remove(herramientaEquipada);
-        herramientaEquipada = null;
+        this.cambiarSiguienteHerramienta();
     }
 
+    public void cambiarSiguienteHerramienta() {
+        int i = inventario.indexOf(herramientaEquipada) + 1;
+        boolean armaSiguieteExiste = false;
+        while( i < inventario.size() && !armaSiguieteExiste ){
+            if(inventario.get(i) instanceof Herramienta){
+                this.herramientaEquipada = (Herramienta) inventario.get(i);
+                armaSiguieteExiste = true;
+            }
+            i++;
+        }
+        if(!armaSiguieteExiste) {
+            i = 0;
+            while (i < inventario.size() && !armaSiguieteExiste) {
+                if ((Herramienta) inventario.get(i) instanceof Herramienta) {
+                    this.herramientaEquipada = (Herramienta) inventario.get(i);
+                    armaSiguieteExiste = true;
+                }
+
+            }
+        }
+    }
 }

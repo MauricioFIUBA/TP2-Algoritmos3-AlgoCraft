@@ -1,9 +1,9 @@
 package fiuba.algo3.modelo.mapa;
 
+import fiuba.algo3.modelo.direccion.Direccion;
 import fiuba.algo3.modelo.jugador.Item;
 import fiuba.algo3.modelo.jugador.Jugador;
 import fiuba.algo3.modelo.materiales.Material;
-import fiuba.algo3.modelo.direccion.Direccion;
 
 import java.util.HashMap;
 import java.util.List;
@@ -98,10 +98,14 @@ public class Mapa {
             }
         }
     }
+
     public Posicion posDeAtaque(Direccion unaDireccion){
         return unaDireccion.posSiguiente(obtenerPosicionDelJugador());
     }
 
+    public void cambiarHerramientaEquipada(){
+        jugador.cambiarSiguienteHerramienta();
+    }
 }
 
 

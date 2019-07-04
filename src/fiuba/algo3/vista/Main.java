@@ -54,7 +54,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         juego = new Juego();
         mapa = juego.getMapa();
         // Para probar distintas herramientas;
-        //juego.jugador.equiparHerramienta(new PicoFino());
+        juego.jugador.equiparHerramienta(new PicoFino());
         cantItemsJugador = juego.cantidadItemsDelJugador();
 
         System.out.println(juego.jugador.getHerramientaEquipada());
@@ -64,10 +64,12 @@ public class Main extends Application implements EventHandler<KeyEvent> {
 
     private GridPane gridpane = new GridPane();
     private GridPane items = new GridPane();
+    private GridPane herramientaEquipada = new GridPane();
     private int cantidad = 20;
     private int tamanio = 25;
     private Map<Posicion, ImageView> imagenes;
     private Map<Posicion, ImageView> imgItems;
+    private Map<Posicion, ImageView> imgHerramientaEquipada;
 
     private List<Item> itemsJugador = mapa.getItems();
 
@@ -88,13 +90,16 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             items.add(imgItems.get(new Posicion(i,0)),i,0);
         }
 
-
+        imgHerramientaEquipada = this.crearImagenesHerramientaEquipada();
+        herramientaEquipada.add(imgHerramientaEquipada.get(new Posicion(0,0)),0,0);
         VBox contenedorPrincipal = new VBox(gridpane);
         HBox contenedorItems = new HBox(items);
+        VBox contenedorHerramientaEquipada = new VBox(herramientaEquipada);
 
         BorderPane root = new BorderPane();
         root.setTop(contenedorPrincipal);
         root.setBottom(contenedorItems);
+        root.setRight(contenedorHerramientaEquipada);
 
         Path soundPath = Paths.get(path, "sonidos");
 
@@ -119,6 +124,34 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         stage.sizeToScene();
 
         stage.show();
+    }
+
+    private Map<Posicion, ImageView> crearImagenesHerramientaEquipada() {
+        Map<Posicion, ImageView> aRetornar = new HashMap<>();
+
+        Image elemento = this.retornarImagenHerramientaEquip();
+        ImageView imageView = new ImageView(elemento);
+        imageView.setFitHeight(tamanio*2);
+        imageView.setFitWidth(tamanio*2);
+        aRetornar.put(new Posicion(0,0), imageView);
+        return aRetornar;
+    }
+
+    private Image retornarImagenHerramientaEquip() {
+        Path imagenPath = Paths.get(path,"imagenes");
+        Item elemento = mapa.jugador.getHerramientaEquipada();
+        if(elemento instanceof PicoFino){
+            imagenPath = Paths.get(imagenPath.toString(), "PicoFino.jpg");
+        }
+        else {
+            Herramienta herramientaAactual = (Herramienta) elemento;
+            imagenPath = Paths.get(imagenPath.toString(),
+                    herramientaAactual.getClass().getSimpleName()+
+                            "De"+
+                            herramientaAactual.getMaterial().getClass().getSimpleName()+
+                            ".png");
+        }
+        return new Image(imagenPath.toString());
     }
 
 
@@ -185,6 +218,12 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         for(int i = 0; i < cantItemsJugador; i++) {
             items.add(imgItems.get(new Posicion(i,0)),i,0);
         }
+    }
+
+    private void actualizarImagenHerramientaEquipada(){
+        imgHerramientaEquipada = this.crearImagenesHerramientaEquipada();
+        herramientaEquipada.getChildren().clear();
+        herramientaEquipada.add(imgHerramientaEquipada.get(new Posicion(0,0)),0,0);
     }
 
     private Image retornarImagenMapa(Posicion posicion, Mapa mapa) {
@@ -278,24 +317,35 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             case I:
                 this.eventoDesgastarMaterial(new DireccionArriba());
                 actualizarImagen();
+                actualizarImagenHerramientaEquipada();
                 System.out.println("Ataco Arriba");
                 break;
             case J:
                 this.eventoDesgastarMaterial(new DireccionIzquierda());
                 actualizarImagen();
+                actualizarImagenHerramientaEquipada();
                 System.out.println("Ataco Izquierda");
                 break;
             case K:
                 this.eventoDesgastarMaterial(new DireccionAbajo());
                 actualizarImagen();
+                actualizarImagenHerramientaEquipada();
                 System.out.println("Ataco Abajo");
                 break;
             case L:
                 this.eventoDesgastarMaterial(new DireccionDerecha());
                 actualizarImagen();
+                actualizarImagenHerramientaEquipada();
                 System.out.println("Ataco Derecha");
                 break;
+            case SPACE:
+                this.eventoCambiarHerramientaEquipada();
+                actualizarImagenHerramientaEquipada();
         }
+    }
+
+    private void eventoCambiarHerramientaEquipada() {
+                mapa.cambiarHerramientaEquipada();
     }
 
     private void playSonidoPasos() {
