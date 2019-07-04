@@ -32,6 +32,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import static javafx.scene.media.AudioClip.INDEFINITE;
+
 //import javafx.geometry.Pos;
 //import javafx.scene.input.MouseButton;
 //import javafx.scene.input.MouseEvent;
@@ -98,11 +100,11 @@ public class Main extends Application implements EventHandler<KeyEvent> {
 
         Path soundPath = Paths.get(path, "sonidos");
 
-        /*// Musica de fondo
+        // Musica de fondo
         Path themePath = Paths.get(soundPath.toString(), "theme.mp3");
         AudioClip sonidoAmbiente = new AudioClip(themePath.toString());
         sonidoAmbiente.setCycleCount(INDEFINITE);
-        sonidoAmbiente.play();*/
+        sonidoAmbiente.play();
 
         // Creacion del menu principal
         Path menuPath = Paths.get(path, "imagenes", "menu.jpg");
