@@ -90,6 +90,7 @@ public class Mapa {
             Material material = (Material) mapa.get(posicionDeAtaque);
             material.esDesgastadoPor(jugador.getHerramientaEquipada());
             if (material.roto()){
+                jugador.añadirItem(material);
                 this.eliminar(posicionDeAtaque);
             }
         }

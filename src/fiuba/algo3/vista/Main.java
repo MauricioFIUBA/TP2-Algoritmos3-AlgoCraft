@@ -178,6 +178,17 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         gridpane.add(imagenes.get(posicion),posicion.getCoordenadaX(),posicion.getCoordenadaY());
     }
 
+    private void actualizarImagen() {
+        if(cantItemsJugador!=itemsJugador.size()) {
+            cantItemsJugador = itemsJugador.size();
+            imgItems = this.crearImagenesInventario();
+            items.getChildren().clear();
+            for(int i = 0; i < cantItemsJugador; i++) {
+                items.add(imgItems.get(new Posicion(i,0)),i,0);
+            }
+        }
+    }
+
     private Image retornarImagenMapa(Posicion posicion, Mapa mapa) {
         Path imagenPath = Paths.get(path,"imagenes");
         if(mapa.perteneceAlMapa(posicion)) {
@@ -268,18 +279,22 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                 break;
             case I:
                 this.eventoDesgastarMaterial(new DireccionArriba());
+                actualizarImagen();
                 System.out.println("Ataco Arriba");
                 break;
             case J:
                 this.eventoDesgastarMaterial(new DireccionIzquierda());
+                actualizarImagen();
                 System.out.println("Ataco Izquierda");
                 break;
             case K:
                 this.eventoDesgastarMaterial(new DireccionAbajo());
+                actualizarImagen();
                 System.out.println("Ataco Abajo");
                 break;
             case L:
                 this.eventoDesgastarMaterial(new DireccionDerecha());
+                actualizarImagen();
                 System.out.println("Ataco Derecha");
                 break;
         }
