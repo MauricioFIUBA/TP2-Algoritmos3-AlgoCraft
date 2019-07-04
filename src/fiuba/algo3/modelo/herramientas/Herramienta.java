@@ -42,4 +42,8 @@ public abstract class Herramienta implements Item{
     public void usar(Piedra unaPiedra){
         this.tipoDeDesgaste.usar();
     }
+
+    public boolean estaRota() {
+        return this.tipoDeDesgaste.getDurabilidad() <= 0;
+    }
 }

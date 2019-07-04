@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Juego {
     private Mapa mapaDeJuego;
-    private Jugador jugador;
+    public Jugador jugador;
 
     public Juego(){
         /*Crea el mapa, crea el jugador en una posicion definida(cambiarla si quieren)*/

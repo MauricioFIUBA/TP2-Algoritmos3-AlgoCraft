@@ -14,13 +14,16 @@ public class Jugador extends ElementoDelJuego {
         herramientaEquipada = new Hacha(new Madera());
         inventario.add(herramientaEquipada);
     }
-    public Herramienta showHerramientaEquipada() {
-        return herramientaEquipada;
-    }
 
     public int cantidadItems() { return inventario.size(); }
     public List<Item> getItems(){return inventario;}
+
     public Herramienta getHerramientaEquipada(){
         return this.herramientaEquipada;
+    }
+
+    public void equiparHerramienta(Herramienta unaHerramienta) {
+        herramientaEquipada = unaHerramienta;
+        inventario.add(unaHerramienta);
     }
 }

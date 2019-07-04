@@ -17,7 +17,7 @@ public class JugadorTest {
     @Test
     public void test01SeCreaUnUsuarioConUnaHachaDeMadera() {
         Jugador jugador = new Jugador();
-        Herramienta herramientaDePrueba = jugador.showHerramientaEquipada();
+        Herramienta herramientaDePrueba = jugador.getHerramientaEquipada();
         assertTrue(herramientaDePrueba instanceof Hacha);
         assertTrue(herramientaDePrueba.getMaterial() instanceof Madera);
     }

@@ -1,17 +1,19 @@
 package fiuba.algo3.modelo.mapa;
 
+import fiuba.algo3.modelo.jugador.Item;
 import fiuba.algo3.modelo.jugador.Jugador;
 import fiuba.algo3.modelo.materiales.Material;
 import fiuba.algo3.modelo.direccion.Direccion;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Mapa {
     private Integer capacidadMaxima;
     private Map<Posicion, ElementoDelJuego> mapa;
     private Integer lugares;
-    private Jugador jugador;
+    public Jugador jugador;
 
     public Mapa(int capacidad){
         mapa = new HashMap<Posicion, ElementoDelJuego>();
@@ -48,9 +50,13 @@ public class Mapa {
         this.modificarPosicion(nuevaPosicion);
     }
 
-    /*public ElementoDelJuego obtenerElemento(Posicion posicion){
+    public ElementoDelJuego obtenerElemento(Posicion posicion){
         return mapa.get(posicion);
-    }*/
+    }
+
+    public List<Item> getItems(){
+        return jugador.getItems();
+    }
 
     public void modificarPosicion(Posicion posSiguiente){
         if(!this.perteneceAlMapa(posSiguiente) && posSiguiente.estaDentroDeLos(this.lugares)){
