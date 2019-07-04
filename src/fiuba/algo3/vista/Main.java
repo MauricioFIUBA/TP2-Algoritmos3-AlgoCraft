@@ -108,14 +108,18 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         sonidoAmbiente.setCycleCount(INDEFINITE);
         sonidoAmbiente.play();
 
-
+        Path menuPath = Paths.get(path, "imagenes", "menu.jpg");
+        Scene scenePrincipal = new Scene(root, cantidad * tamanio,  cantidad * tamanio);
+        MenuDeInicio menu = new MenuDeInicio(stage,scenePrincipal, menuPath.toString());
+        Scene sceneMenu = new Scene(menu,cantidad * tamanio, cantidad * tamanio);
+  //      stage.setScene(sceneMenu);scenePrincipal.setOnKeyPressed(this);
+        //stage.setScene(sceneMenu);
         Path iconPath = Paths.get(path, "imagenes", "icon.png");
         stage.getIcons().add(new Image(iconPath.toString()));
-        Scene scene = new Scene(root);
+        //Scene sceneFinal = new Scene(root);
+        scenePrincipal.setOnKeyPressed(this);
 
-
-        scene.setOnKeyPressed(this);
-        stage.setScene(scene);
+        stage.setScene(sceneMenu);
         stage.setResizable(false);
 
         stage.show();
