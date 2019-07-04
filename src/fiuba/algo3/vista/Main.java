@@ -64,11 +64,15 @@ public class Main extends Application implements EventHandler<KeyEvent> {
 
         VBox contenedorPrincipal = new VBox(gridpane);
         Path iconPath = Paths.get(path, "imagenes", "icon.png");
+        Path menuPath = Paths.get(path, "imagenes", "menu.jpg");
         stage.getIcons().add(new Image(iconPath.toString()));
-        Scene scene = new Scene(contenedorPrincipal, cantidad * tamanio,  cantidad * tamanio);
+        Scene scenePrincipal = new Scene(contenedorPrincipal, cantidad * tamanio,  cantidad * tamanio);
+        MenuDeInicio menu = new MenuDeInicio(stage,scenePrincipal, menuPath.toString());
+        Scene sceneMenu = new Scene(menu,cantidad * tamanio, cantidad * tamanio);
+        stage.setScene(sceneMenu);
+        scenePrincipal.setOnKeyPressed(this);
+        //stage.setScene(menu);
 
-        scene.setOnKeyPressed(this);
-        stage.setScene(scene);
         stage.setResizable(false);
 
         stage.show();
