@@ -32,6 +32,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import static javafx.scene.media.AudioClip.INDEFINITE;
 
@@ -40,7 +41,6 @@ public class Main extends Application implements EventHandler<KeyEvent> {
     private static Mapa mapa;
     static private String path;
 
-    private AudioClip caminar;
     private float volumenCaminar = (float) (Math.log(1.01) / Math.log(10.0) * 20.0);
 
     private static int cantItemsJugador;
@@ -98,29 +98,25 @@ public class Main extends Application implements EventHandler<KeyEvent> {
 
         Path soundPath = Paths.get(path, "sonidos");
 
-        Path walkPath = Paths.get(soundPath.toString(), "walk.mp3");
-        caminar = new AudioClip(walkPath.toString());
-        caminar.setVolume(volumenCaminar);
-
         // Musica de fondo
         Path themePath = Paths.get(soundPath.toString(), "theme.mp3");
         AudioClip sonidoAmbiente = new AudioClip(themePath.toString());
         sonidoAmbiente.setCycleCount(INDEFINITE);
         sonidoAmbiente.play();
 
+        // Creacion del menu principal
         Path menuPath = Paths.get(path, "imagenes", "menu.jpg");
-        Scene scenePrincipal = new Scene(root, cantidad * tamanio,  cantidad * tamanio);
+        Scene scenePrincipal = new Scene(root);
         MenuDeInicio menu = new MenuDeInicio(stage,scenePrincipal, menuPath.toString());
-        Scene sceneMenu = new Scene(menu,cantidad * tamanio, cantidad * tamanio);
-  //      stage.setScene(sceneMenu);scenePrincipal.setOnKeyPressed(this);
-        //stage.setScene(sceneMenu);
+        Scene sceneMenu = new Scene(menu,cantidad * tamanio, (cantidad+1) * tamanio);
+
         Path iconPath = Paths.get(path, "imagenes", "icon.png");
         stage.getIcons().add(new Image(iconPath.toString()));
-        //Scene sceneFinal = new Scene(root);
         scenePrincipal.setOnKeyPressed(this);
 
         stage.setScene(sceneMenu);
         stage.setResizable(false);
+        stage.sizeToScene();
 
         stage.show();
     }
@@ -157,7 +153,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
     private void actualizarImagen(Posicion posicionVieja, Posicion posicionNueva) {
         /*Caso de movimiento del jugador*/
         if(!posicionNueva.equals(posicionVieja)) {
-            caminar.play();
+            this.playSonidoPasos();
             ImageView imagenVieja = imagenes.get(posicionVieja);
             ImageView imagenNueva = imagenes.get(posicionNueva);
             imagenes.replace(posicionVieja, imagenNueva);
@@ -287,6 +283,17 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                 System.out.println("Ataco Derecha");
                 break;
         }
+    }
+
+    private void playSonidoPasos() {
+        AudioClip caminar;
+        Path soundPath = Paths.get(path, "sonidos");
+        Random rand = new Random();
+        Integer numero = rand.nextInt(4) + 1;
+        Path walkPath = Paths.get(soundPath.toString(), "walk" + numero.toString() + ".mp3");
+        caminar = new AudioClip(walkPath.toString());
+        caminar.setVolume(volumenCaminar);
+        caminar.play();
     }
 
 }
