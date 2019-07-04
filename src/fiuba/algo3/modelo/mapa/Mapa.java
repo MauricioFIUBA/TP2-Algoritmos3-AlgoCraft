@@ -93,11 +93,15 @@ public class Mapa {
                 jugador.añadirItem(material);
                 this.eliminar(posicionDeAtaque);
             }
+            if(jugador.herramientaEquipadaRota()){
+                jugador.eliminarHerramientaEquipada();
+            }
         }
     }
     public Posicion posDeAtaque(Direccion unaDireccion){
         return unaDireccion.posSiguiente(obtenerPosicionDelJugador());
     }
+
 }
 
 

@@ -30,4 +30,14 @@ public class Jugador extends ElementoDelJuego {
         herramientaEquipada = unaHerramienta;
         inventario.add(unaHerramienta);
     }
+
+    public boolean herramientaEquipadaRota() {
+        return herramientaEquipada.getDurabilidad()<=0;
+    }
+
+    public void eliminarHerramientaEquipada(){
+        inventario.remove(herramientaEquipada);
+        herramientaEquipada = null;
+    }
+
 }

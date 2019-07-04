@@ -1,7 +1,8 @@
 package fiuba.algo3.vista;
 
 import fiuba.algo3.modelo.direccion.*;
-import fiuba.algo3.modelo.herramientas.*;
+import fiuba.algo3.modelo.herramientas.Herramienta;
+import fiuba.algo3.modelo.herramientas.PicoFino;
 import fiuba.algo3.modelo.juego.Juego;
 import fiuba.algo3.modelo.jugador.Item;
 import fiuba.algo3.modelo.mapa.ElementoDelJuego;
@@ -13,14 +14,11 @@ import fiuba.algo3.modelo.materiales.Metal;
 import fiuba.algo3.modelo.materiales.Piedra;
 import javafx.application.Application;
 import javafx.event.EventHandler;
-//import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-//import javafx.scene.input.MouseButton;
-//import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -34,7 +32,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import static javafx.scene.media.AudioClip.INDEFINITE;
+//import javafx.geometry.Pos;
+//import javafx.scene.input.MouseButton;
+//import javafx.scene.input.MouseEvent;
 
 public class Main extends Application implements EventHandler<KeyEvent> {
 
@@ -54,7 +54,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         juego = new Juego();
         mapa = juego.getMapa();
         // Para probar distintas herramientas;
-        juego.jugador.equiparHerramienta(new PicoFino());
+        //juego.jugador.equiparHerramienta(new PicoFino());
         cantItemsJugador = juego.cantidadItemsDelJugador();
 
         System.out.println(juego.jugador.getHerramientaEquipada());
@@ -98,11 +98,11 @@ public class Main extends Application implements EventHandler<KeyEvent> {
 
         Path soundPath = Paths.get(path, "sonidos");
 
-        // Musica de fondo
+        /*// Musica de fondo
         Path themePath = Paths.get(soundPath.toString(), "theme.mp3");
         AudioClip sonidoAmbiente = new AudioClip(themePath.toString());
         sonidoAmbiente.setCycleCount(INDEFINITE);
-        sonidoAmbiente.play();
+        sonidoAmbiente.play();*/
 
         // Creacion del menu principal
         Path menuPath = Paths.get(path, "imagenes", "menu.jpg");
@@ -179,13 +179,11 @@ public class Main extends Application implements EventHandler<KeyEvent> {
     }
 
     private void actualizarImagen() {
-        if(cantItemsJugador!=itemsJugador.size()) {
-            cantItemsJugador = itemsJugador.size();
-            imgItems = this.crearImagenesInventario();
-            items.getChildren().clear();
-            for(int i = 0; i < cantItemsJugador; i++) {
-                items.add(imgItems.get(new Posicion(i,0)),i,0);
-            }
+        cantItemsJugador = itemsJugador.size();
+        imgItems = this.crearImagenesInventario();
+        items.getChildren().clear();
+        for(int i = 0; i < cantItemsJugador; i++) {
+            items.add(imgItems.get(new Posicion(i,0)),i,0);
         }
     }
 
