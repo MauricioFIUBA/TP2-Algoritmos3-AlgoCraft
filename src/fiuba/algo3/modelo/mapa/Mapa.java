@@ -43,8 +43,6 @@ public class Mapa {
         }
     }
 
-    /*Vos fijate que todos los metodos van a ser iguales
-    */
     public void moverJugador(Direccion unaDireccion){
         Posicion nuevaPosicion = unaDireccion.posSiguiente(this.jugador.obtenerPosicion());
         this.modificarPosicion(nuevaPosicion);
@@ -84,14 +82,14 @@ public class Mapa {
     public boolean esMaterial(Posicion posicion){
         return perteneceAlMapa(posicion) && (mapa.get(posicion) instanceof Material);
     }
-    public void atacarEn(Direccion unaDireccion) {
-        Posicion posicionDeAtaque = this.posDeAtaque(unaDireccion);
-        if (esMaterial(posicionDeAtaque)) {
-            Material material = (Material) mapa.get(posicionDeAtaque);
+    public void atacarEn(Posicion unaPosicion) {
+
+        if (esMaterial(unaPosicion)) {
+            Material material = (Material) mapa.get(unaPosicion);
             material.esDesgastadoPor(jugador.getHerramientaEquipada());
             if (material.roto()){
                 jugador.añadirItem(material);
-                this.eliminar(posicionDeAtaque);
+                this.eliminar(unaPosicion);
             }
             if(jugador.herramientaEquipadaRota()){
                 jugador.eliminarHerramientaEquipada();
