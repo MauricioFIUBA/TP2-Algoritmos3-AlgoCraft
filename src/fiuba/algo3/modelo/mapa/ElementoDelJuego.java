@@ -17,4 +17,6 @@ public abstract class ElementoDelJuego{
         return this.posicion;
     }
     /*Habria que implementar que la posicion calcule la siguiente posicion o posiciones adyacentes*/
+
+    public abstract boolean esMaterial();
 }

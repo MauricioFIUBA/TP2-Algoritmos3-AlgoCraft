@@ -76,19 +76,22 @@ public class Mapa {
     public Posicion obtenerPosicionDelJugador() {
         return jugador.obtenerPosicion();
     }
+
     public ElementoDelJuego retornarElemento(Posicion pos) {
         return mapa.get(pos);
     }
-    public boolean esMaterial(Posicion posicion){
-        return perteneceAlMapa(posicion) && (mapa.get(posicion) instanceof Material);
-    }
-    public void atacarEn(Posicion unaPosicion) {
 
-        if (esMaterial(unaPosicion)) {
+    public boolean esMaterial(Posicion posicion){
+        return perteneceAlMapa(posicion) && (mapa.get(posicion).esMaterial());
+    }
+
+    public void atacarEn(Posicion unaPosicion) {
+        if (esMaterial(unaPosicion) && this.jugador.getHerramientaEquipada() != null) {
             Material material = (Material) mapa.get(unaPosicion);
             material.esDesgastadoPor(jugador.getHerramientaEquipada());
             if (material.roto()){
                 jugador.añadirItem(material);
+
                 this.eliminar(unaPosicion);
             }
             if(jugador.herramientaEquipadaRota()){

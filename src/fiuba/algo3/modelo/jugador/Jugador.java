@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Jugador extends ElementoDelJuego {
+
     private Herramienta herramientaEquipada;
     List<Item> inventario = new ArrayList<Item>();
+
     public Jugador() {
         herramientaEquipada = new Hacha(new Madera());
         inventario.add(herramientaEquipada);
@@ -42,24 +44,47 @@ public class Jugador extends ElementoDelJuego {
     }
 
     public void cambiarSiguienteHerramienta() {
-        int i = inventario.indexOf(herramientaEquipada) + 1;
+        int posArmaActual = inventario.indexOf(herramientaEquipada) + 1;
+        System.out.println(posArmaActual);
         boolean armaSiguieteExiste = false;
-        while( i < inventario.size() && !armaSiguieteExiste ){
-            if(inventario.get(i) instanceof Herramienta){
-                this.herramientaEquipada = (Herramienta) inventario.get(i);
+        boolean armaAnteriorExiste = false;
+        int posArmaAnterior = 0;
+        while (posArmaAnterior < posArmaActual && !armaAnteriorExiste) {
+            if (inventario.get(posArmaAnterior).esUnaHerramienta()) {
+                armaAnteriorExiste = true;
+            }
+        }
+        while ( posArmaActual < inventario.size() && !armaSiguieteExiste ){
+            if (inventario.get(posArmaActual).esUnaHerramienta()){
+                System.out.println("entro");
+                this.herramientaEquipada = (Herramienta) inventario.get(posArmaActual);
                 armaSiguieteExiste = true;
             }
-            i++;
+            posArmaActual++;
         }
         if(!armaSiguieteExiste) {
-            i = 0;
-            while (i < inventario.size() && !armaSiguieteExiste) {
-                if ((Herramienta) inventario.get(i) instanceof Herramienta) {
-                    this.herramientaEquipada = (Herramienta) inventario.get(i);
-                    armaSiguieteExiste = true;
-                }
-
+            if(armaAnteriorExiste) {
+                this.herramientaEquipada = (Herramienta) inventario.get(posArmaAnterior);
+            } else {
+                this.herramientaEquipada = null;
             }
         }
+//        if(!armaSiguieteExiste) {
+//            System.out.println("entro");
+//            i = 0;
+//            while (i < inventario.size() && !armaSiguieteExiste) {
+//                if (inventario.get(i).esUnaHerramienta()) {
+//                    this.herramientaEquipada = (Herramienta) inventario.get(i);
+//                    armaSiguieteExiste = true;
+//                }
+//
+//            }
+//        }
+    }
+
+
+    @Override
+    public boolean esMaterial() {
+        return false;
     }
 }

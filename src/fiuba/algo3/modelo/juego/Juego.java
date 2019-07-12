@@ -11,8 +11,9 @@ import fiuba.algo3.modelo.materiales.Piedra;
 import java.util.Random;
 
 public class Juego {
+
     private Mapa mapaDeJuego;
-    public Jugador jugador;
+    private Jugador jugador;
 
     public Juego(){
         /*Crea el mapa, crea el jugador en una posicion definida(cambiarla si quieren)*/

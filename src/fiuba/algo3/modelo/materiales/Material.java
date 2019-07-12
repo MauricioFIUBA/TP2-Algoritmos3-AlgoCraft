@@ -42,4 +42,14 @@ public abstract class Material extends ElementoDelJuego implements Item{
     public boolean roto(){
         return this.durabilidad<=0;
     }
+
+    @Override
+    public boolean esMaterial() {
+        return true;
+    }
+
+    @Override
+    public boolean esUnaHerramienta() {
+        return false;
+    }
 }

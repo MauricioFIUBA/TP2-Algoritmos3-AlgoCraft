@@ -1,20 +1,12 @@
 package fiuba.algo3.vista;
 
-import fiuba.algo3.controlador.manejadores.BotonCambiarHerramienta;
-import fiuba.algo3.controlador.manejadores.BotonDesgastarMaterial;
-import fiuba.algo3.controlador.manejadores.BotonMoverse;
+import fiuba.algo3.controlador.manejadores.*;
 import fiuba.algo3.modelo.direccion.*;
-import fiuba.algo3.modelo.herramientas.Herramienta;
-import fiuba.algo3.modelo.herramientas.PicoFino;
-import fiuba.algo3.modelo.juego.Juego;
-import fiuba.algo3.modelo.jugador.Item;
-import fiuba.algo3.modelo.mapa.ElementoDelJuego;
-import fiuba.algo3.modelo.mapa.Mapa;
-import fiuba.algo3.modelo.mapa.Posicion;
-import fiuba.algo3.modelo.materiales.Madera;
-import fiuba.algo3.modelo.materiales.Material;
-import fiuba.algo3.modelo.materiales.Metal;
-import fiuba.algo3.modelo.materiales.Piedra;
+import fiuba.algo3.modelo.herramientas.*;
+import fiuba.algo3.modelo.juego.*;
+import fiuba.algo3.modelo.jugador.*;
+import fiuba.algo3.modelo.mapa.*;
+import fiuba.algo3.modelo.materiales.*;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -34,6 +26,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import static javafx.scene.media.AudioClip.INDEFINITE;
 
 //import javafx.geometry.Pos;
 //import javafx.scene.input.MouseButton;
@@ -57,10 +51,10 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         juego = new Juego();
         mapa = juego.getMapa();
         // Para probar distintas herramientas;
-        juego.jugador.equiparHerramienta(new PicoFino());
+//        mapa.jugador.equiparHerramienta(new PicoFino());
+//        mapa.jugador.equiparHerramienta(new Pico(new Metal()));
         cantItemsJugador = juego.cantidadItemsDelJugador();
 
-        System.out.println(juego.jugador.getHerramientaEquipada());
         launch(args);
     }
 
@@ -107,16 +101,16 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         Path soundPath = Paths.get(path, "sonidos");
 
         // Musica de fondo
-        /*Path themePath = Paths.get(soundPath.toString(), "theme.mp3");
+        Path themePath = Paths.get(soundPath.toString(), "theme.mp3");
         AudioClip sonidoAmbiente = new AudioClip(themePath.toString());
         sonidoAmbiente.setCycleCount(INDEFINITE);
-        sonidoAmbiente.play();*/
+        sonidoAmbiente.play();
 
         // Creacion del menu principal
         Path menuPath = Paths.get(path, "imagenes", "menu.jpg");
         Scene scenePrincipal = new Scene(root);
         MenuDeInicio menu = new MenuDeInicio(stage, scenePrincipal, menuPath.toString());
-        Scene sceneMenu = new Scene(menu, cantidad * tamanio, (cantidad + 1) * tamanio);
+        Scene sceneMenu = new Scene(menu, cantidad * tamanio, (cantidad + 3) * tamanio);
 
         Path iconPath = Paths.get(path, "imagenes", "icon.png");
         stage.getIcons().add(new Image(iconPath.toString()));
@@ -127,33 +121,6 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         stage.sizeToScene();
 
         stage.show();
-    }
-
-    private Map<Posicion, ImageView> crearImagenesHerramientaEquipada() {
-        Map<Posicion, ImageView> aRetornar = new HashMap<>();
-
-        Image elemento = this.retornarImagenHerramientaEquip();
-        ImageView imageView = new ImageView(elemento);
-        imageView.setFitHeight(tamanio * 2);
-        imageView.setFitWidth(tamanio * 2);
-        aRetornar.put(new Posicion(0, 0), imageView);
-        return aRetornar;
-    }
-
-    private Image retornarImagenHerramientaEquip() {
-        Path imagenPath = Paths.get(path, "imagenes");
-        Item elemento = mapa.jugador.getHerramientaEquipada();
-        if (elemento instanceof PicoFino) {
-            imagenPath = Paths.get(imagenPath.toString(), "PicoFino.jpg");
-        } else {
-            Herramienta herramientaAactual = (Herramienta) elemento;
-            imagenPath = Paths.get(imagenPath.toString(),
-                    herramientaAactual.getClass().getSimpleName() +
-                            "De" +
-                            herramientaAactual.getMaterial().getClass().getSimpleName() +
-                            ".png");
-        }
-        return new Image(imagenPath.toString());
     }
 
 
@@ -182,6 +149,17 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             imageView.setFitWidth(tamanio);
             aRetornar.put(new Posicion(i, 0), imageView);
         }
+        return aRetornar;
+    }
+
+    private Map<Posicion, ImageView> crearImagenesHerramientaEquipada() {
+        Map<Posicion, ImageView> aRetornar = new HashMap<>();
+
+        Image elemento = this.retornarImagenHerramientaEquip();
+        ImageView imageView = new ImageView(elemento);
+        imageView.setFitHeight(tamanio * 2);
+        imageView.setFitWidth(tamanio * 2);
+        aRetornar.put(new Posicion(0, 0), imageView);
         return aRetornar;
     }
 
@@ -274,6 +252,25 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         return new Image(imagenPath.toString());
     }
 
+    private Image retornarImagenHerramientaEquip() {
+        Path imagenPath = Paths.get(path, "imagenes");
+        Item elemento = mapa.jugador.getHerramientaEquipada();
+        if (elemento == null) {
+            System.out.println("Entro aca");
+            imagenPath = Paths.get(imagenPath.toString(), "none.png");
+        } else if (elemento instanceof PicoFino) {
+            imagenPath = Paths.get(imagenPath.toString(), "PicoFino.jpg");
+        } else {
+            Herramienta herramientaAactual = (Herramienta) elemento;
+            imagenPath = Paths.get(imagenPath.toString(),
+                    herramientaAactual.getClass().getSimpleName() +
+                            "De" +
+                            herramientaAactual.getMaterial().getClass().getSimpleName() +
+                            ".png");
+        }
+        return new Image(imagenPath.toString());
+    }
+
     private void actualizarImagenSonidoDeDesgaste(Posicion posicionDeAtaque) {
         if (!mapa.perteneceAlMapa(posicionDeAtaque)) {
             this.playSonido("recolecting.mp3");
@@ -324,7 +321,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                 }
                 actualizarImagenItems();
                 actualizarImagenHerramientaEquipada();
-                ;
+
                 break;
             case K:
                 posicionActual = mapa.posDeAtaque(new DireccionAbajo());
@@ -360,14 +357,14 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         Path walkPath = Paths.get(soundPath.toString(), "walk" + numero.toString() + ".mp3");
         caminar = new AudioClip(walkPath.toString());
         caminar.setVolume(volumenCaminar);
-        //caminar.play();
+        caminar.play();
     }
 
     private void playSonido(String nombreSonido) {
         Path soundPath = Paths.get(path, "sonidos");
         soundPath = Paths.get(soundPath.toString(), nombreSonido);
         AudioClip sound = new AudioClip(soundPath.toString());
-        //sound.play();
+        sound.play();
     }
 
 

@@ -1,6 +1,6 @@
 package fiuba.algo3.vista;
 
-import fiuba.algo3.vista.eventos.BotonEntrarEventHandler;
+import fiuba.algo3.controlador.eventos.BotonEntrarProximaEscena;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,8 +22,6 @@ public class MenuDeInicio extends VBox{
         super();
 
         this.stage = stage;
-        //VBox contenedor = new VBox();
-        //this.contenedor = new VBox();
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));
@@ -40,7 +38,7 @@ public class MenuDeInicio extends VBox{
         etiqueta.setText("AlgoCraft-2019.");
         etiqueta.setTextFill(Color.web("#000000"));
 
-        BotonEntrarEventHandler botonEntrarHandler = new BotonEntrarEventHandler(stage, proximaEscena);
+        BotonEntrarProximaEscena botonEntrarHandler = new BotonEntrarProximaEscena(stage, proximaEscena);
         botonEntrar.setOnAction(botonEntrarHandler);
         this.getChildren().addAll(etiqueta, botonEntrar);
     }
