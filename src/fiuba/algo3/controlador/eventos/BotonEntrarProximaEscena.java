@@ -1,15 +1,15 @@
-package fiuba.algo3.vista.eventos;
+package fiuba.algo3.controlador.eventos;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class BotonEntrarEventHandler implements EventHandler<ActionEvent> {
+public class BotonEntrarProximaEscena implements EventHandler<ActionEvent> {
     Stage stage;
     Scene proximaEscena;
 
-    public BotonEntrarEventHandler(Stage stage, Scene proximaEscena) {
+    public BotonEntrarProximaEscena(Stage stage, Scene proximaEscena) {
         this.stage = stage;
         this.proximaEscena = proximaEscena;
     }

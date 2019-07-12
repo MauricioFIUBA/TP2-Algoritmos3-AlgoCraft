@@ -7,7 +7,10 @@ public class DesgastePorUsos extends Desgaste {
         this.durabilidad = unaDurabilidad;
         this.fuerza = unaFuerza;
     }
-    public void usar(){
+    public void usar() {
         this.cantidadDeUsos++;
+        if (cantidadDeUsos >= 10) {
+            this.durabilidad = 0;
+        }
     }
 }
