@@ -1,2 +1,3 @@
 ignore:
 - "src/fiuba/algo3/vista"
+- "src/fiuba/algo3/controlador"
