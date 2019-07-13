@@ -45,7 +45,7 @@ public class Jugador extends ElementoDelJuego {
 
     public void cambiarSiguienteHerramienta() {
         int posArmaActual = inventario.indexOf(herramientaEquipada) + 1;
-        System.out.println(posArmaActual);
+        //System.out.println(posArmaActual);
         boolean armaSiguieteExiste = false;
         boolean armaAnteriorExiste = false;
         int posArmaAnterior = 0;
@@ -56,7 +56,7 @@ public class Jugador extends ElementoDelJuego {
         }
         while ( posArmaActual < inventario.size() && !armaSiguieteExiste ){
             if (inventario.get(posArmaActual).esUnaHerramienta()){
-                System.out.println("entro");
+                //System.out.println("entro");
                 this.herramientaEquipada = (Herramienta) inventario.get(posArmaActual);
                 armaSiguieteExiste = true;
             }
