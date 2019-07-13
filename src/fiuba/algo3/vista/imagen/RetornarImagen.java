@@ -1,4 +1,4 @@
-package fiuba.algo3.vista;
+package fiuba.algo3.vista.imagen;
 
 import fiuba.algo3.modelo.herramientas.Herramienta;
 import fiuba.algo3.modelo.herramientas.PicoFino;
@@ -74,7 +74,6 @@ public class RetornarImagen {
         Path imagenPath = Paths.get(path, "imagenes");
         Item elemento = mapa.jugador.getHerramientaEquipada();
         if (elemento == null) {
-            //System.out.println("Entro aca");
             imagenPath = Paths.get(imagenPath.toString(), "none.png");
         } else if (elemento instanceof PicoFino) {
             imagenPath = Paths.get(imagenPath.toString(), "PicoFino.jpg");

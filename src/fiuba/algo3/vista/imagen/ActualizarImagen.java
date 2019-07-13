@@ -1,8 +1,9 @@
-package fiuba.algo3.vista;
+package fiuba.algo3.vista.imagen;
 
 import fiuba.algo3.modelo.jugador.Item;
 import fiuba.algo3.modelo.mapa.Mapa;
 import fiuba.algo3.modelo.mapa.Posicion;
+import fiuba.algo3.vista.sonido.EfectosDeSonido;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -20,6 +21,7 @@ public class ActualizarImagen{
     private int tamanio;
     private int cantidad;
     private List<Item> itemsJugador;
+    private EfectosDeSonido efecto = new EfectosDeSonido();
 
     public ActualizarImagen(Mapa mapaActual, int tamanioActual, int cantidadActual){
         Path currentPath = Paths.get(System.getProperty("user.dir"));
@@ -34,7 +36,7 @@ public class ActualizarImagen{
         Posicion posicionNueva;
         posicionNueva = mapa.obtenerPosicionDelJugador();
         if (!posicionNueva.equals(posicionAnterior)) {
-            //this.playSonidoPasos();
+            efecto.playSonidoPasos();
             ImageView imagenVieja = imagenes.get(posicionAnterior);
             ImageView imagenNueva = imagenes.get(posicionNueva);
             imagenes.replace(posicionAnterior, imagenNueva);
@@ -67,8 +69,10 @@ public class ActualizarImagen{
 
     public void actualizarImagenDeDesgaste(Posicion posicionDeAtaque, Map<Posicion, ImageView> imagenes, GridPane gridpane) {
         if (!mapa.perteneceAlMapa(posicionDeAtaque)) {
-            //this.playSonido("recolecting.mp3");
+            efecto.playSonidoRecolectar();
             this.actualizarImagenMaterialRoto(posicionDeAtaque,imagenes,gridpane);
+        } else {
+            efecto.playSonidoGolpear();
         }
     }
 

@@ -1,17 +1,11 @@
 package fiuba.algo3.vista;
 
-import fiuba.algo3.controlador.manejadores.BotonCambiarHerramienta;
-import fiuba.algo3.controlador.manejadores.BotonDesgastarMaterial;
-import fiuba.algo3.controlador.manejadores.BotonMoverse;
-import fiuba.algo3.modelo.direccion.DireccionAbajo;
-import fiuba.algo3.modelo.direccion.DireccionArriba;
-import fiuba.algo3.modelo.direccion.DireccionDerecha;
-import fiuba.algo3.modelo.direccion.DireccionIzquierda;
-import fiuba.algo3.modelo.herramientas.Pico;
 import fiuba.algo3.modelo.juego.Juego;
-import fiuba.algo3.modelo.mapa.Mapa;
-import fiuba.algo3.modelo.mapa.Posicion;
-import fiuba.algo3.modelo.materiales.Metal;
+import fiuba.algo3.modelo.mapa.*;
+import fiuba.algo3.modelo.direccion.*;
+import fiuba.algo3.controlador.manejadores.*;
+import fiuba.algo3.vista.imagen.*;
+import fiuba.algo3.vista.sonido.Musica;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -22,26 +16,18 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
-
-import static javafx.scene.media.AudioClip.INDEFINITE;
-
-//import javafx.geometry.Pos;
-//import javafx.scene.input.MouseButton;
-//import javafx.scene.input.MouseEvent;
 
 public class Main extends Application implements EventHandler<KeyEvent> {
 
     private static Mapa mapa;
     static private String path;
-    private float volumenCaminar = (float) (Math.log(1.01) / Math.log(10.0) * 20.0);
+
 
     public static void main(String[] args) {
         Path currentPath = Paths.get(System.getProperty("user.dir"));
@@ -50,7 +36,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         mapa = juego.getMapa();
         // Para probar distintas herramientas;
         //mapa.jugador.equiparHerramienta(new PicoFino());
-        mapa.jugador.equiparHerramienta(new Pico(new Metal()));
+        //mapa.jugador.equiparHerramienta(new Pico(new Metal()));
 
         launch(args);
     }
@@ -82,14 +68,9 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         root.setLeft(contenedorHerramientaEquipada);
         root.setBottom(contenedorItems);
 
-
-        Path soundPath = Paths.get(path, "sonidos");
-
         // Musica de fondo
-        Path themePath = Paths.get(soundPath.toString(), "theme.mp3");
-        AudioClip sonidoAmbiente = new AudioClip(themePath.toString());
-        sonidoAmbiente.setCycleCount(INDEFINITE);
-        sonidoAmbiente.play();
+        Musica musica = new Musica();
+        musica.playMainTheme();
 
         // Creacion del menu principal
         Path menuPath = Paths.get(path, "imagenes", "menu.jpg");
@@ -138,7 +119,6 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             case I:
                 posicionActual = mapa.posDeAtaque(new DireccionArriba());
                 if (botonDesgastarMaterial.eventoDesgastarMaterial(posicionActual, mapa)) {
-                    this.playSonido("mining.mp3");
                     actualizarImagen.actualizarImagenDeDesgaste(posicionActual,imagenes,gridpane);
                 }
                 actualizarImagen.actualizarImagenItems(items);
@@ -147,7 +127,6 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             case J:
                 posicionActual = mapa.posDeAtaque(new DireccionIzquierda());
                 if (botonDesgastarMaterial.eventoDesgastarMaterial(posicionActual, mapa)) {
-                    this.playSonido("mining.mp3");
                     actualizarImagen.actualizarImagenDeDesgaste(posicionActual,imagenes,gridpane);
                 }
                 actualizarImagen.actualizarImagenItems(items);
@@ -156,7 +135,6 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             case K:
                 posicionActual = mapa.posDeAtaque(new DireccionAbajo());
                 if (botonDesgastarMaterial.eventoDesgastarMaterial(posicionActual, mapa)) {
-                    this.playSonido("mining.mp3");
                     actualizarImagen.actualizarImagenDeDesgaste(posicionActual,imagenes,gridpane);
                 }
                 actualizarImagen.actualizarImagenItems(items);
@@ -165,7 +143,6 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             case L:
                 posicionActual = mapa.posDeAtaque(new DireccionDerecha());
                 if (botonDesgastarMaterial.eventoDesgastarMaterial(posicionActual, mapa)) {
-                    this.playSonido("mining.mp3");
                     actualizarImagen.actualizarImagenDeDesgaste(posicionActual,imagenes,gridpane);
                 }
                 actualizarImagen.actualizarImagenItems(items);
@@ -176,25 +153,6 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                 botonCambiarHerramienta.eventoCambiarHerramientaEquipada(mapa);
                 actualizarImagen.actualizarImagenHerramientaEquipada(herramientaEquipada);
         }
-    }
-
-
-    private void playSonidoPasos() {
-        AudioClip caminar;
-        Path soundPath = Paths.get(path, "sonidos");
-        Random rand = new Random();
-        Integer numero = rand.nextInt(4) + 1;
-        Path walkPath = Paths.get(soundPath.toString(), "walk" + numero.toString() + ".mp3");
-        caminar = new AudioClip(walkPath.toString());
-        caminar.setVolume(volumenCaminar);
-        caminar.play();
-    }
-
-    private void playSonido(String nombreSonido) {
-        Path soundPath = Paths.get(path, "sonidos");
-        soundPath = Paths.get(soundPath.toString(), nombreSonido);
-        AudioClip sound = new AudioClip(soundPath.toString());
-        sound.play();
     }
 
 

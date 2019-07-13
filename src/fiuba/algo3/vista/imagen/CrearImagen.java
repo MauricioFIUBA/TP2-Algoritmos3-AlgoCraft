@@ -1,4 +1,4 @@
-package fiuba.algo3.vista;
+package fiuba.algo3.vista.imagen;
 
 import fiuba.algo3.modelo.jugador.Item;
 import fiuba.algo3.modelo.mapa.Mapa;
