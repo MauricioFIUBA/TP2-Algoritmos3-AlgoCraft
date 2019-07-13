@@ -32,7 +32,7 @@ public class ActualizarImagen{
         itemsJugador = mapa.getItems();
     }
 
-    public void actualizarImagenMovimiento(Posicion posicionAnterior, Map<Posicion, ImageView> imagenes, GridPane gridpane) {
+    public void movimiento(Posicion posicionAnterior, Map<Posicion, ImageView> imagenes, GridPane gridpane) {
         Posicion posicionNueva;
         posicionNueva = mapa.obtenerPosicionDelJugador();
         if (!posicionNueva.equals(posicionAnterior)) {
@@ -48,35 +48,35 @@ public class ActualizarImagen{
         }
     }
 
-    public void actualizarImagenItems(GridPane items) {
+    public void items(GridPane items) {
         CrearImagen crearImagen = new CrearImagen(mapa,itemsJugador,tamanio,cantidad);
         int cantItemsJugador = itemsJugador.size();
         Map<Posicion, ImageView> imgItems = new HashMap<>();
-        crearImagen.crearImagenesInventario(imgItems);
+        crearImagen.inventario(imgItems);
         items.getChildren().clear();
         for (int i = 0; i < cantItemsJugador; i++) {
             items.add(imgItems.get(new Posicion(i, 0)), i, 0);
         }
     }
 
-    public void actualizarImagenHerramientaEquipada(GridPane herramientaEquipada) {
+    public void herramientaEquipada(GridPane herramientaEquipada) {
         CrearImagen crearImagen = new CrearImagen(mapa,itemsJugador,tamanio,cantidad);
         Map<Posicion, ImageView> imgHerramientaEquipada = new HashMap<>();
-        crearImagen.crearImagenesHerramientaEquipada(imgHerramientaEquipada);
+        crearImagen.herramientaEquipada(imgHerramientaEquipada);
         herramientaEquipada.getChildren().clear();
         herramientaEquipada.add(imgHerramientaEquipada.get(new Posicion(0, 0)), 0, 0);
     }
 
-    public void actualizarImagenDeDesgaste(Posicion posicionDeAtaque, Map<Posicion, ImageView> imagenes, GridPane gridpane) {
+    public void materialDesgastado(Posicion posicionDeAtaque, Map<Posicion, ImageView> imagenes, GridPane gridpane) {
         if (!mapa.perteneceAlMapa(posicionDeAtaque)) {
             efecto.playSonidoRecolectar();
-            this.actualizarImagenMaterialRoto(posicionDeAtaque,imagenes,gridpane);
+            this.materialRoto(posicionDeAtaque,imagenes,gridpane);
         } else {
             efecto.playSonidoGolpear();
         }
     }
 
-    private void actualizarImagenMaterialRoto(Posicion posicion, Map<Posicion, ImageView> imagenes, GridPane gridpane) {
+    private void materialRoto(Posicion posicion, Map<Posicion, ImageView> imagenes, GridPane gridpane) {
         /*Caso de borrar material y reemplazar con icon*/
         ImageView imagenVieja = imagenes.get(posicion);
         Path imagenPath = Paths.get(path, "imagenes", "grass.png");
