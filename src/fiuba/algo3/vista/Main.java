@@ -54,10 +54,10 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         stage.setTitle("AlgoCraft");
 
         CrearImagen crearImagen = new CrearImagen(mapa,mapa.getItems(),tamanio,cantidad);
-        crearImagen.crearImagenesMapa(imagenes);
-        crearImagen.crearGridpaneMapa(gridpane);
-        crearImagen.crearGridpaneInventario(items);
-        crearImagen.crearGridpaneHerramientaEquipada(herramientaEquipada);
+        crearImagen.mapa(imagenes);
+        crearImagen.gridpaneMapa(gridpane);
+        crearImagen.gridpaneInventario(items);
+        crearImagen.gridpaneHerramientaEquipada(herramientaEquipada);
 
         VBox contenedorPrincipal = new VBox(gridpane);
         HBox contenedorItems = new HBox(items);
@@ -99,61 +99,60 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             case W:
                 posicionActual = mapa.obtenerPosicionDelJugador();
                 botonMoverse.eventoMover(new DireccionArriba(), mapa);
-                actualizarImagen.actualizarImagenMovimiento(posicionActual,imagenes,gridpane);
+                actualizarImagen.movimiento(posicionActual,imagenes,gridpane);
                 break;
             case A:
                 posicionActual = mapa.obtenerPosicionDelJugador();
                 botonMoverse.eventoMover(new DireccionIzquierda(), mapa);
-                actualizarImagen.actualizarImagenMovimiento(posicionActual,imagenes,gridpane);
+                actualizarImagen.movimiento(posicionActual,imagenes,gridpane);
                 break;
             case S:
                 posicionActual = mapa.obtenerPosicionDelJugador();
                 botonMoverse.eventoMover(new DireccionAbajo(), mapa);
-                actualizarImagen.actualizarImagenMovimiento(posicionActual,imagenes,gridpane);
+                actualizarImagen.movimiento(posicionActual,imagenes,gridpane);
                 break;
             case D:
                 posicionActual = mapa.obtenerPosicionDelJugador();
                 botonMoverse.eventoMover(new DireccionDerecha(), mapa);
-                actualizarImagen.actualizarImagenMovimiento(posicionActual,imagenes,gridpane);
+                actualizarImagen.movimiento(posicionActual,imagenes,gridpane);
                 break;
             case I:
                 posicionActual = mapa.posDeAtaque(new DireccionArriba());
                 if (botonDesgastarMaterial.eventoDesgastarMaterial(posicionActual, mapa)) {
-                    actualizarImagen.actualizarImagenDeDesgaste(posicionActual,imagenes,gridpane);
+                    actualizarImagen.materialDesgastado(posicionActual,imagenes,gridpane);
                 }
-                actualizarImagen.actualizarImagenItems(items);
-                actualizarImagen.actualizarImagenHerramientaEquipada(herramientaEquipada);
+                actualizarImagen.items(items);
+                actualizarImagen.herramientaEquipada(herramientaEquipada);
                 break;
             case J:
                 posicionActual = mapa.posDeAtaque(new DireccionIzquierda());
                 if (botonDesgastarMaterial.eventoDesgastarMaterial(posicionActual, mapa)) {
-                    actualizarImagen.actualizarImagenDeDesgaste(posicionActual,imagenes,gridpane);
+                    actualizarImagen.materialDesgastado(posicionActual,imagenes,gridpane);
                 }
-                actualizarImagen.actualizarImagenItems(items);
-                actualizarImagen.actualizarImagenHerramientaEquipada(herramientaEquipada);
+                actualizarImagen.items(items);
+                actualizarImagen.herramientaEquipada(herramientaEquipada);
                 break;
             case K:
                 posicionActual = mapa.posDeAtaque(new DireccionAbajo());
                 if (botonDesgastarMaterial.eventoDesgastarMaterial(posicionActual, mapa)) {
-                    actualizarImagen.actualizarImagenDeDesgaste(posicionActual,imagenes,gridpane);
+                    actualizarImagen.materialDesgastado(posicionActual,imagenes,gridpane);
                 }
-                actualizarImagen.actualizarImagenItems(items);
-                actualizarImagen.actualizarImagenHerramientaEquipada(herramientaEquipada);
+                actualizarImagen.items(items);
+                actualizarImagen.herramientaEquipada(herramientaEquipada);
                 break;
             case L:
                 posicionActual = mapa.posDeAtaque(new DireccionDerecha());
                 if (botonDesgastarMaterial.eventoDesgastarMaterial(posicionActual, mapa)) {
-                    actualizarImagen.actualizarImagenDeDesgaste(posicionActual,imagenes,gridpane);
+                    actualizarImagen.materialDesgastado(posicionActual,imagenes,gridpane);
                 }
-                actualizarImagen.actualizarImagenItems(items);
-                actualizarImagen.actualizarImagenHerramientaEquipada(herramientaEquipada);
+                actualizarImagen.items(items);
+                actualizarImagen.herramientaEquipada(herramientaEquipada);
                 break;
             case SPACE:
                 BotonCambiarHerramienta botonCambiarHerramienta = new BotonCambiarHerramienta();
                 botonCambiarHerramienta.eventoCambiarHerramientaEquipada(mapa);
-                actualizarImagen.actualizarImagenHerramientaEquipada(herramientaEquipada);
+                actualizarImagen.herramientaEquipada(herramientaEquipada);
         }
     }
-
 
 }

@@ -25,7 +25,7 @@ public class RetornarImagen {
         path = "file:" + currentPath.toString();
     }
 
-    public Image retornarImagenMapa(Posicion posicion, Mapa mapa) {
+    public Image mapa(Posicion posicion, Mapa mapa) {
         Path imagenPath = Paths.get(path, "imagenes");
         if (mapa.perteneceAlMapa(posicion)) {
             ElementoDelJuego elemento = mapa.retornarElemento(posicion);
@@ -48,7 +48,7 @@ public class RetornarImagen {
         return new Image(imagenPath.toString());
     }
 
-    public Image retornarImagenItems(int posicion, List<Item> itemsJugador) {
+    public Image items(int posicion, List<Item> itemsJugador) {
         Path imagenPath = Paths.get(path, "imagenes");
         Item elemento = itemsJugador.get(posicion);
         if (elemento instanceof Herramienta) {
@@ -70,7 +70,7 @@ public class RetornarImagen {
         return new Image(imagenPath.toString());
     }
 
-    public Image retornarImagenHerramientaEquip(Mapa mapa) {
+    public Image herramientaEquipada(Mapa mapa) {
         Path imagenPath = Paths.get(path, "imagenes");
         Item elemento = mapa.jugador.getHerramientaEquipada();
         if (elemento == null) {
