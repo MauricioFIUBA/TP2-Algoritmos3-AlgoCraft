@@ -2,6 +2,7 @@ package fiuba.algo3.vista.imagen;
 
 import fiuba.algo3.modelo.herramientas.Herramienta;
 import fiuba.algo3.modelo.herramientas.PicoFino;
+import fiuba.algo3.modelo.juego.Juego;
 import fiuba.algo3.modelo.jugador.Item;
 import fiuba.algo3.modelo.mapa.ElementoDelJuego;
 import fiuba.algo3.modelo.mapa.Mapa;
@@ -56,11 +57,11 @@ public class RetornarImagen {
                 imagenPath = Paths.get(imagenPath.toString(), "PicoFino.jpg");
 
             } else {
-                Herramienta herramientaAactual = (Herramienta) itemsJugador.get(posicion);
+                Herramienta herramientaActual = (Herramienta) itemsJugador.get(posicion);
                 imagenPath = Paths.get(imagenPath.toString(),
-                        herramientaAactual.getClass().getSimpleName() +
+                        herramientaActual.getClass().getSimpleName() +
                                 "De" +
-                                herramientaAactual.getMaterial().getClass().getSimpleName() +
+                                herramientaActual.getMaterial().getClass().getSimpleName() +
                                 ".png");
             }
         } else {
@@ -70,19 +71,18 @@ public class RetornarImagen {
         return new Image(imagenPath.toString());
     }
 
-    public Image herramientaEquipada(Mapa mapa) {
+    public Image herramientaEquipada(Juego juego) {
         Path imagenPath = Paths.get(path, "imagenes");
-        Item elemento = mapa.jugador.getHerramientaEquipada();
-        if (elemento == null) {
+        Herramienta herramientaActual = juego.getHerramientaEquipadaDelJugador();
+        if (herramientaActual == null) {
             imagenPath = Paths.get(imagenPath.toString(), "none.png");
-        } else if (elemento instanceof PicoFino) {
+        } else if (herramientaActual instanceof PicoFino) {
             imagenPath = Paths.get(imagenPath.toString(), "PicoFino.jpg");
         } else {
-            Herramienta herramientaAactual = (Herramienta) elemento;
             imagenPath = Paths.get(imagenPath.toString(),
-                    herramientaAactual.getClass().getSimpleName() +
+                    herramientaActual.getClass().getSimpleName() +
                             "De" +
-                            herramientaAactual.getMaterial().getClass().getSimpleName() +
+                            herramientaActual.getMaterial().getClass().getSimpleName() +
                             ".png");
         }
         return new Image(imagenPath.toString());

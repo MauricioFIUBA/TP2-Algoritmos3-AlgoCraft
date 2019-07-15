@@ -1,8 +1,7 @@
 package fiuba.algo3.vista;
 
 import fiuba.algo3.modelo.juego.Juego;
-import fiuba.algo3.modelo.mapa.*;
-import fiuba.algo3.modelo.direccion.*;
+import fiuba.algo3.modelo.mapa.Posicion;
 import fiuba.algo3.controlador.manejadores.*;
 import fiuba.algo3.vista.imagen.*;
 import fiuba.algo3.vista.sonido.Musica;
@@ -25,15 +24,14 @@ import java.util.Map;
 
 public class Main extends Application implements EventHandler<KeyEvent> {
 
-    private static Mapa mapa;
+    private static Juego juego;
     static private String path;
 
 
     public static void main(String[] args) {
         Path currentPath = Paths.get(System.getProperty("user.dir"));
         path = "file:" + currentPath.toString();
-        Juego juego = new Juego();
-        mapa = juego.getMapa();
+        juego = new Juego();
         // Para probar distintas herramientas;
         //mapa.jugador.equiparHerramienta(new PicoFino());
         //mapa.jugador.equiparHerramienta(new Pico(new Metal()));
@@ -53,7 +51,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
 
         stage.setTitle("AlgoCraft");
 
-        CrearImagen crearImagen = new CrearImagen(mapa,mapa.getItems(),tamanio,cantidad);
+        CrearImagen crearImagen = new CrearImagen(juego,tamanio,cantidad);
         crearImagen.mapa(imagenes);
         crearImagen.gridpaneMapa(gridpane);
         crearImagen.gridpaneInventario(items);
@@ -91,68 +89,68 @@ public class Main extends Application implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent event) {
-        ActualizarImagen actualizarImagen = new ActualizarImagen(mapa,tamanio,cantidad);
+        ActualizarImagen actualizarImagen = new ActualizarImagen(juego,tamanio,cantidad);
         BotonMoverse botonMoverse = new BotonMoverse();
         BotonDesgastarMaterial botonDesgastarMaterial = new BotonDesgastarMaterial();
         Posicion posicionActual;
+        PosicionAtacar posicionAtacar;
         switch (event.getCode()) {
             case W:
-                posicionActual = mapa.obtenerPosicionDelJugador();
-                botonMoverse.eventoMover(new DireccionArriba(), mapa);
+                posicionActual = juego.obtenerPosicionDelJugador();
+                botonMoverse.eventoMoverArriba(juego);
                 actualizarImagen.movimiento(posicionActual,imagenes,gridpane);
                 break;
             case A:
-                posicionActual = mapa.obtenerPosicionDelJugador();
-                botonMoverse.eventoMover(new DireccionIzquierda(), mapa);
+                posicionActual = juego.obtenerPosicionDelJugador();
+                botonMoverse.eventoMoverALaIzquierda(juego);
                 actualizarImagen.movimiento(posicionActual,imagenes,gridpane);
                 break;
             case S:
-                posicionActual = mapa.obtenerPosicionDelJugador();
-                botonMoverse.eventoMover(new DireccionAbajo(), mapa);
+                posicionActual = juego.obtenerPosicionDelJugador();
+                botonMoverse.eventoMoverAbajo(juego);
                 actualizarImagen.movimiento(posicionActual,imagenes,gridpane);
                 break;
             case D:
-                posicionActual = mapa.obtenerPosicionDelJugador();
-                botonMoverse.eventoMover(new DireccionDerecha(), mapa);
+                posicionActual = juego.obtenerPosicionDelJugador();
+                botonMoverse.eventoMoverALaDerecha(juego);
                 actualizarImagen.movimiento(posicionActual,imagenes,gridpane);
                 break;
             case I:
-                posicionActual = mapa.posDeAtaque(new DireccionArriba());
-                if (botonDesgastarMaterial.eventoDesgastarMaterial(posicionActual, mapa)) {
-                    actualizarImagen.materialDesgastado(posicionActual,imagenes,gridpane);
+                posicionAtacar = botonDesgastarMaterial.eventoDesgastarMaterialArriba(juego);
+                if (posicionAtacar.fueAtacada()) {
+                    actualizarImagen.materialDesgastado(posicionAtacar.getPosicionAtacada(),imagenes,gridpane);
+                    actualizarImagen.items(items);
+                    actualizarImagen.herramientaEquipada(herramientaEquipada);
                 }
-                actualizarImagen.items(items);
-                actualizarImagen.herramientaEquipada(herramientaEquipada);
                 break;
             case J:
-                posicionActual = mapa.posDeAtaque(new DireccionIzquierda());
-                if (botonDesgastarMaterial.eventoDesgastarMaterial(posicionActual, mapa)) {
-                    actualizarImagen.materialDesgastado(posicionActual,imagenes,gridpane);
+                posicionAtacar = botonDesgastarMaterial.eventoDesgastarMaterialALaIzquierda(juego);
+                if (posicionAtacar.fueAtacada()) {
+                    actualizarImagen.materialDesgastado(posicionAtacar.getPosicionAtacada(),imagenes,gridpane);
+                    actualizarImagen.items(items);
+                    actualizarImagen.herramientaEquipada(herramientaEquipada);
                 }
-                actualizarImagen.items(items);
-                actualizarImagen.herramientaEquipada(herramientaEquipada);
                 break;
             case K:
-                posicionActual = mapa.posDeAtaque(new DireccionAbajo());
-                if (botonDesgastarMaterial.eventoDesgastarMaterial(posicionActual, mapa)) {
-                    actualizarImagen.materialDesgastado(posicionActual,imagenes,gridpane);
+                posicionAtacar = botonDesgastarMaterial.eventoDesgastarMaterialAbajo(juego);
+                if (posicionAtacar.fueAtacada()) {
+                    actualizarImagen.materialDesgastado(posicionAtacar.getPosicionAtacada(),imagenes,gridpane);
+                    actualizarImagen.items(items);
+                    actualizarImagen.herramientaEquipada(herramientaEquipada);
                 }
-                actualizarImagen.items(items);
-                actualizarImagen.herramientaEquipada(herramientaEquipada);
                 break;
             case L:
-                posicionActual = mapa.posDeAtaque(new DireccionDerecha());
-                if (botonDesgastarMaterial.eventoDesgastarMaterial(posicionActual, mapa)) {
-                    actualizarImagen.materialDesgastado(posicionActual,imagenes,gridpane);
+                posicionAtacar = botonDesgastarMaterial.eventoDesgastarMaterialALaDerecha(juego);
+                if (posicionAtacar.fueAtacada()) {
+                    actualizarImagen.materialDesgastado(posicionAtacar.getPosicionAtacada(),imagenes,gridpane);
+                    actualizarImagen.items(items);
+                    actualizarImagen.herramientaEquipada(herramientaEquipada);
                 }
-                actualizarImagen.items(items);
-                actualizarImagen.herramientaEquipada(herramientaEquipada);
                 break;
             case SPACE:
                 BotonCambiarHerramienta botonCambiarHerramienta = new BotonCambiarHerramienta();
-                botonCambiarHerramienta.eventoCambiarHerramientaEquipada(mapa);
+                botonCambiarHerramienta.eventoCambiarHerramientaEquipada(juego);
                 actualizarImagen.herramientaEquipada(herramientaEquipada);
         }
     }
-
 }

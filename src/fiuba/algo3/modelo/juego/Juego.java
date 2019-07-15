@@ -1,12 +1,11 @@
 package fiuba.algo3.modelo.juego;
 
+import fiuba.algo3.modelo.direccion.Direccion;
+import fiuba.algo3.modelo.herramientas.Herramienta;
 import fiuba.algo3.modelo.jugador.Jugador;
 import fiuba.algo3.modelo.mapa.Mapa;
 import fiuba.algo3.modelo.mapa.Posicion;
-import fiuba.algo3.modelo.materiales.Diamante;
-import fiuba.algo3.modelo.materiales.Madera;
-import fiuba.algo3.modelo.materiales.Metal;
-import fiuba.algo3.modelo.materiales.Piedra;
+import fiuba.algo3.modelo.materiales.*;
 
 import java.util.Random;
 
@@ -97,6 +96,35 @@ public class Juego {
     public Mapa getMapa() {
         return this.mapaDeJuego;
     }
-    public int cantidadItemsDelJugador(){return jugador.cantidadItems();}
+//    public int cantidadItemsDelJugador(){return jugador.cantidadItems();}
+    public Herramienta getHerramientaEquipadaDelJugador() {
+        return jugador.getHerramientaEquipada();
+    }
 
+    public Posicion obtenerPosicionDelJugador() {
+        return  this.mapaDeJuego.obtenerPosicionDelJugador();
+    }
+
+    public Posicion posicionDeAtaque(Direccion unaDireccion){
+        return unaDireccion.posSiguiente(this.obtenerPosicionDelJugador());
+    }
+
+    public void atacarEn(Posicion unaPosicion) {
+        if (mapaDeJuego.esMaterial(unaPosicion) && this.jugador.getHerramientaEquipada() != null) {
+            Material material = (Material) mapaDeJuego.obtenerElemento(unaPosicion);
+            material.esDesgastadoPor(jugador.getHerramientaEquipada());
+            if (material.roto()){
+                jugador.añadirItem(material);
+
+                mapaDeJuego.eliminar(unaPosicion);
+            }
+            if(jugador.herramientaEquipadaRota()){
+                jugador.eliminarHerramientaEquipada();
+            }
+        }
+    }
+
+    public void cambiarHerramientaEquipada(){
+        jugador.cambiarSiguienteHerramienta();
+    }
 }

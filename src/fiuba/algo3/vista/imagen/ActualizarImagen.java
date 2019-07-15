@@ -1,5 +1,6 @@
 package fiuba.algo3.vista.imagen;
 
+import fiuba.algo3.modelo.juego.Juego;
 import fiuba.algo3.modelo.jugador.Item;
 import fiuba.algo3.modelo.mapa.Mapa;
 import fiuba.algo3.modelo.mapa.Posicion;
@@ -16,6 +17,7 @@ import java.util.Map;
 
 public class ActualizarImagen{
 
+    private Juego juego;
     private Mapa mapa;
     private String path;
     private int tamanio;
@@ -23,13 +25,14 @@ public class ActualizarImagen{
     private List<Item> itemsJugador;
     private EfectosDeSonido efecto = new EfectosDeSonido();
 
-    public ActualizarImagen(Mapa mapaActual, int tamanioActual, int cantidadActual){
+    public ActualizarImagen(Juego juegoActual, int tamanioActual, int cantidadActual){
         Path currentPath = Paths.get(System.getProperty("user.dir"));
-        mapa = mapaActual;
+        juego = juegoActual;
+        mapa = juegoActual.getMapa();
         path = "file:" + currentPath.toString();
         tamanio = tamanioActual;
         cantidad = cantidadActual;
-        itemsJugador = mapa.getItems();
+        itemsJugador = juegoActual.getMapa().getItems();
     }
 
     public void movimiento(Posicion posicionAnterior, Map<Posicion, ImageView> imagenes, GridPane gridpane) {
@@ -49,7 +52,7 @@ public class ActualizarImagen{
     }
 
     public void items(GridPane items) {
-        CrearImagen crearImagen = new CrearImagen(mapa,itemsJugador,tamanio,cantidad);
+        CrearImagen crearImagen = new CrearImagen(juego, tamanio, cantidad);
         int cantItemsJugador = itemsJugador.size();
         Map<Posicion, ImageView> imgItems = new HashMap<>();
         crearImagen.inventario(imgItems);
@@ -60,7 +63,7 @@ public class ActualizarImagen{
     }
 
     public void herramientaEquipada(GridPane herramientaEquipada) {
-        CrearImagen crearImagen = new CrearImagen(mapa,itemsJugador,tamanio,cantidad);
+        CrearImagen crearImagen = new CrearImagen(juego, tamanio, cantidad);
         Map<Posicion, ImageView> imgHerramientaEquipada = new HashMap<>();
         crearImagen.herramientaEquipada(imgHerramientaEquipada);
         herramientaEquipada.getChildren().clear();

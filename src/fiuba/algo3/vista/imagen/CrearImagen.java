@@ -1,7 +1,7 @@
 package fiuba.algo3.vista.imagen;
 
+import fiuba.algo3.modelo.juego.Juego;
 import fiuba.algo3.modelo.jugador.Item;
-import fiuba.algo3.modelo.mapa.Mapa;
 import fiuba.algo3.modelo.mapa.Posicion;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,17 +13,18 @@ import java.util.Map;
 
 public class CrearImagen {
 
-    private Mapa mapa;
+//    private Mapa mapa;
+    private Juego juego;
     private int tamanio;
     private int cantidad;
     private List<Item> itemsJugador;
     private RetornarImagen retornarImagen;
 
-    public CrearImagen(Mapa mapaActual,List<Item> itemsJugadorActual, int tamanioActual, int cantidadActual){
-        mapa = mapaActual;
+    public CrearImagen(Juego juegoActual, int tamanioActual, int cantidadActual){
+        juego = juegoActual;
         tamanio = tamanioActual;
         cantidad = cantidadActual;
-        itemsJugador = itemsJugadorActual;
+        itemsJugador = juegoActual.getMapa().getItems();
         retornarImagen = new RetornarImagen();
     }
 
@@ -40,7 +41,7 @@ public class CrearImagen {
     public void mapa(Map<Posicion, ImageView> imagenes) {
         for (int i = 0; i < cantidad; i++) {
             for (int j = 0; j < cantidad; j++) {
-                Image elemento = retornarImagen.mapa(new Posicion(i, j), mapa);
+                Image elemento = retornarImagen.mapa(new Posicion(i, j), juego.getMapa());
                 ImageView imageView = new ImageView(elemento);
                 imageView.setFitHeight(tamanio);
                 imageView.setFitWidth(tamanio);
@@ -75,7 +76,7 @@ public class CrearImagen {
     }
 
     public void herramientaEquipada(Map<Posicion, ImageView> imgHerramientaEquipada) {
-        Image elemento = retornarImagen.herramientaEquipada(mapa);
+        Image elemento = retornarImagen.herramientaEquipada(juego);
         ImageView imageView = new ImageView(elemento);
         imageView.setFitHeight(tamanio * 2);
         imageView.setFitWidth(tamanio * 2);
